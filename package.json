@@ -25,6 +25,7 @@
     "vuepress": "^1.2.0"
   },
   "dependencies": {
+    "element-ui": "^2.15.2",
     "yarn": "^1.22.10"
   }
 }
