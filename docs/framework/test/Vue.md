@@ -1,8 +1,8 @@
-# Vue
+# Vue框架
 - Vue是用于构建用户界面的渐进式框架。
 - Vue核心：减少不必要的DOM操作(虚拟DOM)，数据双向绑定。
 - MVVM模式：View和Model用Vue关联起来。
-# Vue安装
+## Vue安装
 1. npm insatll -g vue 安装脚手架。
 2. vue create <项目名> 创建vue框架。
 3.  vue脚手架安装jQuery，在webpack.dev.conf.js中的plugins加入以下语句。
@@ -13,7 +13,7 @@ new webpack.ProvidePlugin({
   "windows.jQuery": "jquery"
 })
 ```
-# 页面渲染
+## 页面渲染
 - `v-if`  `v-else` 设置此标签是否被渲染
 - `v-show` 设置标签是否显示
 - `v-for` 循环输出内容，key值可为每个item绑定一个标识
@@ -37,7 +37,7 @@ export default {}
 </script>
 <style></style>
 ```
-# 生命周期
+## 生命周期
 Vue[生命周期](https://v3.cn.vuejs.org/guide/instance.html#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%BE%E7%A4%BA)共有八个执行函数：
 - beforeCreate 数据和事件方法还未绑定到app对象上,此时可执行Ajax
 - created 数据和事件方法已绑定到app对象上
@@ -57,7 +57,7 @@ export default {
     destroyed(){}
 }
 ```
-# 内置对象
+## 内置对象
 - props 用于组件间的数据传输对象
 - data 用于放置当前组件可使用的数据
 - components 在导入组件时需要在此对象内映射组件
@@ -74,9 +74,9 @@ export default {
 	watch: {}
 }
 ```
-# 插槽slot
+## 插槽slot
 插槽类似于模板属性的补充，在子组件中设置插槽标签，父组件间继承子组件后，可在标签内插入新的标签属性
-## 匿名、具名插槽
+### 匿名、具名插槽
 - 匿名插槽：未命名插槽，父组件引入子组建后直接编写新的新签属性
 - 具名插槽：父组件使用子组件插槽时需要绑定插槽名，即：`slot="name"`
 
@@ -120,7 +120,7 @@ export default {
   </div>
 </template>
 ```
-## 插槽编写组件
+### 插槽编写组件
 - 在插槽内插入新标签可自定义按钮文本的形式
 - 在子组件中的 `button` 绑定一个 `props` 对象，父组件在使用子组件时传入对应达样式名可改变按钮的样式
 
@@ -172,7 +172,7 @@ export default {
 }
 </script>
 ```
-## 作用域插槽
+### 作用域插槽
 在子组件 `slot` 中绑定一个数据，父组件通过 `slotProps` 可访问到子组件的数据
 *parent.vue*
 ```html
@@ -201,7 +201,7 @@ export default {
 }
 </script>
 ```
-# Vuex状态管理
+## 状态管理Vuex
 
 此组件相当于定义了一个全局的data，在多个组件同时需要要到同组数据时可使用。
 - `Store`  数据仓库对象
@@ -232,5 +232,4 @@ mapMutations(['functionName'])
 $store.commit('functionName')
 $store.dispatch('functionName')
 ```
-> [Vue框架官网文档](https://cn.vuejs.org/v2/guide/)
 

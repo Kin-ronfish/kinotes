@@ -1,4 +1,4 @@
-# Nuxt
+# Nuxt框架
 Nuxt是一个基于Vue.js的服务端渲染应用框架。
 ## 框架安装
 npx create-nuxt-app <项目名>
@@ -162,4 +162,3 @@ proxy: {
   }
 }
 ```
-> [Nuxt框架官网文档](https://www.nuxtjs.cn/)

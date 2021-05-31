@@ -33,33 +33,13 @@ module.exports = {
         smoothScroll: true,
         nav: [
             { text: '主页', link: '/' },
-            { text: '笔记', link: '/note/'},
-            { text: '框架', link: '/framework/'},
             { text: '基础', link: '/base/'},
-            { text: '软件', link: '/note2/'},
-            { text: '知识笔记', link: '/knowledge/'},
-            { text: '指导', link: '/line/' }
+            { text: '框架', link: '/framework/'},
+            { text: '笔记', link: '/note/'}
         ],
         sidebar: {
-            '/note/': ['',
-            {
-                title: '工具',
-                collapsable: false,
-                children: [
-                    '/note/tool/tool.md'
-                ]
-            }],
-            '/framework/':['',{
-                title: '前端框架',
-                collapsable: false,
-                children: [
-                    '/framework/test/Nuxt.md',
-                    '/framework/test/React.md',
-                    '/framework/test/Vue.md'
-                ]
-            }],
             '/base/':['',{
-                title: '前端基础',
+                title: '学习笔记',
                 collapsable: false,
                 children: [
                     '/base/test/JavaScript.md',
@@ -70,25 +50,43 @@ module.exports = {
                     '/base/test/java.md',
                     '/base/test/Typescript.md'
                 ]
-            }],
-            '/knowledge/': ['',{
-                title: '知识笔记',
+            },{
+                title: '参考笔记',
                 collapsable: false,
                 children: [
-                    '/knowledge/test/安全.md',
-                    '/knowledge/test/框架.md',
-                    '/knowledge/test/浏览器.md',
-                    '/knowledge/test/数据结构.md',
-                    '/knowledge/test/算法.md',
-                    '/knowledge/test/网络相关.md',
-                    '/knowledge/test/网络协议.md',
-                    '/knowledge/test/JS.md',
-                    '/knowledge/test/react.md',
-                    '/knowledge/test/vue.md'
+                    '/base/other/安全.md',
+                    '/base/other/框架.md',
+                    '/base/other/浏览器.md',
+                    '/base/other/数据结构.md',
+                    '/base/other/算法.md',
+                    '/base/other/网络相关.md',
+                    '/base/other/网络协议.md',
+                    '/base/other/JavaScript.md'
                 ]
             }],
-            '/note2/':[''],
-            '/line/': ['']
+            '/framework/':['',{
+                title: '学习笔记',
+                collapsable: false,
+                children: [
+                    '/framework/test/Nuxt.md',
+                    '/framework/test/React.md',
+                    '/framework/test/Vue.md'
+                ]
+            },{
+                title: '参考笔记',
+                collapsable: false,
+                children: [
+                    '/framework/other/react.md',
+                    '/framework/other/vue.md'
+                ]
+            },{
+                title: '框架演示',
+                collapsable: false,
+                children: [
+                    '/framework/performance'
+                ]
+            }],
+            '/note/': ['']
         }
     },
     plugins: [

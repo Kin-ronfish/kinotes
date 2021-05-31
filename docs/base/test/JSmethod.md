@@ -1,5 +1,5 @@
 # JSmethod
-# 累加运算
+## 累加运算
 
 > 第n项等于前面所有项的累加 n = n + Sn
 
@@ -13,7 +13,7 @@ accumulate(1, 2, 3, 4); // [1, 3, 6, 10]
 accumulate(...[1, 2, 3, 4]); // [1, 3, 6, 10]
 ```
 
-# 添加类名
+## 添加类名
 
 > 为标签添加类名
 
@@ -25,7 +25,7 @@ const addClass = (el, className) => el.classList.add(className);
 addClass(document.querySelector('p'), 'special');
 ```
 
-# 日期增减
+## 日期增减
 
 > 格式1：日期增减，遵循日期的增减规则
 
@@ -59,7 +59,7 @@ addWeekDays(new Date('Oct 09, 2020'), 5); // 'Oct 16, 2020'
 addWeekDays(new Date('Oct 12, 2020'), 5); // 'Oct 19, 2020'
 ```
 
-# 分钟增减
+## 分钟增减
 
 > 时间分钟增减，遵循时间增减原则
 
@@ -77,7 +77,7 @@ addMinutesToDate('2020-10-19 12:00:00', 10); // '2020-10-19 12:10:00'
 addMinutesToDate('2020-10-19', -10); // '2020-10-18 23:50:00'
 ```
 
-# 添加事件
+## 添加事件
 
 > 为标签添加多个事件函数
 
@@ -97,7 +97,7 @@ addMultipleListeners(
 );
 ```
 
-# 添加样式
+## 添加样式
 
 > 为标签添加多个样式
 
@@ -113,7 +113,7 @@ addStyles(document.getElementById('my-element'), { // 传入id值
 });
 ```
 
-# 数组判断
+## 数组判断
 
 > 判断数组中的所有值是否都满足条件
 
@@ -184,7 +184,7 @@ allUniqueBy([1.2, 2.4, 2.9], Math.round); // true
 allUniqueBy([1.2, 2.3, 2.4], Math.round); // false
 ```
 
-# 数组格式
+## 数组格式
 
 > 把一维数组转为二维数组
 
@@ -230,7 +230,7 @@ arrayToCSV([['a', '"b" great'], ['c', 3.1415]]);
 // '"a","""b"" great"\n"c",3.1415'
 ```
 
-# 数组操作
+## 数组操作
 
 > 数组求平均数
 
@@ -334,7 +334,7 @@ binarySearch([1, 2, 3, 4, 5], 5); // 4
 binarySearch([1, 2, 3, 4, 5], 6); // -1
 ```
 
-# 字符格式
+## 字符格式
 
 > 将字符串转换成base64格式
 
@@ -356,7 +356,7 @@ const btoa = str => Buffer.from(str, 'binary').toString('base64');
 btoa('foobar'); // 'Zm9vYmFy'
 ```
 
-# 字符操作
+## 字符操作
 
 > 输出字符串长度
 
