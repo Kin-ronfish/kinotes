@@ -43,29 +43,10 @@ module.exports = {
         sidebar: {
             '/note/': ['',
             {
-                title: '前端学习笔记',
+                title: '工具',
                 collapsable: false,
                 children: [
-                    '/note/code/sort.md',
-                    '/note/code/JavaScript.md',
-                    '/note/code/ES6.md',
-                    '/note/code/Typescript.md',
-                    '/note/code/Vue.md',
-                    '/note/code/Nuxt.md',
-                    '/note/code/React.md',
-                    '/note/code/CSS.md'
-                ]
-            },{
-                title: '后端学习笔记',
-                collapsable: false,
-                children: [
-                    '/note/java/java.md'
-                ]
-            },{
-                title: '硬件学习笔记',
-                collapsable: false,
-                children: [
-                    '/note/arduino/Arduino.md'
+                    '/note/tool/tool.md'
                 ]
             }],
             '/framework/':['',{
@@ -74,7 +55,6 @@ module.exports = {
                 children: [
                     '/framework/test/Nuxt.md',
                     '/framework/test/React.md',
-                    '/framework/test/Typescript.md',
                     '/framework/test/Vue.md'
                 ]
             }],
@@ -82,9 +62,13 @@ module.exports = {
                 title: '前端基础',
                 collapsable: false,
                 children: [
-                    '/base/test/CSS.md',
                     '/base/test/JavaScript.md',
-                    '/base/test/ES6.md'
+                    '/base/test/ES6.md',
+                    '/base/test/JSmethod.md',
+                    '/base/test/sort.md',
+                    '/base/test/CSS.md',
+                    '/base/test/java.md',
+                    '/base/test/Typescript.md'
                 ]
             }],
             '/knowledge/': ['',{
