@@ -100,8 +100,7 @@ module.exports = {
                     '/knowledge/test/网络协议.md',
                     '/knowledge/test/JS.md',
                     '/knowledge/test/react.md',
-                    '/knowledge/test/vue.md',
-                    '/knowledge/test/微信小程序.md'
+                    '/knowledge/test/vue.md'
                 ]
             }],
             '/note2/':[''],
