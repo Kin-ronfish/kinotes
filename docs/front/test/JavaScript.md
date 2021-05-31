@@ -38,7 +38,7 @@ function fun(name, age=2){} // 设置默认值(ES6)，不能油同名参数
 ```javascript
 function Foo() {
     return this;
-}
+};
 Foo.getName = function () {
     console.log('1');
 };
