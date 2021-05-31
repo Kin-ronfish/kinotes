@@ -81,10 +81,7 @@ module.exports = {
                 ]
             },{
                 title: '框架演示',
-                collapsable: false,
-                children: [
-                    '/framework/performance'
-                ]
+                collapsable: false
             }],
             '/note/': ['']
         }
