@@ -31,6 +31,10 @@ module.exports = {
         repo: 'Kin-ronfish/kinote',
         repoLabel: 'GitHub',
         smoothScroll: true,
+        algolia: {
+            apiKey: '<API_KEY>',
+            indexName: '<INDEX_NAME>'
+        },
         nav: [
             { text: '主页', link: '/' },
             { text: '笔记', link: '/note/'},
