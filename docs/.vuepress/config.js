@@ -41,6 +41,7 @@ module.exports = {
             { text: '框架', link: '/framework/'},
             { text: '基础', link: '/base/'},
             { text: '软件', link: '/note2/'},
+            { text: '知识笔记', link: '/knowledge/'},
             { text: '指导', link: '/line/' }
         ],
         sidebar: {
@@ -88,6 +89,23 @@ module.exports = {
                     '/base/test/CSS.md',
                     '/base/test/JavaScript.md',
                     '/base/test/ES6.md'
+                ]
+            }],
+            '/knowledge/': ['',{
+                title: '知识笔记',
+                collapsable: false,
+                children: [
+                    '/knowledge/test/安全.md',
+                    '/knowledge/test/框架.md',
+                    '/knowledge/test/浏览器.md',
+                    '/knowledge/test/数据结构.md',
+                    '/knowledge/test/算法.md',
+                    '/knowledge/test/网络相关.md',
+                    '/knowledge/test/网络协议.md',
+                    '/knowledge/test/JS.md',
+                    '/knowledge/test/react.md',
+                    '/knowledge/test/vue.md',
+                    '/knowledge/test/微信小程序.md'
                 ]
             }],
             '/note2/':[''],
