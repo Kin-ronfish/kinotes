@@ -2,7 +2,7 @@
 home: true
 heroImage: /assets/Kin.ico
 heroText: 桑色蓝鲸
-tagline: 微笑面对生活，生活给予甘甜。
+tagline: 成功建立在失败之后，或出现于失败之中 ！
 actionText: 开始学习 →
 actionLink: /note/
 sidebarDepth: 2
