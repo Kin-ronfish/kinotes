@@ -79,9 +79,6 @@ module.exports = {
                     '/framework/other/react.md',
                     '/framework/other/vue.md'
                 ]
-            },{
-                title: '框架演示',
-                collapsable: false
             }],
             '/note/': ['']
         }
