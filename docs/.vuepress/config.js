@@ -44,10 +44,7 @@ module.exports = {
                 children: [
                     '/base/test/JavaScript.md',
                     '/base/test/ES6.md',
-                    '/base/test/JSmethod.md',
-                    '/base/test/sort.md',
                     '/base/test/CSS.md',
-                    '/base/test/java.md',
                     '/base/test/Typescript.md'
                 ]
             },{
@@ -61,7 +58,9 @@ module.exports = {
                     '/base/other/算法.md',
                     '/base/other/网络相关.md',
                     '/base/other/网络协议.md',
-                    '/base/other/JavaScript.md'
+                    '/base/other/JavaScript.md',
+                    '/base/test/JSmethod.md',
+                    '/base/test/sort.md'
                 ]
             }],
             '/framework/':['',{
@@ -78,6 +77,13 @@ module.exports = {
                 children: [
                     '/framework/other/react.md',
                     '/framework/other/vue.md'
+                ]
+            }],
+            '/plugins/':['',{
+                title: '学习笔记',
+                collapsable: false,
+                children: [
+                    '/plugins/test/Typescript.md'
                 ]
             }],
             '/note/': ['']
