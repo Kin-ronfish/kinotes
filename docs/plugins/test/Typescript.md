@@ -10,25 +10,32 @@
 - `any` 任意类型，等同于var
 - `boolean` 布尔型
 - `enum` 枚举
+- `null` 空值
+- `undefined` 未定义
+- `object` 非原始类型
 - `void` 定义函数类型
+- `never` 定义没有返回值的函数
 ## 定义实例
 var [变量名] : [类型] = 值;
 ```typescript
-var strs : string = "hello";
-var nums : number = 12;
-var arr : any[] = [1,2];
-let flag : boolean = true;
-let x: [string, number];
+var strs : string = "hello"; //定义字符串
+var nums : number = 12; //定义数字，都是浮点型
+var strs : string = `hello${nums}`; //反引号可引入变量
+var arr : any[] = [1,2]; //定义任意类型的数组
+let flag : boolean = true; //定义布尔型
+let x: [string, number]; //定义一个含有指定类型的数组
 x = ["kin",15];
-enum Color {Red, Green, Blue}; //枚举
+enum Color {Red, Green, Blue}; //枚举，声明多个对象类型
 let c: Color = Color.Red;
 console.log(c); //输出数值索引
-//类型断言
 var str = '1'
-var str1 : number = <number> <any> str;
+var str1 : number = <number> <any> str; //类型断言，相当于类型转换
 console.log(str1);
 ```
+> 在typescript里定义变量，基本都用let声明。
+
 ## 函数定义
+
 基本函数
 ```typescript
 function user():string {
@@ -43,7 +50,7 @@ function add(x: number,y: number): number {
 ```
 可选参数函数，传入一、两个参数。
 ```typescript
-function Name(first: string, last?: string) {
+function Name(first: string, last?: string) { //加问号代表此值可有可无
 	if(last)
 		return first + "" + last;
 	else

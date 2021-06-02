@@ -59,8 +59,8 @@ module.exports = {
                     '/base/other/网络相关.md',
                     '/base/other/网络协议.md',
                     '/base/other/JavaScript.md',
-                    '/base/test/JSmethod.md',
-                    '/base/test/sort.md'
+                    '/base/other/JSmethod.md',
+                    '/base/other/sort.md'
                 ]
             }],
             '/framework/':['',{
