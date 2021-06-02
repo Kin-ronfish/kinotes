@@ -35,6 +35,7 @@ module.exports = {
             { text: '主页', link: '/' },
             { text: '基础', link: '/base/'},
             { text: '框架', link: '/framework/'},
+            { text: '插件', link: '/plugins/'},
             { text: '笔记', link: '/note/'}
         ],
         sidebar: {
@@ -44,8 +45,7 @@ module.exports = {
                 children: [
                     '/base/test/JavaScript.md',
                     '/base/test/ES6.md',
-                    '/base/test/CSS.md',
-                    '/base/test/Typescript.md'
+                    '/base/test/CSS.md'
                 ]
             },{
                 title: '参考笔记',
