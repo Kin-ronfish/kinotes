@@ -85,8 +85,7 @@ module.exports = {
                 children: [
                     '/plugins/test/Typescript.md'
                 ]
-            }],
-            '/note/': ['']
+            }]
         }
     },
     plugins: [
