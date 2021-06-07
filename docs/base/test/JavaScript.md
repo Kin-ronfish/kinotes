@@ -6,15 +6,24 @@ var str = "";
 var num = 0;
 var arr = [];
 ```
-let块作用域，**不能在定义之前访问该变量，不能被重新定义，无法在作用域外调用**，定义局部变量。
+let块作用域，**不能在定义之前访问该变量，不能被重新定义，无法在作用域外调用**，定义局部变量。(ES6)
 ```javascript
-let str = "";
-let num = 0;
-let arr = [];
+{
+  console.log(num); //报错
+  let num = 0;
+  let num = 2; //报错
+}
+console.log(num); //报错
 ```
-const定义的值**不可修改，不能被重新定义**，定义常量。
+const定义的值**不可修改，不能被重新定义**，定义常量。(ES6)
 ```javascript
-const VALUE = 25;
+{
+  console.log(NUM); //报错
+  const NUM = 0;
+  const NUM = 2; //报错
+  NUM = 1; //报错
+}
+console.log(NUM); //报错
 ```
 ## 函数定义
 普通函数定义
@@ -23,7 +32,43 @@ function fun(param1,param2...) {
     console.log("hello,Kin" + param1);
 }
 ```
+设置默认参数，**不能有同名参数** (ES6)
+
+```javascript
+function fun1(name,age=2){
+  console.log(name,age);
+}
+fun1("Jim",5); //输出Jim5
+fun1("Jim",null); //输出Jimnull，只有为传递参数或传递undefined时才会使用默认参数
+function fun2(...values){ //利用数组解构法传递多个参数
+  console.log(values.length);
+}
+fun(1,2); //输出2
+fun(1,2,3); //输出3
+```
+
+箭头函数(Lambda函数)，简化原始函数，省去function字段。
+
+```javascript
+//两种方法同理
+var fun = a => a;
+var fun = function(a){return a;}
+var fun = (a,b) => a+b; //无参或多参要用()
+var fun = (id,name) =>({id,name}); //返回对象时须在外围加上()用于区分代码块，属性名和属性值相同可简写
+```
+
+> 在函数中，this表示该方法所属的对象。
+>
+> 单独使用或在函数中，this表示全局对象。
+>
+> 在函数的严格模式下，this是未定义的(undefined)。
+>
+> 在事件中，this表示接收事件的元素。
+>
+> 箭头函数中的this指向的是定义的时候外层的this对象。
+
 报错调试函数
+
 ```javascript
 try{
     console.log('此处可能存在问题')
@@ -33,12 +78,7 @@ try{
     console.loag('最终执行方法')
 }
 ```
-> !!Num：单感叹号表示为否定，双感叹号表示为肯定。如果变量不是布尔型，会自动转换为布尔型。
-## this关键字
-1. 在函数中，this表示该方法所属的对象。
-2. 单独使用或在函数中，this表示全局对象。
-3. 在函数的严格模式下，this是未定义的(undefined)。
-4. 在事件中，this表示接收事件的元素。
+> !!Num：强制转换为布尔值
 ## object对象
 object对象实例化
 ```javascript
@@ -282,3 +322,4 @@ xmlhttp.send(); //数据接收
 xmlhttp.responseText; //获得字符串形式的响应数据
 xmlhttp.responseXML; //获得XML形式的响应数据
 ```
+

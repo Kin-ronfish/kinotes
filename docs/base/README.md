@@ -27,4 +27,14 @@ markdown工具：<a href="https://www.typora.io/">https://www.typora.io/</a> Typ
 
 intellij idea后端开发工具：<a href="https://www.jetbrains.com/zh-cn/idea/download/#section=windows">https://www.jetbrains.com/zh-cn/idea/download/#section=windows</a>
 
-后台管理生成方式：根据②网址的方法生成主体框架，在页面设置项中填写页面需要用到的数据表字段，生成接口和静态页面，把页面加入到主题框架中，设置路由和左侧菜单栏选项便可生成需求页面(store里设置)
+## 模板
+
+> http://www.templatesy.com/
+
+> https://sc.chinaz.com/
+
+> http://www.mobanwang.com/
+
+> https://www.php.cn/
+
+> https://www.lanrentuku.com/

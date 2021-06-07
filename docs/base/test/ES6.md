@@ -1,48 +1,4 @@
 # ES6
-## let&const
-1. let声明的变量为块作用域。
-```javascript
-{
-  let num = 0;
-  console.log(num); //输出0
-}
-console.log(num); //报错
-```
-2. let不可以在为定义前使用。
-```javascript
-console.log(num); //报错
-let num = 0;
-```
-3. let不可以重复声明。
-```javascript
-let num = 0;
-let num = 2; //报错
-```
-4. const定义块作用域常量，为不可修改的值。
-```javascript
-const NUM = 0;
-NUM = 2; //报错
-```
-5. const除了定义的值不可变，其余的都与let相同。
-```javascript
-{
-  const NUM = 0;
-  console.log(NUM); //输出0
-}
-console.log(NUM); //报错
-```
-```javascript
-console.log(num); //报错
-const num = 0;
-```
-```javascript
-const num = 0;
-const num = 2; //报错
-```
-6. var、let、const三者的特点及区别。
-- var可以申明全局变量，也可以申明局部变量，在编写代码时，几乎兼容各种情况。
-- let在声明上限制了其作用域，在代码块内声明，外部便无法进行访问，声明前也无法进行访问，无法进行重复声明，与var相比，增加了代码的局限性，在使用变量时可以减少一些变量被重写的可能。
-- const声明的是一个不可需改的常量，其他特性与let相似，其变量声明方式与前两者相比的最大好处就是值不可修改，这可以防止数据的赋值操作导致原有数据发生改变。
 ## 解构赋值
 1. 数组解构，左右两边必须都有[]。
 ```javascript
@@ -264,38 +220,6 @@ dataView.setInt8(0,1);
 let arr = [1,2];
 let arr1 = [...arr];
 console.log(arr1);
-```
-## 函数拓展
-1. 设置默认参数，**不能有同名参数**。
-```javascript
-function fun(name,age=2){
-  console.log(name,age);
-}
-fun("Jim",5); //输出Jim5
-fun("Jim",null); //输出Jimnull，只有为传递参数或传递undefined时才会使用默认参数
-```
-2. 不定参数，利用数组解构法传递多个参数。
-```javascript
-function fun(...values){
-  console.log(values.length);
-}
-fun(1,2); //输出2
-fun(1,2,3); //输出3
-```
-3. 箭头函数(Lambda函数)，简化原始函数，省去function字段。
-```javascript
-//两种方法同理
-var fun = a => a;
-var fun = function(a){return a;}
-var fun = (a,b) => a+b; //无参或多参要用()
-var fun = (id,name) =>({id,name}); //返回对象时须在外围加上()用于区分代码块，属性名和属性值相同可简写
-```
-4. 箭头函数中的this指向的是定义的时候外层的this对象。
-```javascript
-var btn = document.getElementById('click');
-btn.addEventListener('click',()=>{
-  this.classList.toggle('on');
-})
 ```
 ## 迭代器
 1. for...of迭代常规的数据类型。数组，字符串，Map，Set等。
