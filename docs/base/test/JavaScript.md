@@ -1,5 +1,5 @@
 # JavaScript
-## 变量定义
+## 变量定义√
 var函数作用域，常用于变量申明，定义全局变量。
 ```javascript
 var str = "";
@@ -25,7 +25,7 @@ const定义的值**不可修改，不能被重新定义**，定义常量。(ES6)
 }
 console.log(NUM); //报错
 ```
-## 函数定义
+## 函数定义√
 普通函数定义
 ```javascript
 function fun(param1,param2...) {
@@ -118,20 +118,34 @@ _.parseInt() //将数据转换成整型。
 _.isNaN() //判断是否为空值。
 ```
 ## String对象
+
+字符串基础方法
+
 ```javascript
 str = "hello,Kin";
-str.charAt() //参数：数值，获取指定索引的字符
-str.concat() //参数：字符串，连接多个字符串
-str.indexOf() //参数：字符，获取字符串中指定子串的索引
+str.charAt(index) //获取指定索引的字符
+str.concat(string) //连接多个字符串
+str.indexOf(char) //获取字符串中指定子串的索引
 str.match() //匹配正则表达式
-str.replace() //两个参数：字符串，字符串的替换
-str.search() //与indexOf相同
+str.replace(string, string) //字符串的替换
 str.substr() //参数：索引、长度，截取字符串长度，长度为选填参数
-str.split() //参数：字符串，以指定子串将字符串分割为数组
-str.toLowerCase() //将字符串转换为大写
-str.toUpperCase() //将字符串转换为小写
+str.split(string) //以指定子串将字符串分割为数组
 ```
+字符串拓展(ES6)
+
+```javascript
+str.includes("hello") //判断是否存在字符串
+str.startsWith("he") //判断头部是否为此字符串
+str.endsWith("Kin") //判断尾部
+str.repeat(3) //字符串重复
+let str = "Jim";
+let info = `My name is ${str}`; //反引号可以传入一个变量
+```
+
+
+
 ## Date对象
+
 ```javascript
 let date = new Date();
 date.getFullYear() //获取年份
