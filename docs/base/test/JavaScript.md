@@ -1,5 +1,5 @@
 # JavaScript
-## 变量定义√
+## 变量定义
 var函数作用域，常用于变量申明，定义全局变量。
 ```javascript
 var str = "";
@@ -25,7 +25,7 @@ const定义的值**不可修改，不能被重新定义**，定义常量。(ES6)
 }
 console.log(NUM); //报错
 ```
-## 函数定义√
+## 函数定义
 普通函数定义
 ```javascript
 function fun(param1,param2...) {
@@ -99,7 +99,62 @@ function person (firstname,lastname) {
 person.firstname = "John";
 person.lastname = "Doe";
 ```
+### 对象拓展
+
+1. 当属性名与属性值相同时，可以只写一个。
+
+```javascript
+const person = {name,age}; //等同于{name:name,age:age}
+```
+
+2. 方法名简写 (如果是Generator 函数，则要在前面加一个星号)。
+
+```javascript
+fun(){} //等同于fun:function(){}
+```
+
+3. 属性方法名，需要以方括号形式呈现。
+
+```javascript
+const name = "Sum";
+const obj = {
+  [name](){
+    console.log('hello');
+  }
+}
+obj.Sum(); //输出hello
+```
+
+4. 对象拓展运算符解构，取出参数对象然后拷贝到当前对象。
+
+- **在拓展运算符后出现同名属性会被覆盖掉**
+
+```javascript
+let name = {name: "Jim"};
+let age = {age: 18};
+let person = {...name, ...age};
+console.log(person); //输出{name: "Jim",age: 18}
+```
+
+5. assign() 在对象中插入所有可枚举的对象。
+
+```javascript
+let target = {name: "Jim"};
+let age = {age: 18};
+let sex = {sex: "man"};
+Object.assign(target,age,sex);
+console.log(target); //输出{name: "Jim",age: 18,sex: "man"}
+```
+
+6. is() 严格比较，与'==='类似。
+
+```javascript
+Object.is("1","1"); // true
+Object.is("1",1); //false
+```
+
 ## prototype对象
+
 1. 所有的JavaScript对象都会从一个prototype中继承属性和方法。
 2. 使用prototype给对象添加属性和方法：
 ```javascript
@@ -139,7 +194,7 @@ str.startsWith("he") //判断头部是否为此字符串
 str.endsWith("Kin") //判断尾部
 str.repeat(3) //字符串重复
 let str = "Jim";
-let info = `My name is ${str}`; //反引号可以传入一个变量
+let info = `My name is ${str}`; //反引号可以传入一个变量值
 ```
 
 
@@ -225,7 +280,117 @@ let result4 = arr4.reduce((pre,next,index)=>{
 },0);
 console.log(result4);
 ```
+### 数组拓展(ES6)
+
+1. of() 将所有参数归为一个数组。
+
+```javascript
+console.log(Array.of(1,2,3)); //输出[1,2,3]
+```
+
+2. from() 将类数组对象或可迭代对象转化为数组。
+
+```javascript
+let arr = {0:'1',1:'2',2:'3',length:3}; //类数组对象写法，属性名为数值并且有length属性。
+console.log(Array.from(arr)); //输出['1','2','3']
+let map = new Map(); //map迭代对象
+map.set('key0','0');
+map.set('key1','1');
+console.log(Array.from(arr)); //输出[['key0','0'],['key1','1']]
+let arr = [1,2,3];
+let set = new Set(arr); //set迭代对象
+console.log(Array.from(set)); //输出[1, 2, 3]
+let str = 'str'; //字符串迭代对象
+console.log(Array.from(str)); //输出["s","t","r"]
+```
+
+3. find() 查找符合条件的元素，如有多个元素，只返回第一个。
+
+```javascript
+let arr = [1,2,3];
+console.log(arr.find(item => item > 1)); //输出2
+```
+
+4. findIndex() 查找符合条件的元素，如有多个元素，只返回第一个值的索引。
+
+```javascript
+let arr = [1,2,3];
+console.log(arr.findIndex(item => item == 1)); //输出0
+```
+
+5. fill() 根据索引区间跟换值，参数1为填充值，参数2和参数3是索引区间。
+
+```javascript
+let arr = [1,2,3]
+console.log(arr.fill(0,1,2)); //输出[1, 0, 3]
+```
+
+6. copyWithin() 将数组指定范围的内容用另外一指定范围的内容替换,参数1为被替换起始索引，参数2为替换起始索引。
+
+```javascript
+console.log([1, 2, 3, 4].copyWithin(0,2)); // [3, 4, 3, 4]
+```
+
+7. entries() 遍历键值对，keys() 遍历键名，values() 遍历键值。
+
+```javascript
+for(let [key,value] of ['a','b'].entries()){
+  console.log(key,value); //输出 0 'a'  1 'b'
+}
+for(let key of ['a', 'b'].keys()){
+    console.log(key); //输出 0 1
+}
+for(let value of ['a', 'b'].values()){
+    console.log(value); // 输出 'a' 'b'
+}
+```
+
+8. includes() 数值是否包含指定值，参数1为指定值，参数2为起始索引。
+
+```javascript
+let arr = [1,2,3];
+arr.includes(1); // 输出true
+arr.includes(1,2); //输出false
+```
+
+9. flat() 将嵌套数组转为一维数组，参数为嵌套层数。
+
+```javascript
+let arr = [1, [2, [3, [4, 5]]]];
+console.log(arr.flat(2)); // 输出[1, 2, 3, [4, 5]]
+```
+
+10. flatMap() 对数组进行处理后再执行flat()方法。
+
+```javascript
+console.log([1, 2, 3].flatMap(n => [n * 2])); //输出[2, 4, 6]
+```
+
+11. 缓冲区，实例化一个指定范围的数组存放区。
+
+```javascript
+let buffer = new ArrayBuffer(8);
+console.log(buffer.byteLength); // 输出8
+```
+
+12. DataView是一种支持存放8中数值类型的数组缓冲区视图。
+
+```javascript
+let buffer = new ArrayBuffer(10);
+dataView = new DataView(buffer);
+dataView.setInt8(0,1);
+```
+
+13. 扩展运算符复制数组。
+
+```javascript
+let arr = [1,2];
+let arr1 = [...arr];
+console.log(arr1);
+```
+
 ## Math对象
+
 ```javascript
 Math.round() //四舍五入
 Math.random() //生成一个 [0,1) 的随机数
@@ -337,3 +502,127 @@ xmlhttp.responseText; //获得字符串形式的响应数据
 xmlhttp.responseXML; //获得XML形式的响应数据
 ```
 
+## 解构赋值(ES6)
+
+1. 数组解构，左右两边必须都有[]。
+
+```javascript
+let [z,x,c] = [1,2,3];
+console.log(z);
+console.log(x);
+console.log(c);
+```
+
+2. 数组其他解构情况。
+
+```javascript
+let [z,[x]] = [4,[5]]; //嵌套
+let [z,,c] = [1,2,3]; //忽略
+let [z=1] = []; //设置默认值
+let [z,...x] = [1,2,3,4]; //剩余运算符
+let [a,b,c,d] = 'Green' //解构字符串
+```
+
+3. 对象解构，左边的键名必须对应右边的键名。
+
+```javascript
+let {name,age} = {name:'Jim',age:18};
+```
+
+4. 对象其他解构情况与数组相同，解构字符串除外。
+
+```javascript
+let {name:[mess,{name}]} = {name:['hello',{name:'Jim'}]}; //嵌套
+let {name:[mess,{}]} = {name:['hello',{name:'Jim'}]}; //忽略
+let {name='Jim'} = {}; //设置默认值
+let {name,...rest} = {name:'Jim',age:18,sex:'',phone:123}; //剩余运算符
+```
+
+5. 数值解构在数组、对象等枚举赋值时有着较大的优势，在传统的数组提取赋值时，都是数组索引其值赋值给一个新的变量，数组多长，就写多少条代码，对象除了调用方式不痛，其余也是如此。ES6数值解构把多行代码的数组赋值压缩成一行代码的数组解构赋值，节省了代码量。
+
+## Symbol类型(ES6)
+
+1. 用法与Number、String等一样。
+
+```javascript
+let sy = Symbol("Jim");
+```
+
+2. 使用场景：定义的属性值都是不相等的，所以有多种写法。
+
+```javascript
+let sy0 = Symbol("Jim");
+let sy1 = Symbol("Jim");
+console.log(sy0===sy1); //输出false
+let sy = Symbol("key1");
+
+// 写法1
+let syObject = {};
+syObject[sy] = "kk";
+console.log(syObject);    // {Symbol(key1): "kk"}
+
+// 写法2
+let syObject = {
+  [sy]: "kk"
+};
+console.log(syObject);    // {Symbol(key1): "kk"}
+
+// 写法3
+let syObject = {};
+Object.defineProperty(syObject, sy, {value: "kk"});
+console.log(syObject);   // {Symbol(key1): "kk"}
+```
+
+3. 全局搜索被登记的Symbol中是否有该字符串参数作为名称的Symbol值。
+
+```javascript
+let ys0 = Symbol.for("key");
+let ys1 = Symbol.for("key");
+console.log(ys0===ys1); //输出true
+```
+
+4. 检测该字符串参数作为名称的 Symbol 值是否已被登记。
+
+```javascript
+let ys0 = Symbol.for("key");
+Symbol.keyFor(ys0); //输出key值
+```
+
+## promise对象(ES6)
+
+Promise是**ES6**新增加的类，目的是更加优雅地书写复杂的异步任务。
+
+**特点**
+
+- 对象的状态不受外界影响，有三种状态pending、fulfilled和rejected。
+- 在处理异步程序时，将异步操作队列化，按照期望的顺序执行，返回符合预期的结果。
+
+**缺点**
+
+- 无法取消Promise，一旦新建它就会立即执行，无法中途取消。
+- 不设置回调函数，Promise内部抛出的错误，不会反应到外部。
+- 当处于pending状态时，无法得知目前进展到哪一个阶段。
+
+```javascript
+const p1 = new Promise(function(resolve,reject){    resolve('success'); //成功时返回的函数    reject('fail'); //失败时返回的函数});p1.then(function(value){ //then方法接收resolve和reject函数  console.log(value);});
+```
+
+- **注：promise执行时无法中途取消**
+
+## Generator函数(ES6)
+
+1. 在function后有个*，函数内部有yield表达式。
+   函数通过next()方法调用，函数执行至yieId时停止执行并返回一个指向内部状态对象的指针
+
+```javascript
+function* fun(){  console.log('one');  yieId '1';  console.log("two");  yield '2';  console.log("three");  return '3';}var f = fun();f.next();
+```
+
+## async函数(ES6)
+
+1. async 函数返回一个Promise对象，可以使用 then 方法添加回调函数。
+2. await 操作符用于等待一个 Promise 对象, 它只能在异步函数 async function 内部使用。
+
+```javascript
+async function fun(){  const data = await get('xx');}
+```

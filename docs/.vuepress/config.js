@@ -42,7 +42,6 @@ module.exports = {
                 collapsable: false,
                 children: [
                     '/base/test/JavaScript.md',
-                    '/base/test/ES6.md',
                     '/base/test/CSS.md'
                 ]
             }],
