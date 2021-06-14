@@ -29,12 +29,12 @@ intellij idea后端开发工具：<a href="https://www.jetbrains.com/zh-cn/idea/
 
 ## 模板
 
-> http://www.templatesy.com/
+> <a href="http://www.templatesy.com/">http://www.templatesy.com/</a>
 
-> https://sc.chinaz.com/
+> <a href="https://sc.chinaz.com/">https://sc.chinaz.com/</a>
 
-> http://www.mobanwang.com/
+> <a href="http://www.mobanwang.com/">http://www.mobanwang.com/</a>
 
-> https://www.php.cn/
+> <a href="https://www.php.cn/">https://www.php.cn/</a>
 
-> https://www.lanrentuku.com/
+> <a href="https://www.lanrentuku.com/">https://www.lanrentuku.com/</a>
