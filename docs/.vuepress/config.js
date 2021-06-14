@@ -34,7 +34,7 @@ module.exports = {
         nav: [
             { text: '主页', link: '/' },
             { text: '基础', link: '/base/'},
-            { text: '待学习笔记', link: '//othernote'},
+            { text: '待学习笔记', link: '/othernote/'},
             { text: '其他', link: '/other/' }
         ],
         sidebar: {
