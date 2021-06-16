@@ -30,6 +30,10 @@
 
 > [html2canvas官方文档](http://html2canvas.hertzen.com/):自定义区域html标签转canva
 
+> [printjs官方文档](https://printjs.crabbly.com/):自定义打印对应区域
+
+## 方法案例
+
 - 截取网页指定区域，保存为图片
 
 ```javascript
@@ -49,8 +53,6 @@ html2canvas(docArea, {
 })
 ```
 
-> [printjs官方文档](https://printjs.crabbly.com/):自定义打印对应区域
-
 - 截取网页特定区域作为打印区域
 
 ```javascript
@@ -60,5 +62,30 @@ print({
     style: style, // 亦可使用引入的外部css;
     scanStyles: false
 })
+```
+
+- 传入一个**特定位置**含有对应字段的值，判断该值属于哪个类型，并赋予其特定属性。
+
+```javascript
+/* 方法1 */
+// 判断文件格式
+const str = 'note.txt'
+const filetype = ['pdf', 'doc', 'xls', 'txt'] // 传入文件后缀格式
+const fileName = ['演示稿', '文档', '表格', '文本'] // 文件格式
+const tmpStr: string = str.split('.')[name.split('.').length - 1] //文件截取后缀名
+const result = filetype
+.map((item, index) => { // 利用map函数保留满足条件的值
+    if (str === item) {
+        return fileImage[index]
+    }
+})
+.filter(value => { // 利用filter过滤掉undefined
+    return value != undefined
+})
+/* 方法2 */
+const str = 'note.txt'
+const file: any = {pdf: '演示稿',doc: '文档',xls: '表格',txt: '文本'}
+const tmpStr: string = str.split('.')[name.split('.').length - 1] //文件截取后缀名
+const result = file[tmpStr]
 ```
 
