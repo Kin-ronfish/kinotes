@@ -30,16 +30,35 @@
 
 > [html2canvas官方文档](http://html2canvas.hertzen.com/):自定义区域html标签转canva
 
+- 截取网页指定区域，保存为图片
+
+```javascript
+const docArea: any = this.$refs.Image // 在标签里添加 ref="Image"作为截取区域
+html2canvas(docArea, {
+	useCORS: true // 允许在截取区域内部加载外部图片
+}).then(canvas => {
+    // 转成图片，生成图片地址
+    this.imgUrl = canvas.toDataURL('image/png')
+    // 以下调用网页自动下载文件
+    const eleLink = document.createElement('a')
+    eleLink.href = this.imgUrl
+    eleLink.download = '图片名'
+    document.body.appendChild(eleLink)
+    eleLink.click()
+    document.body.removeChild(eleLink)
+})
+```
+
 > [printjs官方文档](https://printjs.crabbly.com/):自定义打印对应区域
 
-## 新方案记录
+- 截取网页特定区域作为打印区域
 
-1. 通过网页自动下载链接对应的文件
 ```javascript
-const eleLink = document.createElement('a')
-eleLink.href = Url
-eleLink.download = '文件名'
-document.body.appendChild(eleLink)
-eleLink.click()
-document.body.removeChild(eleLink)
+print({
+    printable: 'print_area', // 标签的id，用于确定范围
+    type: 'html', 
+    style: style, // 亦可使用引入的外部css;
+    scanStyles: false
+})
 ```
+
