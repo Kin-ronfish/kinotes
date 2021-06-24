@@ -42,7 +42,7 @@ module.exports = {
                 title: '学习笔记',
                 collapsable: false,
                 children: [
-                    '/base/test/JavaScript.md',
+                    '/base/test/要点词条.md',
                     '/base/test/CSS.md'
                 ]
             }],
