@@ -34,8 +34,7 @@ module.exports = {
         nav: [
             { text: '主页', link: '/' },
             { text: '基础', link: '/base/'},
-            { text: '待学习笔记', link: '/othernote/'},
-            { text: '其他', link: '/other/' }
+            { text: '笔记', link: '/other/' }
         ],
         sidebar: {
             '/base/':['',{
@@ -44,26 +43,6 @@ module.exports = {
                 children: [
                     '/base/test/JavaScript.md',
                     '/base/test/CSS.md'
-                ]
-            }],
-            '/othernote/': ['', {
-                title: '其他学习笔记',
-                collapsable: false,
-                children: [
-                    '/othernote/test/安全.md',
-                    '/othernote/test/框架.md',
-                    '/othernote/test/浏览器.md',
-                    '/othernote/test/时间.md',
-                    '/othernote/test/数据结构.md',
-                    '/othernote/test/算法.md',
-                    '/othernote/test/网络相关.md',
-                    '/othernote/test/网络协议.md',
-                    '/othernote/test/JavaScript.md',
-                    '/othernote/test/JSmethod.md',
-                    '/othernote/test/line.md',
-                    '/othernote/test/react.md',
-                    '/othernote/test/sort.md',
-                    '/othernote/test/vue.md'
                 ]
             }],
             '/other/': ['']
