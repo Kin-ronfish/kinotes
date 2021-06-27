@@ -189,7 +189,7 @@ export default {
                 },
                 {
                     "name": "山水画",
-                    "time": "2016年3月",
+                    "time": "2015年3月6日",
                     "word": "--",
                     "img": require('../img/2015/6山水画.jpg')
                 },
@@ -463,10 +463,10 @@ export default {
     justify-content: space-between;
 }
 .name {
-    font-size: 20px;
+    font-size: 15px;
 }
 .time {
-    font-size: 14px;
+    font-size: 15px;
     color: #aaa;
 }
 .word {
