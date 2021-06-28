@@ -1,16 +1,22 @@
 <template>
     <div>
         <div class="search">
-            <el-input type="text" v-model="paintname" style="width:200px;" placeholder="输入画名" clearable></el-input>
-            <el-button>查找</el-button>
+            <el-autocomplete
+                class="inline-input"
+                v-model="workername"
+                :fetch-suggestions="querySearch"
+                placeholder="请输入内容"
+                @select="handleSelect"
+                size="small"
+                clearable
+            ></el-autocomplete>
+            <el-button size="small">查找</el-button>
         </div>
         <div class="box" v-for="(item, index) in list" :key="index">
-            <div class="flexbox">
-                <span class="name">画名：{{ item.name }}</span>
-                <span class="time">创作时间：{{ item.time }}</span>
-            </div>
+            <div class="name">画名：{{ item.value }}</div>
             <div class="word">留言：{{ item.word }}</div>
             <el-image class="image" :src="item.img" :preview-src-list="item.img"></el-image>
+            <div class="time">创作时间：{{ item.time }}</div>
         </div>
     </div>
 </template>
@@ -21,431 +27,454 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI)
 export default {
+    mounted() {
+        this.list = this.loadAll()
+        this.tmpList = this.list
+    },
     data() {
         return {
-            paintname: '',
-            list: [
+            workername: '',
+            tmpList: [],
+            list: []
+        }
+    },
+    methods: {
+        querySearch(queryString, cb) {
+            var list = this.list
+            var results = queryString ? list.filter(this.createFilter(queryString)) : list
+            cb(results);
+        },
+        createFilter(queryString) {
+            return (tlist) => {
+            return (tlist.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
+            };
+        },
+        loadAll() {
+            return [
                 {
-                    "name": "品茶老人",
+                    "value": "品茶老人",
                     "time": "2011年",
                     "word": "--",
-                    "img": require('../img/2011/品茶老人.jpg')
+                    "img": require('../img/2011/1.jpg')
                 },
                 {
-                    "name": "山水画",
+                    "value": "山水画",
                     "time": "2013年",
                     "word": "--",
-                    "img": require('../img/2013/1山水画.jpg')
+                    "img": require('../img/2013/1.jpg')
                 },
                 {
-                    "name": " 刻画蝴蝶",
+                    "value": " 刻画蝴蝶",
                     "time": "2013年",
                     "word": "--",
-                    "img": require('../img/2013/2刻画蝴蝶.jpg')
+                    "img": require('../img/2013/2.jpg')
                 },
                 {
-                    "name": "小兰新一",
+                    "value": "小兰新一",
                     "time": "2013年",
                     "word": "--",
-                    "img": require('../img/2013/3小兰新一.jpg')
+                    "img": require('../img/2013/3.jpg')
                 },
                 {
-                    "name": "霸气苍龙",
+                    "value": "霸气苍龙",
                     "time": "2013年",
                     "word": "--",
-                    "img": require('../img/2013/4霸气苍龙.jpg')
+                    "img": require('../img/2013/4.jpg')
                 },
                 {
-                    "name": "想象之地",
+                    "value": "想象之地",
                     "time": "2013年",
                     "word": "--",
-                    "img": require('../img/2013/5想象之地.jpg')
+                    "img": require('../img/2013/5.jpg')
                 },
                 {
-                    "name": "天边之树",
+                    "value": "天边之树",
                     "time": "2013年",
                     "word": "--",
-                    "img": require('../img/2013/6天边之树.jpg')
+                    "img": require('../img/2013/6.jpg')
                 },
                 {
-                    "name": "家中客厅",
+                    "value": "家中客厅",
                     "time": "2013年",
                     "word": "--",
-                    "img": require('../img/2013/7家中客厅.jpg')
+                    "img": require('../img/2013/7.jpg')
                 },
                 {
-                    "name": "花花世界",
+                    "value": "花花世界",
                     "time": "2013年4月",
                     "word": "--",
-                    "img": require('../img/2013/8花花世界.jpg')
+                    "img": require('../img/2013/8.jpg')
                 },
                 {
-                    "name": "雄鹰展翅",
+                    "value": "雄鹰展翅",
                     "time": "2013年4月",
                     "word": "--",
-                    "img": require('../img/2013/9雄鹰展翅.jpg')
+                    "img": require('../img/2013/9.jpg')
                 },
                 {
-                    "name": "盘曲的龙",
+                    "value": "盘曲的龙",
                     "time": "2013年4月",
                     "word": "--",
-                    "img": require('../img/2013/10盘曲的龙.jpg')
+                    "img": require('../img/2013/10.jpg')
                 },
                 {
-                    "name": "七彩凤凰",
+                    "value": "七彩凤凰",
                     "time": "2013年4月",
                     "word": "--",
-                    "img": require('../img/2013/11七彩凤凰.jpg')
+                    "img": require('../img/2013/11.jpg')
                 },
                 {
-                    "name": "麒麟腾云驾雾",
+                    "value": "麒麟腾云驾雾",
                     "time": "2013年4月",
                     "word": "--",
-                    "img": require('../img/2013/12麒麟腾云驾雾.jpg')
+                    "img": require('../img/2013/12.jpg')
                 },
                 {
-                    "name": "热火标志",
+                    "value": "热火标志",
                     "time": "2014年",
                     "word": "--",
-                    "img": require('../img/2014/1热火标志.jpg')
+                    "img": require('../img/2014/1.jpg')
                 },
                 {
-                    "name": "火箭标志",
+                    "value": "火箭标志",
                     "time": "2014年",
                     "word": "--",
-                    "img": require('../img/2014/2火箭标志.jpg')
+                    "img": require('../img/2014/2.jpg')
                 },
                 {
-                    "name": "树",
+                    "value": "树",
                     "time": "2014年",
                     "word": "--",
-                    "img": require('../img/2014/3树.jpg')
+                    "img": require('../img/2014/3.jpg')
                 },
                 {
-                    "name": "树",
+                    "value": "树",
                     "time": "2014年",
                     "word": "--",
-                    "img": require('../img/2014/4树.jpg')
+                    "img": require('../img/2014/4.jpg')
                 },
                 {
-                    "name": "树",
+                    "value": "树",
                     "time": "2014年",
                     "word": "--",
-                    "img": require('../img/2014/5树.jpg')
+                    "img": require('../img/2014/5.jpg')
                 },
                 {
-                    "name": "客厅盆栽",
+                    "value": "客厅盆栽",
                     "time": "2014年",
                     "word": "--",
-                    "img": require('../img/2014/6客厅盆栽.jpg')
+                    "img": require('../img/2014/6.jpg')
                 },
                 {
-                    "name": "嫦娥奔月",
+                    "value": "嫦娥奔月",
                     "time": "2014年",
                     "word": "--",
-                    "img": require('../img/2014/7嫦娥奔月.jpg')
+                    "img": require('../img/2014/7.jpg')
                 },
                 {
-                    "name": "杜甫",
+                    "value": "杜甫",
                     "time": "2014年",
                     "word": "--",
-                    "img": require('../img/2014/8杜甫.jpg')
+                    "img": require('../img/2014/8.jpg')
                 },
                 {
-                    "name": "茶具试绘",
+                    "value": "茶具试绘",
                     "time": "2014年",
                     "word": "--",
-                    "img": require('../img/2014/9茶具试绘.jpg')
+                    "img": require('../img/2014/9.jpg')
                 },
                 {
-                    "name": "茶具套装",
+                    "value": "茶具套装",
                     "time": "2014年",
                     "word": "--",
-                    "img": require('../img/2014/10茶具套装.jpg')
+                    "img": require('../img/2014/10.jpg')
                 },
                 {
-                    "name": "双花",
+                    "value": "双花",
                     "time": "2015年",
                     "word": "--",
-                    "img": require('../img/2015/1双花.jpg')
+                    "img": require('../img/2015/1.jpg')
                 },
                 {
-                    "name": "玫瑰花",
+                    "value": "玫瑰花",
                     "time": "2015年",
                     "word": "--",
-                    "img": require('../img/2015/2玫瑰花.jpg')
+                    "img": require('../img/2015/2.jpg')
                 },
                 {
-                    "name": "手绘雪碧",
+                    "value": "手绘雪碧",
                     "time": "2015年",
                     "word": "--",
-                    "img": require('../img/2015/3手绘雪碧.jpg')
+                    "img": require('../img/2015/3.jpg')
                 },
                 {
-                    "name": "手绘可乐",
+                    "value": "手绘可乐",
                     "time": "2015年",
                     "word": "--",
-                    "img": require('../img/2015/4手绘可乐.jpg')
+                    "img": require('../img/2015/4.jpg')
                 },
                 {
-                    "name": "山水画",
+                    "value": "山水画",
                     "time": "2015年3月6日",
                     "word": "--",
-                    "img": require('../img/2015/6山水画.jpg')
+                    "img": require('../img/2015/6.jpg')
                 },
                 {
-                    "name": "湖边",
+                    "value": "湖边",
                     "time": "2016月3月20日",
                     "word": "--",
-                    "img": require('../img/2016/1湖边.jpg')
+                    "img": require('../img/2016/1.jpg')
                 },
                 {
-                    "name": "立体魔方",
+                    "value": "立体魔方",
                     "time": "2016月5月8日",
                     "word": "--",
-                    "img": require('../img/2016/2立体魔方.jpg')
+                    "img": require('../img/2016/2.jpg')
                 },
                 {
-                    "name": "立体魔方",
+                    "value": "立体魔方",
                     "time": "2016月5月9日",
                     "word": "--",
-                    "img": require('../img/2016/3立体魔方.jpg')
+                    "img": require('../img/2016/3.jpg')
                 },
                 {
-                    "name": "手绘西红柿",
+                    "value": "手绘西红柿",
                     "time": "2016月7月",
                     "word": "--",
-                    "img": require('../img/2016/5手绘西红柿.jpg')
+                    "img": require('../img/2016/5.jpg')
                 },
                 {
-                    "name": "手绘德芙巧克力",
+                    "value": "手绘德芙巧克力",
                     "time": "2016月8月2日",
                     "word": "--",
-                    "img": require('../img/2016/6手绘德芙巧克力.jpg')
+                    "img": require('../img/2016/6.jpg')
                 },
                 {
-                    "name": "手绘汉堡",
+                    "value": "手绘汉堡",
                     "time": "2016月8月15日",
                     "word": "--",
-                    "img": require('../img/2016/8手绘汉堡.jpg')
+                    "img": require('../img/2016/8.jpg')
                 },
                 {
-                    "name": "天地壹号",
+                    "value": "天地壹号",
                     "time": "2016月9月16日",
                     "word": "--",
-                    "img": require('../img/2016/11天地壹号.jpg')
+                    "img": require('../img/2016/11.jpg')
                 },
                 {
-                    "name": "喜迎国庆手抄报",
+                    "value": "喜迎国庆手抄报",
                     "time": "2016月10月1日",
                     "word": "--",
-                    "img": require('../img/2016/13喜迎国庆手抄报.jpg')
+                    "img": require('../img/2016/13.jpg')
                 },
                 {
-                    "name": "手绘曼妥思",
+                    "value": "手绘曼妥思",
                     "time": "2016月12月6日",
                     "word": "--",
-                    "img": require('../img/2016/14手绘曼妥思.jpg')
+                    "img": require('../img/2016/14.jpg')
                 },
                 {
-                    "name": "手绘好丽友派",
+                    "value": "手绘好丽友派",
                     "time": "2017月2月4日",
                     "word": "--",
-                    "img": require('../img/2017/1手绘好丽友派.jpg')
+                    "img": require('../img/2017/1.jpg')
                 },
                 {
-                    "name": "海边",
+                    "value": "海边",
                     "time": "2017月3月25日",
                     "word": "--",
-                    "img": require('../img/2017/2海边.jpg')
+                    "img": require('../img/2017/2.jpg')
                 },
                 {
-                    "name": "德芙巧克力",
+                    "value": "德芙巧克力",
                     "time": "2017月5月13日",
                     "word": "--",
-                    "img": require('../img/2017/4德芙巧克力.jpg')
+                    "img": require('../img/2017/4.jpg')
                 },
                 {
-                    "name": "玫瑰花",
+                    "value": "玫瑰花",
                     "time": "2017月7月12日",
                     "word": "--",
-                    "img": require('../img/2017/5玫瑰花.jpg')
+                    "img": require('../img/2017/5.jpg')
                 },
                 {
-                    "name": "手绘月饼",
+                    "value": "手绘月饼",
                     "time": "2017月10月1日",
                     "word": "--",
-                    "img": require('../img/2017/13手绘月饼.jpg')
+                    "img": require('../img/2017/13.jpg')
                 },
                 {
-                    "name": "手绘蛋黄派",
+                    "value": "手绘蛋黄派",
                     "time": "2017月10月8日",
                     "word": "--",
-                    "img": require('../img/2017/14手绘蛋黄派.jpg')
+                    "img": require('../img/2017/14.jpg')
                 },
                 {
-                    "name": "手绘阿尔卑斯",
+                    "value": "手绘阿尔卑斯",
                     "time": "2017月12月31日",
                     "word": "--",
-                    "img": require('../img/2017/15手绘阿尔卑斯.jpg')
+                    "img": require('../img/2017/15.jpg')
                 },
                 {
-                    "name": "手绘维他柠檬茶",
+                    "value": "手绘维他柠檬茶",
                     "time": "2018月2月25日",
                     "word": "--",
-                    "img": require('../img/2018/3手绘维他柠檬茶.jpg')
+                    "img": require('../img/2018/3.jpg')
                 },
                 {
-                    "name": "手绘雪碧",
+                    "value": "手绘雪碧",
                     "time": "2018月9月6日",
                     "word": "--",
-                    "img": require('../img/2018/7手绘雪碧.jpg')
+                    "img": require('../img/2018/7.jpg')
                 },
                 {
-                    "name": "手绘月饼",
+                    "value": "手绘月饼",
                     "time": "2018月9月23日",
                     "word": "--",
-                    "img": require('../img/2018/9手绘月饼.jpg')
+                    "img": require('../img/2018/9.jpg')
                 },
                 {
-                    "name": "板绘建筑",
+                    "value": "板绘建筑",
                     "time": "2019月6月24日",
                     "word": "--",
-                    "img": require('../img/2019/1板绘建筑.jpg')
+                    "img": require('../img/2019/1.jpg')
                 },
                 {
-                    "name": "板绘萧炎云韵",
+                    "value": "板绘萧炎云韵",
                     "time": "2019月8月25日",
                     "word": "--",
-                    "img": require('../img/2019/5板绘萧炎云韵.jpg')
+                    "img": require('../img/2019/5.jpg')
                 },
                 {
-                    "name": "板绘美杜莎",
+                    "value": "板绘美杜莎",
                     "time": "2019月9月8日",
                     "word": "--",
-                    "img": require('../img/2019/6板绘美杜莎.jpg')
+                    "img": require('../img/2019/6.jpg')
                 },
                 {
-                    "name": "板绘萧炎云韵",
+                    "value": "板绘萧炎云韵",
                     "time": "2019月9月8日",
                     "word": "--",
-                    "img": require('../img/2019/7板绘药炎云芝.jpg')
+                    "img": require('../img/2019/7.jpg')
                 },
                 {
-                    "name": "手绘月饼",
+                    "value": "手绘月饼",
                     "time": "2019月9月20日",
                     "word": "--",
-                    "img": require('../img/2019/8手绘月饼.jpg')
+                    "img": require('../img/2019/8.jpg')
                 },
                 {
-                    "name": "手绘士力架",
+                    "value": "手绘士力架",
                     "time": "2019月10月15日",
                     "word": "--",
-                    "img": require('../img/2019/11手绘士力架.jpg')
+                    "img": require('../img/2019/11.jpg')
                 },
                 {
-                    "name": "手绘一束花",
+                    "value": "手绘一束花",
                     "time": "2019月11月3日",
                     "word": "--",
-                    "img": require('../img/2019/12手绘一束花.jpg')
+                    "img": require('../img/2019/12.jpg')
                 },
                 {
-                    "name": "手绘雪碧",
+                    "value": "手绘雪碧",
                     "time": "2019月11月10日",
                     "word": "--",
-                    "img": require('../img/2019/13手绘雪碧.jpg')
+                    "img": require('../img/2019/13.jpg')
                 },
                 {
-                    "name": "手绘&板绘壁纸",
+                    "value": "手绘&板绘壁纸",
                     "time": "2020月3月4日",
                     "word": "--",
-                    "img": require('../img/2020/3手绘&板绘壁纸.jpg')
+                    "img": require('../img/2020/3.jpg')
                 },
                 {
-                    "name": "手绘焰灵姬",
+                    "value": "手绘焰灵姬",
                     "time": "2020月3月25日",
                     "word": "--",
-                    "img": require('../img/2020/4手绘焰灵姬.jpg')
+                    "img": require('../img/2020/4.jpg')
                 },
                 {
-                    "name": "手绘阿尔卑斯",
+                    "value": "手绘阿尔卑斯",
                     "time": "2020月4月5日",
                     "word": "--",
-                    "img": require('../img/2020/5手绘阿尔卑斯.jpg')
+                    "img": require('../img/2020/5.jpg')
                 },
                 {
-                    "name": "手绘月饼",
+                    "value": "手绘月饼",
                     "time": "2020月10月1日",
                     "word": "--",
-                    "img": require('../img/2020/8月饼.jpg')
+                    "img": require('../img/2020/8.jpg')
                 },
                 {
-                    "name": "手绘蛋糕",
+                    "value": "手绘蛋糕",
                     "time": "2020月10月13日",
                     "word": "--",
-                    "img": require('../img/2020/9手绘蛋糕.jpg')
+                    "img": require('../img/2020/9.jpg')
                 },
                 {
-                    "name": "手绘蛋糕",
+                    "value": "手绘蛋糕",
                     "time": "2020月10月30日",
                     "word": "--",
-                    "img": require('../img/2020/10手绘蛋糕.jpg')
+                    "img": require('../img/2020/10.jpg')
                 },
                 {
-                    "name": "手绘海琴烟",
+                    "value": "手绘海琴烟",
                     "time": "2020月11月26日",
                     "word": "--",
-                    "img": require('../img/2020/11手绘海琴烟.jpg')
+                    "img": require('../img/2020/11.jpg')
                 },
                 {
-                    "name": "手绘吉他",
+                    "value": "手绘吉他",
                     "time": "2020月11月26日",
                     "word": "--",
-                    "img": require('../img/2020/12手绘吉他.jpg')
+                    "img": require('../img/2020/12.jpg')
                 },
                 {
-                    "name": "手绘笔记本电脑",
+                    "value": "手绘笔记本电脑",
                     "time": "2020月11月27日",
                     "word": "--",
-                    "img": require('../img/2020/13手绘电脑.jpg')
+                    "img": require('../img/2020/13.jpg')
                 },
                 {
-                    "name": "合辑",
+                    "value": "合辑",
                     "time": "2020月11月27日",
                     "word": "--",
-                    "img": require('../img/2020/14合辑.jpg')
+                    "img": require('../img/2020/14.jpg')
                 },
                 {
-                    "name": "女孩",
+                    "value": "女孩",
                     "time": "2021月2月11日",
                     "word": "--",
-                    "img": require('../img/2021/1女孩.jpg')
+                    "img": require('../img/2021/1.jpg')
                 },
                 {
-                    "name": "小哥",
+                    "value": "小哥",
                     "time": "2021月2月13日",
                     "word": "--",
-                    "img": require('../img/2021/2小哥.jpg')
+                    "img": require('../img/2021/2.jpg')
                 },
                 {
-                    "name": "小物品",
+                    "value": "小物品",
                     "time": "2021月3月25日",
                     "word": "--",
-                    "img": require('../img/2021/3小物品.jpg')
+                    "img": require('../img/2021/3.jpg')
                 },
                 {
-                    "name": "可爱女孩",
+                    "value": "可爱女孩",
                     "time": "2021月3月27日",
                     "word": "--",
-                    "img": require('../img/2021/4可爱女孩.jpg')
+                    "img": require('../img/2021/4.jpg')
                 },
                 {
-                    "name": "王一博",
+                    "value": "王一博",
                     "time": "2021月4月20日",
                     "word": "--",
-                    "img": require('../img/2021/5王一博.jpg')
+                    "img": require('../img/2021/5.jpg')
                 }
             ]
+        },
+        handleSelect(item) {
+            console.log(item);
         }
     }
 }
@@ -458,21 +487,18 @@ export default {
 .box {
     margin: 5px;
 }
-.flexbox {
-    display: flex;
-    justify-content: space-between;
-}
 .name {
-    font-size: 15px;
+    font-size: 20px;
 }
 .time {
-    font-size: 15px;
+    width: 100%;
+    text-align: right;
+    font-size: 12px;
     color: #aaa;
 }
 .word {
-    font-size: 10px;
+    font-size: 15px;
     padding: 3px;
-    margin: 5px 0;
 }
 .image {
     padding: 8px;
