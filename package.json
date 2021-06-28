@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "element-ui": "^2.15.2",
+    "lodash": "^4.17.21",
     "yarn": "^1.22.10"
   }
 }

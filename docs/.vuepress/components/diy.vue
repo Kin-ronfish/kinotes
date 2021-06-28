@@ -1,23 +1,20 @@
 <template>
     <div>
-        <div class="search">
-            <el-autocomplete
-                class="inline-input"
-                v-model="workername"
-                :fetch-suggestions="querySearch"
-                placeholder="请输入内容"
-                @select="handleSelect"
-                size="small"
-                clearable
-            ></el-autocomplete>
-            <el-button size="small">查找</el-button>
-        </div>
-        <div class="box" v-for="(item, index) in list" :key="index">
+        <div class="box" v-for="(item, index) in pageList" :key="index">
             <div class="name">作品名：{{ item.value }}</div>
             <div class="word">留言：{{ item.word }}</div>
             <el-image class="image" :src="item.img" :preview-src-list="item.img"></el-image>
             <div class="time">创作时间：{{ item.time }}</div>
         </div>
+        <el-pagination
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :page-sizes="[5, 10]"
+            :page-size="5"
+            layout="total, sizes, prev, pager, next, jumper"
+            style="margin-top: 20px;text-align: right;"
+            :total="list.length">
+        </el-pagination>
     </div>
 </template>
 
@@ -25,29 +22,22 @@
 import Vue from 'vue'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
+import cloneDeep from 'lodash/cloneDeep'
 Vue.use(ElementUI)
 export default {
-    mounted() {
-        this.list = this.loadAll()
-        this.tmpList = this.list
-    },
     data() {
         return {
-            workername: '',
-            tmpList: [],
-            list: []
+            list: cloneDeep(this.loadAll()),
+            pageNum: 5,
+            pageList: this.loadAll().slice(0, 5)
         }
     },
     methods: {
-        querySearch(queryString, cb) {
-            var list = this.list
-            var results = queryString ? list.filter(this.createFilter(queryString)) : list
-            cb(results);
+        handleSizeChange(val) {
+            this.pageNum = val
         },
-        createFilter(queryString) {
-            return (tlist) => {
-            return (tlist.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
-            };
+        handleCurrentChange(val) {
+            this.pageList = this.loadAll().slice(val*this.pageNum - this.pageNum, val*this.pageNum)
         },
         loadAll() {
             return [
