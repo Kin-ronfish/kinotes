@@ -7,11 +7,11 @@
             <div class="time">创作时间：{{ item.time }}</div>
         </div>
         <el-pagination
-            @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
-            :page-sizes="[5, 10]"
+            small
             :page-size="5"
-            layout="total, sizes, prev, pager, next, jumper"
+            :pager-count="4"
+            layout="total, prev, pager, next"
             style="margin-top: 20px;text-align: right;"
             :total="list.length">
         </el-pagination>
@@ -28,16 +28,12 @@ export default {
     data() {
         return {
             list: cloneDeep(this.loadAll()),
-            pageNum: 5,
             pageList: this.loadAll().slice(0, 5)
         }
     },
     methods: {
-        handleSizeChange(val) {
-            this.pageNum = val
-        },
         handleCurrentChange(val) {
-            this.pageList = this.loadAll().slice(val*this.pageNum - this.pageNum, val*this.pageNum)
+            this.pageList = this.loadAll().slice(val*5 - 5, val*5)
         },
         loadAll() {
             return [
@@ -168,11 +164,9 @@ export default {
 </script>
 
 <style scoped>
-.search {
-    margin: 10px;
-}
 .box {
     margin: 5px;
+    color:rgb(0, 100, 67);
 }
 .name {
     font-size: 20px;
@@ -180,7 +174,7 @@ export default {
 .time {
     width: 100%;
     text-align: right;
-    font-size: 12px;
+    font-size: 13px;
     color: #aaa;
 }
 .word {

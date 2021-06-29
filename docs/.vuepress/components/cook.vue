@@ -1,11 +1,20 @@
 <template>
     <div>
-        <div class="box" v-for="(item, index) in list" :key="index">
+        <div class="box" v-for="(item, index) in pageList" :key="index">
             <div class="name">作品名：{{ item.name }}</div>
             <div class="word">留言：{{ item.word }}</div>
             <el-image class="image" :src="item.img" :preview-src-list="item.img"></el-image>
             <div class="time">创作时间：{{ item.time }}</div>
         </div>
+        <el-pagination
+            @current-change="handleCurrentChange"
+            small
+            :page-size="5"
+            :pager-count="4"
+            layout="total, prev, pager, next"
+            style="margin-top: 20px;text-align: right;"
+            :total="list.length">
+        </el-pagination>
     </div>
 </template>
 
@@ -13,11 +22,21 @@
 import Vue from 'vue'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import cloneDeep from 'lodash/cloneDeep'
 Vue.use(ElementUI)
 export default {
     data() {
         return {
-            list: [
+            list: cloneDeep(this.loadAll()),
+            pageList: this.loadAll().slice(0, 5)
+        }
+    },
+    methods: {
+        handleCurrentChange(val) {
+            this.pageList = this.loadAll().slice(val*5 - 5, val*5)
+        },
+        loadAll() {
+            return [
                 {
                     "name": "意面",
                     "time": "2016年9月28日",
@@ -87,6 +106,7 @@ export default {
 <style scoped>
 .box {
     margin: 5px;
+    color:rgb(100, 78, 0);
 }
 .name {
     font-size: 20px;
@@ -94,7 +114,7 @@ export default {
 .time {
     width: 100%;
     text-align: right;
-    font-size: 12px;
+    font-size: 13px;
     color: #aaa;
 }
 .word {
