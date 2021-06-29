@@ -27,9 +27,9 @@ module.exports = {
         sidebar: 'auto',
         search: true,
         searchMaxSuggestions: 10,
-        lastUpdated: 'Last Updated',
-        repo: 'Kin-ronfish/kinote',
-        repoLabel: 'GitHub',
+        // lastUpdated: 'Last Updated',
+        // repo: 'Kin-ronfish/kinote',
+        // repoLabel: 'GitHub',
         smoothScroll: true,
         nav: [
             { text: '主页', link: '/' },
@@ -51,13 +51,9 @@ module.exports = {
         }
     },
     plugins: [
-        '@vuepress/last-updated',
+        // '@vuepress/last-updated',
         '@vuepress/back-to-top',
         '@vuepress/active-header-links',
-        '@vuepress/google-analytics',
-        {
-            'ga': 'UA-00000000-0' // UA-00000000-0
-        },
         '@vuepress/medium-zoom',
         '@vuepress/nprogress'
     ],
