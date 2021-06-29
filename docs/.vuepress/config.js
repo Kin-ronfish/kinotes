@@ -33,20 +33,43 @@ module.exports = {
         smoothScroll: true,
         nav: [
             { text: '主页', link: '/' },
-            { text: '基础', link: '/base/'},
-            { text: '笔记', link: '/other/'},
+            {text: '前端', link: '/front/'},
             { text: '兴趣', link: '/hobby/'}
         ],
         sidebar: {
-            '/base/':['',{
-                title: '学习笔记',
+            '/front/':['',{
+                title: '常用工具',
                 collapsable: false,
                 children: [
-                    '/base/test/JavaScript.md',
-                    '/base/test/CSS.md'
+                    '/front/test/tool.md'
+                ]
+            },
+            {
+                title: '基础笔记',
+                collapsable: false,
+                children: [
+                    '/front/test/JavaScript.md',
+                    '/front/test/CSS.md'
+                ]
+            },{
+                title: '常用框架',
+                collapsable: false,
+                children: [
+                    '/front/test/frame.md'
+                ]
+            },{
+                title: '常用插件',
+                collapsable: false,
+                children: [
+                    '/front/test/plugins.md'
+                ]
+            },{
+                title: '方法案例',
+                collapsable: false,
+                children: [
+                    '/front/test/method.md'
                 ]
             }],
-            '/other/': [''],
             '/hobby/': ['']
         }
     },

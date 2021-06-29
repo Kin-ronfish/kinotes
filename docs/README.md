@@ -4,7 +4,7 @@ heroImage: /assets/Kin.ico
 heroText: 学习笔记
 tagline: 微笑面对生活，生活给予甘甜
 actionText: 进入 →
-actionLink: /base/
+actionLink: /front/
 features:
 - title: 学习目的
   details: 学习要有明确的目的，笔记是用于记录学习某个东西的较有效的方法。
