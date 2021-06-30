@@ -182,7 +182,8 @@ export default {
     padding: 3px;
 }
 .image {
-    padding: 8px;
-    background: rgb(134, 114, 22);
+    padding: 10px;
+    background: rgb(130, 117, 144);
+    border-radius: 10px;
 }
 </style>

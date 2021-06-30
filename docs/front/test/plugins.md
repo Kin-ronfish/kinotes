@@ -265,8 +265,8 @@ import { Action,getModule, Module, Mutation, VuexModule } from 'vuex-module-deco
 
 export interface Message { //定义类型接口
     message: object
-}    
-    
+}
+
 // dynamic 动态引入，namespaced 工作区间，name 名称
 @Module({ dynamic: true, store, name: 'message', namespaced: true })
 class Information extends VuexModule {
@@ -294,10 +294,10 @@ export const InformationModule = getModule(Information)
 
 > [bootstrap官方文档](https://www.bootcss.com/)
 
-> [dayjs官方文档](https://dayjs.fenxianglu.cn/):处理时间
+> [dayjs官方文档](https://dayjs.fenxianglu.cn/) 处理时间
 
 > [loadsh官方文档](https://www.lodashjs.com/)
 
-> [html2canvas官方文档](http://html2canvas.hertzen.com/):自定义区域html标签转canva
+> [html2canvas官方文档](http://html2canvas.hertzen.com/) 自定义区域html标签转canva
 
-> [printjs官方文档](https://printjs.crabbly.com/):自定义打印对应区域
+> [printjs官方文档](https://printjs.crabbly.com/) 自定义打印对应区域
