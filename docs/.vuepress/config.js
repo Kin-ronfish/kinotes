@@ -69,6 +69,12 @@ module.exports = {
                 children: [
                     '/front/test/method.md'
                 ]
+            },{
+                title: '小程序',
+                collapsable: false,
+                children: [
+                    '/front/test/Applets.md'
+                ]
             }],
             '/hobby/': ['']
         }
