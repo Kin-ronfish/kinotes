@@ -3,15 +3,18 @@
 .language-js::before
 .language-html::before
 .language-typescript::before
-.language-vue::before {
+.language-vue::before
+.language-json::before {
   color: #ddd !important;
 }
 .language-javascript
 .language-js
 .language-html
 .language-typescript
-.language-vue {
-  background-color: #615093 !important;
+.language-vue
+.language-json
+.language-text {
+  background-color: #403169 !important;
 }
 .token.keyword {
   color: #ccb4ed;
@@ -41,7 +44,7 @@
 }
 .token.boolean,
 .token.attr-name {
-  color: #ff6633;
+  color: #f99675;
 }
 .token.parameter {
   color: #beaaa1;
@@ -50,15 +53,55 @@
   color: #99cccc;
 }
 .token.selector {
-  color: #a50642;
+  color: #f190b4;
 }
 .token.property {
   color: #f2deb3;
 }
 .token.atrule {
-  color: #e4cee5;
+  color: #dea5de;
 }
 
+
+// 左上侧导航栏
+.sidebar {
+  width: 200px;
+}
+.site-name {
+  color: #fff!important;
+}
+.navbar,.links {
+  background: rgb(95, 74, 134)!important;
+}
+.page .theme-default-content:not(.custom) {
+  max-width: 90%;
+}
+.page .page-nav .inner .prev a,.page .page-nav .inner .next a {
+  font-weight: 500;
+  color: rgb(98, 34, 158);
+  text-decoration: none;
+}
+.nav-links a.router-link-active {
+  color: #bbb !important;
+  border-color: #bbb !important;
+}
+.nav-links a:hover {
+  color: #bbb !important;
+  border-color: #bbb !important;
+}
+.nav-links {
+  color: #bbb !important;
+}
+a.sidebar-link.active {
+    color: rgb(155, 91, 214) !important;
+    border-left-color: rgb(98, 34, 158) !important;
+}
+a.sidebar-link:hover {
+    color: rgb(155, 91, 214) !important;
+}
+.search-box input:focus {
+  border-color:rgb(115, 65, 161) !important;
+}
 
 // ----------------------------
 .getting-started .outbound,
@@ -82,22 +125,8 @@ p code {
   // padding: 0.25rem 0.4rem!important;
 }
 
-.home .hero .action-button {
-  background-color: rgb(98, 34, 158)!important;
-}
-
-.navbar,.links {
-  background: rgb(95, 74, 134)!important;
-}
-
-.site-name {
-  color: #fff!important;
-}
 
 
-.page .theme-default-content:not(.custom) {
-  max-width: 85%;
-}
 
 .page p img {
     /* 图片居中 */
@@ -109,16 +138,10 @@ p code {
     margin: 0;
     display: inline-block;
 }
-
-.page .page-nav .inner .prev a,.page .page-nav .inner .next a {
-  font-weight: 500;
-  color: rgb(98, 34, 158);
-  text-decoration: none;
-}
-
 .page p a {
   color: rgb(98, 34, 158);
 }
+
 
 blockquote {
   font-size: 15px !important;
@@ -137,52 +160,6 @@ h1 a,h2 a,h3 a {
   text-decoration: none !important;
 }
 
-.search-box input:focus {
-  border-color:rgb(115, 65, 161) !important;
-}
-
 .icon {
   color: #bbb !important;
-}
-
-.nav-links a.router-link-active {
-  color: #bbb !important;
-  border-color: #bbb !important;
-}
-.nav-links a:hover {
-  color: #bbb !important;
-  border-color: #bbb !important;
-}
-.nav-links {
-  color: #bbb !important;
-}
-
-// 返回顶部
-.go-to-top[data-v-4ead8f6c] {
-  cursor: pointer;
-  position: fixed;
-  bottom: 2rem;
-  right: 2.5rem;
-  width: 2rem;
-  color: rgb(115, 65, 161);
-  z-index: 1;
-}
-.go-to-top[data-v-4ead8f6c]:hover {
-  cursor: pointer;
-  position: fixed;
-  bottom: 2rem;
-  right: 2.5rem;
-  width: 2rem;
-  color: rgb(155, 91, 214);
-  z-index: 1;
-}
-
-// 侧边栏
-
-a.sidebar-link.active {
-    color: rgb(155, 91, 214) !important;
-    border-left-color: rgb(98, 34, 158) !important;
-}
-a.sidebar-link:hover {
-    color: rgb(155, 91, 214) !important;
 }

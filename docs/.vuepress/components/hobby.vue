@@ -42,4 +42,7 @@ export default {
 .title {
     margin: 5px;
 }
+video {
+    border-radius: 10px;
+}
 </style>

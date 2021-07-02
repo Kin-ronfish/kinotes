@@ -122,8 +122,6 @@ export default {
     padding: 3px;
 }
 .image {
-    padding: 10px;
-    background: rgb(130, 117, 144);
     border-radius: 10px;
 }
 </style>
