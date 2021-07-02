@@ -37,30 +37,19 @@ module.exports = {
             { text: '兴趣', link: '/hobby/'}
         ],
         sidebar: {
-            '/front/':['',{
-                title: '常用工具',
-                collapsable: false,
-                children: [
-                    '/front/test/tool.md'
-                ]
-            },
+            '/front/':['',
             {
-                title: '基础笔记',
                 collapsable: false,
                 children: [
                     '/front/test/JavaScript.md',
                     '/front/test/CSS.md'
                 ]
-            },{
-                title: '常用框架',
+            },
+            {
+                title: '框架插件',
                 collapsable: false,
                 children: [
-                    '/front/test/frame.md'
-                ]
-            },{
-                title: '常用插件',
-                collapsable: false,
-                children: [
+                    '/front/test/frame.md',
                     '/front/test/plugins.md'
                 ]
             },{
