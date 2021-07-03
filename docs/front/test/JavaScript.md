@@ -78,14 +78,244 @@ Object.is("1","1") // (ES6)与'==='类似
 >
 > 每个对象都有 `__proto__` 属性，对象可以通过 `__proto__` 来寻找不属于该对象的属性，`__proto__` 将对象连接起来组成了原型链
 
+#### 场景
+
+- 对象判空
+
+```javascript
+JSON.stringify(data) == "{}"
+```
+
+
+
+### Array
+
+#### 方法
+
+```javascript
+array.concat(arr1,arr2) //参数：两个数组，合并数组
+array.pop() //删除数组尾部
+array.shift() //删除数组头部
+array.push(val) //数组尾部追加
+array.splice(index,num) //参数：索引、个数，删除指定索引的数值
+array.sort(arr) //排序
+array.reverse(arr) //转置
+array.toString(arr) //数组转字符串
+array.join(str|num) //参数：字符串或数值，以指定内容为连接符将数组转化为字符串
+```
+
+```javascript
+for(let item of arr){
+    console.log(item)
+} // 便利数组，类数组的对象
+
+for(let item in obj){
+    console.log(item)
+} // 便利对象
+```
+
+```javascript
+arr.forEach((item, index) => {
+    console.log(item, index)
+}) //数组循环，无返回值
+```
+
+```javascript
+arr.map((item, index) => {
+    console.log(item, index)
+}) // 处理数组每一项并返回一个数组
+```
+
+```javascript
+arr.filter((item, index) => {
+    console.log(item, index)
+}) // 过滤不符合条件的内容，即：return一个true的结果
+```
+
+```javascript
+arr.reduce((item, index) => {
+    console.log(item, index)
+}) // 数组每处理好一项，返回一个值
+```
+
+```javascript
+Array.of(1,2,3) //(ES6)将输入的参数合为一个数组
+// [1,2,3]
+```
+
+```javascript
+let arr = new Set([{a:1},{b:2},{c:3}])
+arr = {0:'1',1:'2',2:'3',length:3}; //类数组对象写法
+Array.from(arr) //(ES6)将类数组对象或可迭代对象转化为数组
+```
+
+```javascript
+arr.find((item, index) => {
+    console.log(item, index)
+}) //(ES6)查找符合条件的元素，如有多个，只返回第一个
+
+arr.findIndex(function) //(ES6)同上，但只返回索引
+```
+
+
+
+```javascript
+array.fill(startindex,val,endindex) //(ES6)根据索引区间跟换值
+
+array.every(function) //(ES6)数组中所有项都满足某条件
+
+array.some(function) //(ES6)数组中是否有某一项满足条件
+
+array.entries() //(ES6)遍历键值对
+
+array.keys() //(ES6)遍历键名
+
+array.values() //(ES6)遍历键值
+
+array.includes() //(ES6)数组是否包含指定值，减少if的使用
+
+...arr //(ES6)数组解构
+```
+
+#### 场景
+
+- 数组包装
+
+```javascript
+array.map((item, index) => {
+	return 'newVal:' + item + index
+}) // 改变数组每个值
+```
+
+- 数组去重
+
+```javascript
+[...new Set(arr)]
+```
+
+```javascript
+Array.from(new Set(arr))
+```
+
+```javascript
+arr.filter((item, index, arr) => return arr.indexOf(item, 0) === index
+```
+
+```
+arr.reduce((prev,cur) => prev.includes(cur) ? prev : [...prev,cur],[])
+```
+
+- 数组过滤
+
+```javascript
+// 改变原数组
+let arr1 = [1, 2, 3, 4, 5, 6, 7, 8]
+let arr2 = [1, 2, 6]
+arr2.forEach((item, index) => {
+    arr1.forEach((ele, i, self) => {
+        if (item === ele) {
+        	self.splice(i, 1)
+        }
+    })
+})
+```
+
+```javascript
+// 不改变原数组
+let arr1 = [1, 2, 3, 4, 5, 6, 7, 8]
+let arr2 = [1, 2, 6]
+arr1.filter((item) => {
+    return !arr2.includes(item)
+})
+```
+
+- 根据字段分组
+
+```javascript
+let arr = [
+    {
+        groupCheckBasis: 3,
+        groupNumber: "bb"
+    },
+    {
+        groupIndex: 2,
+        groupNumber: "bb"
+    },
+    {
+        groupCheckBasis: 3,
+        groupNumber: "cc"
+    },
+    {
+        groupIndex: 2,
+        groupNumber: "aa"
+    },
+    {
+        groupIndex: 1,
+        groupNumber: "aa"
+    },
+    {
+        groupCheckBasis: 3,
+        groupNumber: "cc"
+    }
+]
+let obj = {}
+arr.forEach(item => {
+    if (!obj[item.groupNumber]) {
+    	obj[item.groupNumber] = []
+    }
+    obj[item.groupNumber].push(item)
+})
+```
+
+- 根据字段去重
+
+```javascript
+let data = [
+    {
+        name: 'ZYTX'
+    },
+    {
+        name: 'ZYTA'
+    },
+    {
+        name: 'ZYTX'
+    }
+]
+let hash = {}
+let newData=[]
+data.forEach(item => {
+    if (!hash[item.name]) {
+        hash[item.name] = true
+        newData.push(item)
+    }
+})
+```
+
 ### Number
 
 数值类型的转换，默认为浮点型
 
+#### 方法
+
 ```javascript
+Number() // 转数值型
 parseFloat() // 转浮点型
 parseInt() // 转整型
 isNaN() //是否为空
+```
+
+#### 场景
+
+```javascript
+// 布尔型转数值型
+bool = true
+num = bool ? 1 : 0
+num = +bool
+num = Number(bool)
+// 数值型转布尔型
+num = 1
+bool = Boolean(num)
+bool = !!num
 ```
 
 ### String
@@ -110,42 +340,6 @@ str.repeat(3) //(ES6)字符串重复
 ### Date
 
 > [dayjs时间处理插件](https://dayjs.fenxianglu.cn/)
-
-### Array
-
-数组操作
-
-```javascript
-array.concat(arr,arr) //参数：两个数组，合并数组
-array.pop() //删除数组尾部
-array.shift() //删除数组头部
-array.push(val) //数组尾部追加
-array.splice(index,num) //参数：索引、个数，删除指定索引的数值
-array.sort(arr) //排序
-array.reverse(arr) //转置
-array.toString(arr) //数组转字符串
-array.join(str|num) //参数：字符串或数值，以指定内容为连接符将数组转化为字符串
-
-for(let item of arr){} // 便利数组，类数组的对象
-for(let item in obj){} // 便利对象
-array.forEach(function) //数组循环，无返回值
-array.map(function) // 处理数组每一项并返回一个数组，例：对数组每一项加上1
-array.filter(function) // 过滤不符合条件的内容，即：return一个true的结果
-array.reduce(function) // 数组每处理好一项，返回一个值
-array.of(param) //(ES6)将输入的参数合为一个数组
-array.from(arr) //(ES6)将类数组对象或可迭代对象转化为数组
-arr = {0:'1',1:'2',2:'3',length:3}; //类数组对象写法
-array.find(function) //(ES6)查找符合条件的元素，如有多个，只返回第一个
-array.findIndex(function) //(ES6)同上，但只返回索引
-array.fill(startindex,val,endindex) //(ES6)根据索引区间跟换值
-array.every(function) //(ES6)数组中所有项都满足某条件
-array.some(function) //(ES6)数组中是否有某一项满足条件
-array.entries() //(ES6)遍历键值对
-array.keys() //(ES6)遍历键名
-array.values() //(ES6)遍历键值
-array.includes() //(ES6)数组是否包含指定值，减少if的使用
-...arr //(ES6)数组解构
-```
 
 ### Math
 
@@ -290,7 +484,7 @@ function throttle(fn,delay){
 }
 ```
 
-## 使用场景
+## 场景
 
 debounce
 
@@ -301,7 +495,3 @@ throttle
 
 - 鼠标不断点击触发，mousedown(单位时间内只触发一次)
 - 监听滚动事件，比如是否滑到底部自动加载更多，用throttle来判断
-
-## 笔记
-
-1. if嵌套，判错return
