@@ -33,8 +33,7 @@ module.exports = {
         smoothScroll: true,
         nav: [
             { text: '主页', link: '/' },
-            {text: '前端', link: '/front/'},
-            { text: '兴趣', link: '/hobby/'}
+            {text: '前端', link: '/front/'}
         ],
         sidebar: {
             '/front/':['',
@@ -64,8 +63,7 @@ module.exports = {
                 children: [
                     '/front/test/Applets.md'
                 ]
-            }],
-            '/hobby/': ['']
+            }]
         }
     },
     plugins: [

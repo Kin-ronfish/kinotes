@@ -157,22 +157,28 @@ arr.find((item, index) => {
 arr.findIndex(function) //(ES6)同上，但只返回索引
 ```
 
+```javascript
+array.fill(startindex,val,endindex) //(ES6)根据索引区间跟换值
+```
+
+```javascript
+array.every((item, index)) //(ES6)数组中所有项都满足某条件
+```
+
+```javascript
+array.some(function) //(ES6)数组中是否有某一项满足条件
+```
+
 
 
 ```javascript
-array.fill(startindex,val,endindex) //(ES6)根据索引区间跟换值
-
-array.every(function) //(ES6)数组中所有项都满足某条件
-
-array.some(function) //(ES6)数组中是否有某一项满足条件
-
 array.entries() //(ES6)遍历键值对
 
 array.keys() //(ES6)遍历键名
 
 array.values() //(ES6)遍历键值
 
-array.includes() //(ES6)数组是否包含指定值，减少if的使用
+array.includes(val) //(ES6)数组是否包含指定值，减少if的使用
 
 ...arr //(ES6)数组解构
 ```
