@@ -37,8 +37,14 @@ new webpack.ProvidePlugin({
     <div v-if="true">content</div>
     <div v-else>none</div>
     <div v-show="true">content</div>
-    <div v-for="(item, index) in list" :key="index">
+    <div v-for="(item, index) in list" :key="index"><!-- 遍历数组 -->
         {{item}}
+    </div>
+    <div v-for="(value, key, index) in object" :key="index"><!-- 遍历对象 -->
+    	{{index}}: {{item}}: {{value}}
+    </div>
+    <div v-for="num in nums" :key="num"><!-- 遍历数值 -->
+        {{num}}
     </div>
     <div v-model="num">{{ num }}</div>
     <div :class="red" :style="color">title</div>

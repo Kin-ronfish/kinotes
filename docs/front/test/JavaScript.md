@@ -23,7 +23,7 @@ Boolean除了 `undefined`， `null`， `false`， `NaN`， `''`， `0`， `-0`�
 ## 函数定义
 
 ```javascript
-function fun(name, age=2){} // 设置默认值(ES6)，不能油同名参数
+function fun(name, age=2){} // 设置默认值(ES6)，不能有同名参数
 (a,b) => {a+b} // 箭头函数，同一行可省略{}，单参数可省略()，无参数必须保留
 ```
 
@@ -58,6 +58,8 @@ instanceof判断对象的类型
 
 ### Object
 
+#### 基础方法
+
 创建及调用方式
 
 ```javascript
@@ -68,17 +70,16 @@ obj.sex = '男' // 加key并赋值
 test = {test: '1', ...obj} //(ES6)对象解构
 Object.assign(obj,{email: '1451@de.com'}) // (ES6)对象加值
 Object.is("1","1") // (ES6)与'==='类似
+Object.keys(obj) // (ES5)将对象中的key值整合为数组
 ```
 
 > ES6属性名与属性值相同时只写一个
->
-> ES6函数名以变量显示需加[]
 >
 > prototype对象是原始对象，可通过此对象添加属性和方法
 >
 > 每个对象都有 `__proto__` 属性，对象可以通过 `__proto__` 来寻找不属于该对象的属性，`__proto__` 将对象连接起来组成了原型链
 
-#### 场景
+#### 场景案例
 
 - 对象判空
 
@@ -86,11 +87,26 @@ Object.is("1","1") // (ES6)与'==='类似
 JSON.stringify(data) == "{}"
 ```
 
+- 遍历对象
 
+```javascript
+Object.keys(obj).forEach(key => {
+ console.log(obj[key]) // foo
+})
+```
+
+- 传入一个**特定位置**含有对应字段的值，判断该值属于哪个类型
+
+```javascript
+const str = 'note.txt'
+const file: any = {pdf: '演示稿',doc: '文档',xls: '表格',txt: '文本'}
+const tmpStr: string = str.split('.')[name.split('.').length - 1] //文件截取后缀名
+const result = file[tmpStr]
+```
 
 ### Array
 
-#### 方法
+#### 基础方法
 
 ```javascript
 array.concat(arr1,arr2) //参数：两个数组，合并数组
@@ -102,6 +118,7 @@ array.sort(arr) //排序
 array.reverse(arr) //转置
 array.toString(arr) //数组转字符串
 array.join(str|num) //参数：字符串或数值，以指定内容为连接符将数组转化为字符串
+array.includes(val) //(ES6)数组是否包含指定值，减少if的使用
 ```
 
 ```javascript
@@ -151,39 +168,41 @@ Array.from(arr) //(ES6)将类数组对象或可迭代对象转化为数组
 
 ```javascript
 arr.find((item, index) => {
-    console.log(item, index)
+    return item > 0
 }) //(ES6)查找符合条件的元素，如有多个，只返回第一个
 
 arr.findIndex(function) //(ES6)同上，但只返回索引
 ```
 
 ```javascript
-array.fill(startindex,val,endindex) //(ES6)根据索引区间跟换值
+arr.fill(startindex,val,endindex) //(ES6)根据索引区间跟换值
 ```
 
 ```javascript
-array.every((item, index)) //(ES6)数组中所有项都满足某条件
+arr.every((item, index) => {
+    return item > 0
+}) //(ES6)数组中所有项都满足某条件
 ```
 
 ```javascript
-array.some(function) //(ES6)数组中是否有某一项满足条件
+array.some((item, index) => {
+    return item > 0
+}) //(ES6)数组中是否有某一项满足条件
 ```
 
-
+```javascript
+// 以下返回的是generator函数，可通过next()输出对应的值
+arr.entries() //(ES6)遍历键值对
+arr.keys() //(ES6)遍历键名
+arr.values() //(ES6)遍历键值
+arr.next() //输出
+```
 
 ```javascript
-array.entries() //(ES6)遍历键值对
-
-array.keys() //(ES6)遍历键名
-
-array.values() //(ES6)遍历键值
-
-array.includes(val) //(ES6)数组是否包含指定值，减少if的使用
-
 ...arr //(ES6)数组解构
 ```
 
-#### 场景
+#### 场景案例
 
 - 数组包装
 
@@ -297,11 +316,43 @@ data.forEach(item => {
 })
 ```
 
+- 数组求平均数
+
+```javascript
+const average = (...nums) =>
+nums.reduce((acc, val) => acc + val, 0) / nums.length;
+average(...[1, 2, 3]); // 2
+average(1, 2, 3); // 2
+```
+
+- 求对象数组中的平均数
+
+```javascript
+const averageBy = (arr, fn) =>
+  arr
+    .map(typeof fn === 'function' ? fn : val => val[fn])
+    .reduce((acc, val) => acc + val, 0) / arr.length;
+averageBy([{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }], o => o.n); // 5
+averageBy([{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }], 'n'); // 5
+```
+
+- 根据传入数组和判断数组，输出一个二维数组，并将原数组里显示false索引的值取出，放到另外一个数组中
+
+```javascript
+const bifurcate = (arr, filter) =>
+  arr.reduce((acc, val, i) => (acc[filter[i] ? 0 : 1].push(val), acc), [
+    [],
+    [],
+  ]);
+bifurcateBy(['beep', 'boop', 'foo', 'bar'], x => x[0] === 'b');
+// [ ['beep', 'boop', 'bar'], ['foo'] ]
+```
+
 ### Number
 
 数值类型的转换，默认为浮点型
 
-#### 方法
+#### 基础方法
 
 ```javascript
 Number() // 转数值型
@@ -310,7 +361,7 @@ parseInt() // 转整型
 isNaN() //是否为空
 ```
 
-#### 场景
+#### 场景案例
 
 ```javascript
 // 布尔型转数值型
@@ -344,8 +395,6 @@ str.repeat(3) //(ES6)字符串重复
 > 字符串反引号可以传入一个变量值
 
 ### Date
-
-> [dayjs时间处理插件](https://dayjs.fenxianglu.cn/)
 
 ### Math
 
@@ -437,6 +486,8 @@ localStorage.key(index); //得到某个索引的key
 
 ## DOM
 
+### 基础方法
+
 ```javascript
 document.getElementById("id_name"); //获取单个ID
 document.getElementsByTagName("p"); //返回HTMLCollection(标签)对象数组
@@ -450,6 +501,20 @@ tmp.removeChild("a") //移除<a>元素
 tmp.getAttribute //获取属性
 tmp.setAttribute //设置属性
 tmp.removeAttribute //删除属性
+```
+
+### 场景案例
+
+- 原始内容复制到剪切板
+
+```javascript
+const inputTest = document.createElement('input') //创建一个输入框
+inputTest.value = this.applyUrl //绑定一个待复制的值
+document.body.appendChild(inputTest) //添加节点
+inputTest.select()
+document.execCommand('Copy') //设置复制指令
+inputTest.className = 'oInput' //添加类名
+inputTest.style.display = 'none' //销毁属性
 ```
 
 # 防抖节流
