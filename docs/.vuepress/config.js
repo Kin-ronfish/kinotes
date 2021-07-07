@@ -33,11 +33,13 @@ module.exports = {
         smoothScroll: true,
         nav: [
             { text: '主页', link: '/' },
-            {text: '前端', link: '/front/'}
+            { text: '前端', link: '/front/'},
+            { text: '兴趣', link: '/hobby/'}
         ],
         sidebar: {
             '/front/':['',
             {
+                title: '基础语言',
                 collapsable: false,
                 children: [
                     '/front/test/JavaScript.md',
@@ -51,19 +53,15 @@ module.exports = {
                     '/front/test/frame.md',
                     '/front/test/plugins.md'
                 ]
-            },{
-                title: '方法案例',
-                collapsable: false,
-                children: [
-                    '/front/test/method.md'
-                ]
-            },{
+            },
+            {
                 title: '小程序',
                 collapsable: false,
                 children: [
                     '/front/test/Applets.md'
                 ]
-            }]
+            }],
+            '/hobby/': ['']
         }
     },
     plugins: [
