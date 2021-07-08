@@ -286,15 +286,31 @@ export const InformationModule = getModule(Information)
 </script>
 ```
 
+## element
+
+> [element官方文档](https://element.eleme.cn/#/zh-CN/component/installation)
+
+## jQuery
+
 > [jQuery官方文档](https://www.jquery123.com/)
+
+## sass
 
 > [sass官方文档](https://www.sass.hk/)
 
+## less
+
 > [less官方文档](https://less.bootcss.com/)
+
+## bootstrap
 
 > [bootstrap官方文档](https://www.bootcss.com/)
 
+## dayjs
+
 > [dayjs官方文档](https://dayjs.fenxianglu.cn/) 处理时间
+
+## loadsh
 
 > [loadsh官方文档](https://www.lodashjs.com/)
 

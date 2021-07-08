@@ -100,6 +100,12 @@ export default {
 }
 ```
 
+```javascript
+this.$emit('eventName',param) // 子组件传值给父组件的连接事件
+```
+
+
+
 ### 插槽slot
 
 插槽类似于模板属性的补充，在子组件中设置插槽标签，父组件间继承子组件后，可在标签内插入新的标签属性
@@ -258,8 +264,8 @@ export default {
 - `modules` 数据模块太多可以分离使用
 
 ```javascript
-import Vue from ‘vue’;
-import Vuex from ‘vuex’; //导入模块，此模块为状态式管理模块
+import Vue from 'vue';
+import Vuex from 'vuex'; //导入模块，此模块为状态式管理模块
 Vue.use(Vuex);
 const store = new Vuex.Store({
 	state: {Name: "xxx"},
