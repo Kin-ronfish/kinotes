@@ -377,7 +377,7 @@ bool = !!num
 
 ### String
 
-字符串操作
+#### 基础方法
 
 ```javascript
 str.charAt(index) //获取指定索引的字符
@@ -397,6 +397,8 @@ str.repeat(3) //(ES6)字符串重复
 ### Date
 
 ### Math
+
+#### 基础方法
 
 ```javascript
 Math.round() //四舍五入
@@ -426,6 +428,8 @@ console.log(syObject) // {Symbol(key1): "kk"}
 ```
 
 ### Promise
+
+#### 基础方法
 
 Promise是ES6新增加的类，目的是更加优雅地书写复杂的异步任务
 
@@ -473,6 +477,8 @@ async function fun(){
 ```
 
 ## 数据存储
+
+#### 基础方法
 
 ```javascript
 localStorage.setItem(key,value); //保存数据
@@ -555,7 +561,7 @@ function throttle(fn,delay){
 }
 ```
 
-## 场景
+## 场景案例
 
 debounce
 

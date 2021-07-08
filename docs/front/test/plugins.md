@@ -298,7 +298,7 @@ export const InformationModule = getModule(Information)
 
 > [loadsh官方文档](https://www.lodashjs.com/)
 
-# html2canvas
+## html2canvas
 
 > [html2canvas官方文档](http://html2canvas.hertzen.com/) 自定义区域html标签转canva
 
@@ -321,7 +321,7 @@ html2canvas(docArea, {
 })
 ```
 
-# printjs
+## printjs
 
 > [printjs官方文档](https://printjs.crabbly.com/) 自定义打印对应区域
 

@@ -25,8 +25,13 @@ npm run build:%PLATFORM%
 ## 对比
 
 - html：div、[span,font]、a、img、select、iframe、事件@click、页面在route里注册、导航栏底部栏在vue页面创建
-
 - uniapp：view、text、navigator、image、picker、web-view、事件@tap、页面在page.json里注册、导航栏底部栏在也在page.json创建
+
+> **微信小程序不支持对象遍历**
+
+```html
+<view v-for="(value, key, index) in obj" :key="index"></view><!-- 不生效 -->
+```
 
 ## 改动
 

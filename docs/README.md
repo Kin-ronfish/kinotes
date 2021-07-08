@@ -11,6 +11,6 @@ features:
 - title: 兴趣发展
   details: 当你抛弃了感兴趣的东西，还会觉得做什么都有趣吗？
 - title: 感悟记录
-  details: 生活就向一本无字之书，学习让书里的内容更加充实，努力让内容更加精彩。
+  details: 生活就像一本无字之书，学习让书里的内容更加充实，努力让内容更加精彩。
 footer: MIT Licensed | Copyright © 2021-present Kinron
 ---
