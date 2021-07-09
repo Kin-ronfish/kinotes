@@ -3,34 +3,34 @@
 
 ## 生成工具
 
-①实用工具和资源下载：<a href="https://www.ityuan.com/">https://www.ityuan.com/</a>
+①实用工具和资源下载：[https://www.ityuan.com/](https://www.ityuan.com/)
 
-②前端框架代码生成器：<a href="http://cg.lazy-monkey.com/">http://cg.lazy-monkey.com/</a>
+②前端框架代码生成器：[http://cg.lazy-monkey.com/](http://cg.lazy-monkey.com/)
 
-③前端布局代码生成器：<a href="http://bbs.magicalcoder.com/">http://bbs.magicalcoder.com/</a>
+③前端布局代码生成器：[http://bbs.magicalcoder.com/](http://bbs.magicalcoder.com/)
 
-④bootstrap页面生成器：<a href="http://www.ibootstrap.cn/">http://www.ibootstrap.cn/</a>
+④bootstrap页面生成器：[http://www.ibootstrap.cn/](http://www.ibootstrap.cn/)
 
-⑤开源社区：<a href="https://www.oschina.net/">https://www.oschina.net/</a>
+⑤开源社区：[https://www.oschina.net/](https://www.oschina.net/)
 
-⑥页面生成器：<a href="https://www.layoutit.com/">https://www.layoutit.com/</a>
+⑥页面生成器：[https://www.layoutit.com/](https://www.layoutit.com/)
 
-⑦前端开发手册：<a href="http://caibaojian.com/fedbook/">http://caibaojian.com/fedbook/</a>
+⑦前端开发手册：[http://caibaojian.com/fedbook/](http://caibaojian.com/fedbook/)
 
 ## 常用工具
 
-markdown工具：<a href="https://www.typora.io/">https://www.typora.io/</a>
+markdown工具：[https://www.typora.io/](https://www.typora.io/)
 
-思维导图：<a href="https://www.xmind.cn/">https://www.xmind.cn/</a>
+思维导图：[https://www.xmind.cn/](https://www.xmind.cn/)
 
 ## 模板
 
-> <a href="http://www.templatesy.com/">http://www.templatesy.com/</a>
+> [http://www.templatesy.com/](http://www.templatesy.com/)
 
-> <a href="https://sc.chinaz.com/">https://sc.chinaz.com/</a>
+> [https://sc.chinaz.com/](https://sc.chinaz.com/)
 
-> <a href="http://www.mobanwang.com/">http://www.mobanwang.com/</a>
+> [http://www.mobanwang.com/](http://www.mobanwang.com/)
 
-> <a href="https://www.php.cn/">https://www.php.cn/</a>
+> [https://www.php.cn/](https://www.php.cn/)
 
-> <a href="https://www.lanrentuku.com/">https://www.lanrentuku.com/</a>
+> [https://www.lanrentuku.com/](https://www.lanrentuku.com/)
