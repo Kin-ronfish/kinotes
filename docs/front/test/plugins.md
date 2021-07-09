@@ -290,6 +290,16 @@ export const InformationModule = getModule(Information)
 
 > [element官方文档](https://element.eleme.cn/#/zh-CN/component/installation)
 
+element：在el-checkbox-group内写的div字体默认大小为0
+
+```html
+<el-checkbox-group v-model="aimList">
+    <div style="font-size:14px">这里添加的东西不起效果</div>
+    <el-checkbox label="复选框 A"></el-checkbox>
+    <el-checkbox label="复选框 B"></el-checkbox>
+</el-checkbox-group>
+```
+
 ## jQuery
 
 > [jQuery官方文档](https://www.jquery123.com/)
