@@ -34,7 +34,8 @@ module.exports = {
         nav: [
             { text: '主页', link: '/' },
             { text: '前端', link: '/front/'},
-            { text: '兴趣', link: '/hobby/'}
+            { text: '兴趣', link: '/hobby/'},
+            { text: '总结', link: '/note/'}
         ],
         sidebar: {
             '/front/':['',
@@ -61,7 +62,15 @@ module.exports = {
                     '/front/test/Applets.md'
                 ]
             }],
-            '/hobby/': ['']
+            '/hobby/': ['', {
+                collapsable: false,
+                children: [
+                    '/hobby/test/绘画.md',
+                    '/hobby/test/cook.md',
+                    '/hobby/test/DIY.md'
+                ]
+            }],
+            '/note/': ['']
         }
     },
     plugins: [

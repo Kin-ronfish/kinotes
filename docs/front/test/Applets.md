@@ -57,6 +57,10 @@ npm run build:%PLATFORM%
     div{
         background-image: url(@/static/logo.png);
     }
+    @font-face {
+         font-family: test1-icon;
+         src: url('~@/static/iconfont.ttf'); // ~@为绝对路径 
+     }
 </style>
 ```
 
