@@ -150,8 +150,8 @@ arr.filter((item, index) => {
 ```
 
 ```javascript
-arr.reduce((item, index) => {
-    console.log(item, index)
+arr.reduce((prev, next) => {
+    console.log('存储值' + prev, '当前值' + next)
 }) // 数组每处理好一项，返回一个值
 ```
 
