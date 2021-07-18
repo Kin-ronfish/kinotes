@@ -320,6 +320,12 @@ element：在el-checkbox-group内写的div字体默认大小为0
 
 > [dayjs官方文档](https://dayjs.fenxianglu.cn/) 处理时间
 
+```javascript
+dayjs.format('YYYY-MM-DD') // 格式转换
+dayjs.add(1, 'day') // 添加时间，week，day，month，year，hour，minute，second
+dayjs.subtract(1, 'year') // 减去时间
+```
+
 ## loadsh
 
 > [loadsh官方文档](https://www.lodashjs.com/)
@@ -361,3 +367,17 @@ print({
     scanStyles: false
 })
 ```
+
+## animate
+
+> [animate官方文档](http://www.animate.net.cn/)
+
+animate设置修改原有动画
+
+```css
+#id { /*通过id获取后直接设置*/
+	animation-delay: 2s;
+	animation-during: 1s;
+}
+```
+

@@ -18,7 +18,7 @@ typeof对于基本类型，除了 `null` 都可以显示正确的类型
 
 Boolean除了 `undefined`， `null`， `false`， `NaN`， `''`， `0`， `-0`，其他值都转为 true
 
-四则运算：数值连接字符串=>字符串；数组与字符串连接只取[]内的内容
+四则运算：数值连接字符串结果为字符串；数组与字符串连接只取[]内的内容
 
 ## 函数定义
 
@@ -55,6 +55,14 @@ new Foo().getName(); // -> 2，执行Foo()产生实例，再通过原型链找�
 ## 内置对象
 
 instanceof判断对象的类型
+
+```javascript
+const arr = [];
+const obj = {};
+const str = '';
+arr instanceof Array // true
+obj instanceof Array // false
+```
 
 ### Object
 
@@ -175,7 +183,8 @@ arr.findIndex(function) //(ES6)同上，但只返回索引
 ```
 
 ```javascript
-arr.fill(startindex,val,endindex) //(ES6)根据索引区间跟换值
+arr.fill(val,start,end) //(ES6)填充数组
+[1,5,2,6].fill(1) // [1,1,1,1]
 ```
 
 ```javascript
@@ -192,10 +201,10 @@ array.some((item, index) => {
 
 ```javascript
 // 以下返回的是generator函数，可通过next()输出对应的值
-arr.entries() //(ES6)遍历键值对
-arr.keys() //(ES6)遍历键名
-arr.values() //(ES6)遍历键值
-arr.next() //输出
+const tmp = arr.entries() //(ES6)遍历键值对
+const tmp = arr.keys() //(ES6)遍历键名
+const tmp = arr.values() //(ES6)遍历键值
+tmp.next() //输出
 ```
 
 ```javascript
@@ -226,14 +235,10 @@ Array.from(new Set(arr))
 arr.filter((item, index, arr) => return arr.indexOf(item, 0) === index
 ```
 
-```
-arr.reduce((prev,cur) => prev.includes(cur) ? prev : [...prev,cur],[])
-```
-
 - 数组过滤
 
 ```javascript
-// 改变原数组
+// 改变原数组，不建议使用
 let arr1 = [1, 2, 3, 4, 5, 6, 7, 8]
 let arr2 = [1, 2, 6]
 arr2.forEach((item, index) => {
@@ -336,18 +341,6 @@ averageBy([{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }], o => o.n); // 5
 averageBy([{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }], 'n'); // 5
 ```
 
-- 根据传入数组和判断数组，输出一个二维数组，并将原数组里显示false索引的值取出，放到另外一个数组中
-
-```javascript
-const bifurcate = (arr, filter) =>
-  arr.reduce((acc, val, i) => (acc[filter[i] ? 0 : 1].push(val), acc), [
-    [],
-    [],
-  ]);
-bifurcateBy(['beep', 'boop', 'foo', 'bar'], x => x[0] === 'b');
-// [ ['beep', 'boop', 'bar'], ['foo'] ]
-```
-
 ### Number
 
 数值类型的转换，默认为浮点型
@@ -394,7 +387,56 @@ str.repeat(3) //(ES6)字符串重复
 
 > 字符串反引号可以传入一个变量值
 
+### RegExp
+
+#### 基础方法
+
+| 修饰符       | 描述                                         |
+| :----------- | -------------------------------------------- |
+| [0-9], [a-z] | 查找任何从 0 至 9 的数字，a至z的字符         |
+| ^, $         | 开始位置，结束位置                           |
+| {n}          | n 是一个非负整数。匹配确定的 n 次            |
+| \d           | 匹配一个（）非数字字符，等价于 [0-9]         |
+| w            | 匹配字母、数字、下划线。等价于'[A-Za-z0-9_]' |
+
+```javascript
+var pat = new RegExp("e")
+pat.test("The best things") //搜索字符串指定的值，返回真或假
+pat.exec("The best things") //检索字符串指定的值，返回被找到的值或返回null
+```
+
+#### 场景案例
+
+- 验证手机号
+
+```javascript
+const pattern = new RegExp(/^[1][3][0-9]{9}$/)
+pattern.test('12345678947')
+```
+
+- 验证邮箱
+
+```javascript
+const pattern = new RegExp(/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/)
+pattern.test('kin@12.com')
+```
+
+- 验证身份证号码
+
+```javascript
+const pattern = new RegExp(/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/)
+pattern.test('11010519880605371X')
+```
+
 ### Date
+
+#### 基础方法
+
+```javascript
+const date = new Date()
+console.log(date.getFullYear(),date.getMonth()+1,date.getDate()); // 年月日
+console.log(date.getHours(),date.getMinutes(),date.getSeconds()); // 时分秒
+```
 
 ### Math
 
@@ -406,14 +448,6 @@ Math.floor(Math.random()*10) //生成 [0,9] 的随机数
 Math.floor(Math.random()*10)+n //生成 [0+n,9+n] 的随机数
 Math.floor(Math.random()*n*10) //生成 [0,n*10-1] 的随机数
 Math.floor(Math.random()*(n-m+1))+m //生成 [m,n] 的随机数
-```
-
-### RegExp
-
-```javascript
-var pat=new RegExp("e")
-pat.test("The best things") //搜索字符串指定的值，返回真或假
-pat.exec("The best things") //检索字符串指定的值，返回被找到的值或返回null
 ```
 
 ### Symbol
@@ -524,6 +558,8 @@ inputTest.style.display = 'none' //销毁属性
 ```
 
 # 防抖节流
+
+## 基础方法
 
 在第一次触发事件时，不立即执行函数，而是给出一个期限值比如200ms
 

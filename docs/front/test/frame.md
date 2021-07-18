@@ -669,6 +669,3 @@ class ParentCom extends React.Component{
   }
 }
 ```
-
-> [vuepress官网](https://vuepress.vuejs.org/zh/)
-

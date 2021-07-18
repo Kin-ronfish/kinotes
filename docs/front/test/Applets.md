@@ -166,3 +166,28 @@ switch(uni.getSystemInfoSync().platform){
 }
 ```
 
+# 数据存取
+
+```javascript
+uni.setStorage({ // 保存
+    key: 'name',
+    data: 'kin',
+    success: function () {
+        console.log('success');
+    }
+})
+uni.getStorage({ // 获取
+    key: 'name',
+    success: function (res) {
+        console.log(res.data);
+    }
+})
+uni.removeStorage({  // 清除
+    key: 'name',
+    success: function (res) {
+        console.log('success');
+    }
+})
+uni.clearStorage() // 清空
+```
+
