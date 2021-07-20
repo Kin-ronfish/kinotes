@@ -344,3 +344,45 @@ animate设置修改原有动画
 }
 ```
 
+## particles
+
+#### 基本用法
+
+```html
+<vue-particles
+    class="login-bg"
+    color="#39AFFD"
+    :particleOpacity="0.7"
+    :particlesNumber="100"
+    shapeType="circle"
+    :particleSize="4"
+    linesColor="#8DD1FE"
+    :linesWidth="1"
+    :lineLinked="true"
+    :lineOpacity="0.4"
+    :linesDistance="150"
+    :moveSpeed="3"
+    :hoverEffect="true"
+    hoverMode="grab"
+    :clickEffect="true"
+    clickMode="push"
+></vue-particles>
+```
+
+| 属性            | 类型      | default   | 描述                                                   |
+| --------------- | --------- | --------- | ------------------------------------------------------ |
+| color           | `String`  | ’#dedede’ | 粒子颜色                                               |
+| particleOpacity | `Number`  | 0.7       | 粒子透明度                                             |
+| particlesNumber | `Number`  | 80        | 粒子数量                                               |
+| shapeType       | `String`  | ’circle’  | “circle”,“edge”,“triangle”, “polygon”,“star”           |
+| particleSize    | `Number`  | 80        | 单个粒子大小                                           |
+| linesColor      | `String`  | ’#dedede’ | 线条颜色                                               |
+| linesWidth      | `Number`  | 1         | 线条宽度                                               |
+| lineLinked      | `boolean` | true      | 连接线是否可用                                         |
+| lineOpacity     | `Number`  | 0.4       | 线条透明度                                             |
+| linesDistance   | `Number`  | 150       | 线条距离                                               |
+| moveSpeed       | `Number`  | 3         | 粒子运动速度                                           |
+| hoverEffect     | `boolean` | true      | 是否有hover特效                                        |
+| hoverMode       | `String`  | true      | 可用hover模式有: “grab”, “repulse”, + “bubble”         |
+| clickEffect     | `boolean` | true      | 是否有click特效                                        |
+| clickMode       | `String`  | true      | 可用click模式有: “push”, “remove”, “repulse”, “bubble” |
