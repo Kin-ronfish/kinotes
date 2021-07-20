@@ -17,6 +17,18 @@ p {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+p { /*单行*/
+    width:300px;    
+    overflow: hidden;    
+    text-overflow:ellipsis;    
+    white-space: nowrap;
+}
+p { /*多行*/
+    display: -webkit-box;    
+    -webkit-box-orient: vertical;    
+    -webkit-line-clamp: 3;    
+    overflow: hidden;
+}
 ```
 
 - 图形变换

@@ -4,25 +4,13 @@
 
 > [Typescript官方文档](https://www.tslang.cn/docs/home.html)
 
-### 基本用法
-
-npm install -g typescript 安装组件
-tsc -v 查看版本
-tsc test.ts 编译文件输出test.js
-node test.js 运行
-
 
 ### 基础语法
 
 
 #### 数据类型
 
-`string` 字符串型
-`number` 数值型
-`any` 任意类型，等同于var
-`boolean` 布尔型
-`enum` 枚举
-`void` 定义函数类型
+`string` 字符串型 `number` 数值型 `any` 任意类型，等同于var `boolean` 布尔型 `enum` 枚举 `void` 定义函数类型
 
 declare 用于声明 *.d.ts 文件
 
@@ -60,10 +48,7 @@ var str1 : number = <number> <any> str;
 console.log(str1);
 ```
 
-#### 函数
-
-
-基本函数
+#### 基本函数
 
 
 ```typescript
@@ -172,74 +157,6 @@ var obj = new Kin();
 obj.user();
 ```
 
-
-#### 作用域
-
-全局作用域、类作用域、局部作用域
-
-```typescript
-var global_num = 12          // 全局变量
-class Numbers { 
-   num_val = 13;             // 实例变量
-   static sval = 10;         // 静态变量
-   storeNum():void { 
-      var local_num = 14;    // 局部变量
-   } 
-} 
-console.log("全局变量为: "+global_num)  
-console.log(Numbers.sval)   // 静态变量
-var obj = new Numbers(); 
-console.log("实例变量: "+obj.num_val)
-```
-
-
-#### 循环
-
-
-_for...of 循环_
-
-
-```typescript
-let someArray = [1, "str", false];
-for (let entry of someArray) {
-    console.log(entry); // 1, "str", false
-}
-```
-
-
-_forEach 循环_
-
-
-```typescript
-let list = [4, 5, 6];
-list.forEach((val, idx, array) => {
-    console.log(val);
-});
-```
-
-
-_every 循环_
-
-
-```typescript
-let list = [1,2,3,4,5,6];
-list.every((val, idx, array) => {
-	console.log(val);
-    return true;
-});
-```
-
-
-_some循环_
-
-
-```typescript
-let list = [1,2,3,4,5,6];
-list.some((val, idx, array) => {
-    return val < 2; //判断数组中是否存在符合条件的值
-});
-```
-
 ### Vue&Vuex
 
 1. vue中使用typescript
@@ -262,11 +179,9 @@ export default class extends Vue {
 <script lang="ts">
 import store from '@/store'
 import { Action,getModule, Module, Mutation, VuexModule } from 'vuex-module-decorators'
-
 export interface Message { //定义类型接口
     message: object
 }
-
 // dynamic 动态引入，namespaced 工作区间，name 名称
 @Module({ dynamic: true, store, name: 'message', namespaced: true })
 class Information extends VuexModule {
@@ -289,6 +204,8 @@ export const InformationModule = getModule(Information)
 ## element
 
 > [element官方文档](https://element.eleme.cn/#/zh-CN/component/installation)
+
+### 要点提示
 
 element：在el-checkbox-group内写的div字体默认大小为0
 
@@ -320,6 +237,8 @@ element：在el-checkbox-group内写的div字体默认大小为0
 
 > [dayjs官方文档](https://dayjs.fenxianglu.cn/) 处理时间
 
+### 基本用法
+
 ```javascript
 dayjs.format('YYYY-MM-DD') // 格式转换
 dayjs.add(1, 'day') // 添加时间，week，day，month，year，hour，minute，second
@@ -330,9 +249,49 @@ dayjs.subtract(1, 'year') // 减去时间
 
 > [loadsh官方文档](https://www.lodashjs.com/)
 
+### 常用用法
+
+- isEmpty 如果 `value` 为空，那么返回 `true`，否则返回 `false`
+
+```javascript
+_.isEmpty([1, 2, 3]) // false
+_.isEmpty([]) // true
+```
+
+- isObject 如果 `value` 为一个对象，那么返回 `true`，否则返回 `false`
+
+```javascript
+_.isObject({}) // true
+_.isObject(null) // false
+```
+
+- isString  如果 `value` 为一个字符串，那么返回 `true`，否则返回 `false`
+
+```javascript
+_.isString('abc') // true
+_.isString(1) // false
+```
+
+- isArray 如果`value`是一个数组返回 `true`，否则返回 `false`
+
+```javascript
+_.isArray([1, 2, 3]) // true
+_.isArray('abc') // false
+```
+
+- cloneDeep 深拷贝
+
+```javascript
+_.cloneDeep(objects) // 拷贝一个指针与原值不同的值
+```
+
+
+
 ## html2canvas
 
 > [html2canvas官方文档](http://html2canvas.hertzen.com/) 自定义区域html标签转canva
+
+### 方法案例
 
 - 截取网页指定区域，保存为图片
 
@@ -357,6 +316,8 @@ html2canvas(docArea, {
 
 > [printjs官方文档](https://printjs.crabbly.com/) 自定义打印对应区域
 
+### 基本用法
+
 - 截取网页特定区域作为打印区域
 
 ```javascript
@@ -371,6 +332,8 @@ print({
 ## animate
 
 > [animate官方文档](http://www.animate.net.cn/)
+
+### 基本用法
 
 animate设置修改原有动画
 

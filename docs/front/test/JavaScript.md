@@ -238,26 +238,24 @@ arr.filter((item, index, arr) => return arr.indexOf(item, 0) === index
 - 数组过滤
 
 ```javascript
-// 改变原数组，不建议使用
+// 提取两个数组中的相同值和不同值
 let arr1 = [1, 2, 3, 4, 5, 6, 7, 8]
 let arr2 = [1, 2, 6]
-arr2.forEach((item, index) => {
-    arr1.forEach((ele, i, self) => {
-        if (item === ele) {
-        	self.splice(i, 1)
-        }
-    })
+arr1.filter((item) => {
+    return !arr2.includes(item) // [3,4,5,7,8],arr2.includes(item)->[1,2,6]
 })
 ```
 
 ```javascript
-// 不改变原数组
-let arr1 = [1, 2, 3, 4, 5, 6, 7, 8]
-let arr2 = [1, 2, 6]
+// 
+let arr1 = [{num: 1},{num: 2},{num: 6}]
+let arr2 = [1, 2, 3, 4]
 arr1.filter((item) => {
-    return !arr2.includes(item)
+    return arr2.includes(item.num) // [{num: 1},{num: 2}]
 })
 ```
+
+
 
 - 根据字段分组
 
@@ -341,6 +339,39 @@ averageBy([{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }], o => o.n); // 5
 averageBy([{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }], 'n'); // 5
 ```
 
+- 根据日期排序
+
+```javascript
+arr = [{
+  id: 1,
+  time:'2021-07-6 18:21:00'
+},
+{
+  id: 2,
+  time:'2021-07-08 17:53:00'
+},
+{
+  id: 3,
+  time:'2021-07-05 09:28:00'
+},
+{
+  id: 4,
+  time:'2021-05-19 19:38:00'
+},
+{
+  id: 5,
+  time:'2021-06-19 17:11:00'
+}]
+dateData(property) {
+    return function(a, b) {
+        const value1 = a[property]
+        const value2 = b[property]
+        return Date.parse(value2) - Date.parse(value1)
+    }
+}
+arr.sort(this.dateData('time'))
+```
+
 ### Number
 
 数值类型的转换，默认为浮点型
@@ -410,7 +441,7 @@ pat.exec("The best things") //检索字符串指定的值，返回被找到的�
 - 验证手机号
 
 ```javascript
-const pattern = new RegExp(/^[1][3][0-9]{9}$/)
+const pattern = new RegExp(/^1+(3|4|5|6|7|8|9)\\d{9}$/)
 pattern.test('12345678947')
 ```
 

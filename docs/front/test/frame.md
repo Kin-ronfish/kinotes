@@ -9,20 +9,6 @@
 - Vue核心：减少不必要的DOM操作(虚拟DOM)，数据双向绑定。
 - MVVM模式：View和Model用Vue关联起来。
 
-### Vue安装方法
-
-1. npm insatll -g vue 安装脚手架。
-2. vue create <项目名> 创建vue框架。
-3. vue脚手架安装jQuery，在webpack.dev.conf.js中的plugins加入以下语句。
-
-```javascript
-new webpack.ProvidePlugin({
-  $: "jquery",
-  jQuery: "jquery",
-  "windows.jQuery": "jquery"
-})
-```
-
 ### 页面渲染
 
 - `v-if`, `v-else` 设置此标签是否被渲染
@@ -60,25 +46,12 @@ export default {}
 
 Vue[生命周期](https://v3.cn.vuejs.org/guide/instance.html#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%BE%E7%A4%BA)共有八个执行函数：
 
-- beforeCreate 数据和事件方法还未绑定到app对象上,此时可执行Ajax
-- created 数据和事件方法已绑定到app对象上
-- beforeMount 渲染前数据还未生成的DOM对象
-- mounted 渲染后可以获取数据生成的DOM对象
-- beforeUpdate,updated 组件更新时触发
-- beforeDestroy,destroyed 组件销毁时触发
-
-```javascript
-export default {
-    beforeCreate(){}
-    created(){}
-    beforeMount(){}
-    mounted(){}
-    beforeUpdate(){}
-    updated(){}
-    beforeDestroy(){}
-    destroyed(){}
-}
-```
+- beforeCreate() 数据和事件方法还未绑定到app对象上,此时可执行Ajax
+- created() 数据和事件方法已绑定到app对象上
+- beforeMount() 渲染前数据还未生成的DOM对象
+- mounted() 渲染后可以获取数据生成的DOM对象
+- beforeUpdate(), updated() 组件更新时触发
+- beforeDestroy(), destroyed() 组件销毁时触发
 
 ### 内置常用对象
 
@@ -90,27 +63,12 @@ export default {
 - watch 放置监听函数的对象，在学习当中此对象不常用
 
 ```javascript
-export default {
-	props: {},
-	data() { return{} },
-	components: {},
-	methods: {},
-	computed: {},
-	watch: {}
-}
-```
-
-```javascript
 this.$emit('eventName',param) // 子组件传值给父组件的连接事件
 ```
 
-
-
 ### 插槽slot
 
-插槽类似于模板属性的补充，在子组件中设置插槽标签，父组件间继承子组件后，可在标签内插入新的标签属性
-
-#### 匿名、具名插槽
+1. 匿名、具名插槽
 
 - 匿名插槽：未命名插槽，父组件引入子组建后直接编写新的新签属性
 - 具名插槽：父组件使用子组件插槽时需要绑定插槽名，即：`slot="name"`
@@ -159,7 +117,7 @@ export default {
 </template>
 ```
 
-#### 利用插槽编写按钮组件
+2. 利用插槽编写按钮组件
 
 - 在插槽内插入新标签可自定义按钮文本的形式
 - 在子组件中的 `button` 绑定一个 `props` 对象，父组件在使用子组件时传入对应达样式名可改变按钮的样式
@@ -214,7 +172,7 @@ export default {
 </script>
 ```
 
-#### 作用域插槽
+3. 作用域插槽
 
 在子组件 `slot` 中绑定一个数据，父组件通过 `slotProps` 可访问到子组件的数据
 *parent.vue*
@@ -250,7 +208,7 @@ export default {
 </script>
 ```
 
-### Vuex状态管理组件
+### Vuex状态管理
 
 ***
 
@@ -263,23 +221,10 @@ export default {
 - `actions` 提交mutation,不变更状态,可含异步操作
 - `modules` 数据模块太多可以分离使用
 
-```javascript
-import Vue from 'vue';
-import Vuex from 'vuex'; //导入模块，此模块为状态式管理模块
-Vue.use(Vuex);
-const store = new Vuex.Store({
-	state: {Name: "xxx"},
-	getters:{},
-	mutations:{},
-	actions:{}
-	modules:{}
-});
-```
-
 在外部使用store管理仓库内数据的方法。
 
 - `mapState()` , `mapGetters()` , `mapMutations()` 都为映射函数，只有返回值。
-- `$store.commit()` , `$store.dispatch` 分别是 `mutations` , `actions` 的触发函数。
+- `$store.commit()` , `$store.dispatch()` 分别是 `mutations` , `actions` 的触发函数。
 
 ```javascript
 mapState(['Name' ]),
@@ -309,7 +254,7 @@ npx create-nuxt-app <项目名>
 - plugins自定义插件。
 - store设定Vuex.store状态管理。
 
-### router路由类型
+### router路由
 
 框架内置了路由自动生成模块，在page目录下创建新目录，路由名称直接写目录名即可，路由跳转通过 `<nuxt-link>` 来进行。
 
@@ -399,7 +344,7 @@ export default {
 </script>
 ```
 
-### store Vuex状态树
+### Vuex状态树
 
 在store目录内的index.vue文件下编写方法，编写模块则需新建一个js文件，项目编译会将store目录下的文件加入到Store管理仓库并格式化。
 
@@ -481,7 +426,9 @@ let app = <div> //JSX中必须只有一个根元素
 ReactDOM.render(app,root); //标签渲染
 ```
 
-函数式组件，用于静态没有交互事件内容的组件页面
+### 函数式组件
+
+用于静态没有交互事件内容的组件页面
 
 ```javascript
 function Childcom(props){//props父传递给子组件数据、函数，单项流动，不能反向
@@ -496,7 +443,9 @@ function Childcom(props){//props父传递给子组件数据、函数，单项流
 }
 ```
 
-类组件，用于有交互或数据修改操作的组件页面
+### 类组件
+
+用于有交互或数据修改操作的组件页面
 
 ```javascript
 class Hello extends React.Component{
@@ -528,7 +477,7 @@ ReactDOM.render(
 )
 ```
 
-事件
+### 绑定事件
 
 ```javascript
 class Tab extends React.Component{
@@ -618,6 +567,8 @@ let listArr = this.state.list.map((item,index)=>{ //list为数组
   )
 })
 ```
+
+### 生命周期
 
 生命周期是组件从实例化到渲染到最终从页面中销毁。在周期中可以调用事件。
 生命周期的3个状态:
