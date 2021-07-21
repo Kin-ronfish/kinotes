@@ -1,7 +1,7 @@
 ---
 home: true
 heroImage: /assets/Kin.ico
-heroText: 记录绘本
+heroText: 记录本
 tagline: 微笑面对生活，生活给予甘甜
 # actionText: 进入 →
 # actionLink: /front/
