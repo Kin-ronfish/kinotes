@@ -386,3 +386,8 @@ animate设置修改原有动画
 | hoverMode       | `String`  | true      | 可用hover模式有: “grab”, “repulse”, + “bubble”         |
 | clickEffect     | `boolean` | true      | 是否有click特效                                        |
 | clickMode       | `String`  | true      | 可用click模式有: “push”, “remove”, “repulse”, “bubble” |
+
+## anime
+
+> [anime官方文档](https://animejs.com/)
+
