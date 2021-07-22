@@ -66,6 +66,24 @@ Vue[生命周期](https://v3.cn.vuejs.org/guide/instance.html#%E7%94%9F%E5%91%BD
 this.$emit('eventName',param) // 子组件传值给父组件的连接事件
 ```
 
+> 当用emit从子组件传出来的事件，父组件在使用子组件的时候不能带参数，否则会将原有传出的参数覆盖
+
+```html
+<button @eventName="handlePrint">打印</button>
+<button @eventName="handlePrint('str')">打印</button>
+<script>
+	export default {
+        methods: {
+            handlePrint(param) {
+                console.log(param) // 按钮1输出param，按钮2输出str
+            }
+        }
+    }
+</script>
+```
+
+
+
 ### 插槽slot
 
 1. 匿名、具名插槽
