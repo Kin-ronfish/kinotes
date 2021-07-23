@@ -205,6 +205,255 @@ export const InformationModule = getModule(Information)
 
 > [element官方文档](https://element.eleme.cn/#/zh-CN/component/installation)
 
+### 基本用法
+
+1. 选择框
+
+- 在 `<el-option>` 中循环一个数组，设置选项的值，选择后的值绑定给外层的 `value`。
+- clearable 设置选框可清空所选的值。
+
+```html
+<el-select v-model="value" clearable placeholder="请选择套餐">
+    <el-option
+      v-for="item in options"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value">
+    </el-option>
+</el-select>
+<script>
+  export default {
+    data() {
+      return {
+        options: [{
+          value: '1',
+          label: '烧鸭饭'
+        }, {
+          value: '2',
+          label: '水煮鱼'
+        }, {
+          value: '3',
+          label: '牛肉饭'
+        }],
+        value: ''
+      }
+    }
+  }
+</script>
+```
+
+2. 表单验证
+
+- 在 `<el-form>` 里设置输入值的校验规则，在每一个item中通过 `prop` 导入规则中的属性。
+- 输入框绑定的变量名要与校验规则的对象名一致。
+
+```html
+<el-form :model="Form" ref="Form" :rules="rule">
+  <el-form-item label="名称" prop="name">
+    <el-input type="name" autocomplete="off"></el-input>
+  </el-form-item>
+  <el-form-item>
+    <el-button type="primary" @click="submitForm('Form')">提交</el-button>
+    <el-button @click="resetForm('Form')">重置</el-button>
+  </el-form-item>
+</el-form>
+<script>
+  export default {
+    data() {
+      return {
+        Form: {
+          name: ''
+        },
+        rule: {
+            name:[
+                { required: true, message: '年姓名不能为空', trigger: 'change'}
+            ]
+        }
+      };
+    },
+    methods: {
+      submitForm(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            alert('submit!');
+          } else {
+            console.log('error submit!');
+            return false;
+          }
+        });
+      },
+      resetForm(formName) {
+        this.$refs[formName].resetFields();
+      }
+    }
+  }
+</script>
+```
+
+3. 文件上传
+
+- action 设置上传的目标路径
+- on-preview 点击上传列表触发handlePreview函数
+
+- before-remove/on-remove 文件移除前和移除时触发的函数
+- multiple/limit 设置多文件上传并限制文件数量
+
+- on-exceed 文件溢出时触发handleExceed函数
+- file-list 用于存放上传文件的列表
+
+```html
+<el-upload
+  action="https://jsonplaceholder.typicode.com/posts/"
+  :on-preview="handlePreview"
+  :on-remove="handleRemove"
+  :before-remove="beforeRemove"
+  multiple
+  :limit="2"
+  :on-exceed="handleExceed"
+  :file-list="fileList">
+  <el-button size="small" type="primary">点击上传</el-button>
+  <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+</el-upload>
+<script>
+  export default {
+    data() {
+      return {
+        fileList: []
+      };
+    },
+    methods: {
+      handleRemove(file, fileList) {
+        console.log(file, fileList);
+      },
+      handlePreview(file) {
+        console.log(file);
+      },
+      handleExceed(files, fileList) {
+        this.$message.warning(`当前限制选择 2 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+      },
+      beforeRemove(file, fileList) {
+        return this.$confirm(`确定移除 ${ file.name }？`);
+      }
+    }
+  }
+</script>
+```
+
+4. 分页
+
+- `page-size` 设置页面显示数据条例数量。
+- `pager-count` 设置页数。
+- `total` 所有页面的数量和。
+
+```html
+<el-pagination
+  :page-size="20"
+  :pager-count="10"
+  layout="prev, pager, next"
+  :total="100">
+</el-pagination>
+```
+
+5. 表格
+
+- `<el-table>` 绑定数组。
+- `<el-table-column>` 通过prop绑定数组中的对象属性值，并循环数组的每一个对象。
+
+```html
+<template>
+    <el-table :data="tableData" style="width: 100%">
+      <el-table-column prop="date" label="日期"></el-table-column>
+      <el-table-column prop="name" label="姓名"></el-table-column>
+      <el-table-column prop="address" label="地址"></el-table-column>
+    </el-table>
+  </template>
+  <script>
+    export default {
+      data() {
+        return {
+          tableData: [{
+            date: '2016-05-02',
+            name: 'Kin',
+            address: '金平区护堤路170号'
+          }, {
+            date: '2016-05-04',
+            name: 'Kin',
+            address: '金平区护堤路170号'
+          }, {
+            date: '2016-05-01',
+            name: 'Kin',
+            address: '金平区护堤路170号'
+          }]
+        }
+      }
+    }
+  </script>
+```
+
+6. 树形控件
+
+- data绑定一个对象数组，对象内部的children层级为树型的分支
+
+- props用于绑定一个默认值
+
+- show-checkbox用于显示节点前的选框
+
+```html
+<el-tree :data="data" :props="defaultProps" show-checkbox @node-click="handleNodeClick"></el-tree>
+<script>
+  export default {
+    data() {
+      return {
+        data: [{
+          label: '一级 1',
+          children: [{
+            label: '二级 1-1',
+            children: [{
+              label: '三级 1-1-1'
+            }]
+          }]
+        }, {
+          label: '一级 2',
+          children: [{
+            label: '二级 2-1',
+            children: [{
+              label: '三级 2-1-1'
+            }]
+          }, {
+            label: '二级 2-2',
+            children: [{
+              label: '三级 2-2-1'
+            }]
+          }]
+        }, {
+          label: '一级 3',
+          children: [{
+            label: '二级 3-1',
+            children: [{
+              label: '三级 3-1-1'
+            }]
+          }, {
+            label: '二级 3-2',
+            children: [{
+              label: '三级 3-2-1'
+            }]
+          }]
+        }],
+        defaultProps: {
+          children: 'children',
+          label: 'label'
+        }
+      };
+    },
+    methods: {
+      handleNodeClick(data) {
+        console.log(data);
+      }
+    }
+  };
+</script>
+```
+
 ### 要点提示
 
 element：在el-checkbox-group内写的div字体默认大小为0

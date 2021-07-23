@@ -541,6 +541,24 @@ async function fun(){
 }
 ```
 
+接口调用规范
+
+- 调用接口要采用异步的方式
+
+- 接口调用后要判断返回值是否为空
+
+- 在页面数据显示有问题时，可以从接口得到的数据这开始找原因
+
+```javascript
+async handleGetlist() {
+  const { data, code, msg } = await apiGetlist()
+  if (code !== this.$consts.RET_CODE.SUCCESS) {
+    this.$toast(msg)
+    return
+  }
+}
+```
+
 ## 数据存储
 
 #### 基础方法

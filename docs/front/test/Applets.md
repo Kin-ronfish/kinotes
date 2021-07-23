@@ -191,3 +191,52 @@ uni.removeStorage({  // 清除
 uni.clearStorage() // 清空
 ```
 
+## 组件学习
+
+1. `mescroll-uni` 组件学习
+
+- mescrollInit：初始化回调函数
+
+- refreshChange：下拉回调函数
+
+- loadChange：上拉回调函数
+
+- up、down：传入一个布尔值，用于设置初始状态是否调用上拉函数、下拉函数
+
+```html
+<mescroll-uni ref="mescrollRef" @init="mescrollInit" @down="refreshChange" @up="loadChange" :down="down" :up="up" :fixed="true">
+  <view class="name">name</view>
+</mescroll-uni>
+```
+
+## 方法案例
+
+解决输入框被遮挡时的问题
+
+```html
+<scroll-view class="content" :scroll-y="true" :scroll-top="scrollTop">
+    <view>
+        <view class="message" v-for="(item,index) in records" :key="index">
+            <input placeholder="请输入" />
+        </view>
+    </view>
+</scroll-view>
+<script>
+export default {
+  data() {
+    return {
+      scrollTop: 1000
+    }
+  }
+};
+</script>
+
+<style lang="less">
+@left-right-margin: 40rpx;
+.content {
+    flex-grow: 1;
+    overflow: auto;
+}
+</style>
+```
+
