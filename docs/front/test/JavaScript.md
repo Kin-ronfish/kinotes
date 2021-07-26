@@ -606,9 +606,9 @@ inputTest.className = 'oInput' //添加类名
 inputTest.style.display = 'none' //销毁属性
 ```
 
-# 防抖节流
+## 防抖节流
 
-## 基础方法
+### 基础方法
 
 在第一次触发事件时，不立即执行函数，而是给出一个期限值比如200ms
 
@@ -646,7 +646,7 @@ function throttle(fn,delay){
 }
 ```
 
-## 场景案例
+### 场景案例
 
 debounce
 
@@ -658,7 +658,9 @@ throttle
 - 鼠标不断点击触发，mousedown(单位时间内只触发一次)
 - 监听滚动事件，比如是否滑到底部自动加载更多，用throttle来判断
 
-# 代码规范
+## 代码规范笔记
+
+工作进度定义：50%-页面完成， 60%-接完接口， 80%-完成业务逻辑， 90%-已自测可提测， 100%-测试通过
 
 组件的导入，用驼峰命名法 `ButtonGroup`
 
@@ -679,6 +681,10 @@ uniapp mescroll下拉加载，upOption.page会自动加一
 组件内部用emit直接用事件名XXX
 
 页面跳转参数用对象形式
+
+uni-app取路由参数用onLoad
+
+get请求传递的参数要加个{}，post请求传递的参数不用加{}
 
 代码尽量不要超出500行
 
@@ -721,3 +727,7 @@ const { head } = await apiSave()
 this.loading = false
 if (head.ret !== this.$consts.RET_CODE.SUCCESS) return
 ```
+
+curl发送方法：在Network/XHR下，右击有问题的接口，选择Copy/Copy as Curl(bash)
+
+项目安装包时出问题，可以把yarn.lock，package-lock.json删除后重装

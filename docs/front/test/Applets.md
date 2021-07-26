@@ -2,6 +2,8 @@
 
 > [uni-app官网](https://uniapp.dcloud.io/)
 
+> uniapp适用于做微信等跨平台小程序，cordova适用于单纯开发手机app
+
 通过命令行创建uni-app
 
 ```shell
