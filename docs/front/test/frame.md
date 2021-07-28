@@ -14,7 +14,7 @@
 - `v-if`, `v-else` 设置此标签是否被渲染
 - `v-show` 设置标签是否显示
 - `v-for` 循环输出内容，key值可为每个item绑定一个标识
-- `v-model` 数据双向绑定，即数据和页面渲染同时进行
+- `v-model` 数据双向绑定，即数据和页面渲染同时进行，是一个语法糖，包括属性绑定和时间监听两部分
 - `v-bind` 绑定属性，简写为 ':'
 - `v-on` 绑定事件，简写为 '@'
 
@@ -82,7 +82,32 @@ this.$emit('eventName',param) // 子组件传值给父组件的连接事件
 </script>
 ```
 
+#### 内置组件
 
+`<keep-alive>` 会缓存不活动的组件实例，这是一个抽象组件，自身不会渲染成一个DOM元素。缓存的组件可以防止重复渲染DOM，提高性能。
+
+内置props
+
+- include - 字符串或正则表达式。只有名称匹配的组件会被缓存。
+- exclude - 字符串或正则表达式。任何名称匹配的组件都不会被缓存。
+- max - 数字。最多可以缓存多少组件实例。
+
+使用方法
+
+```html
+<keep-alive include='test'>
+	<router-view/> <!-- 将缓存name为test的组件 -->
+</keep-alive>
+<keep-alive include='a,b'>
+    <router-view/> <!-- 将缓存name为a或者b的组件，结合动态组件使用 -->
+</keep-alive>
+<keep-alive :include='includedComponents'>
+    <router-view/> <!-- 动态判断 -->
+</keep-alive>
+<keep-alive exclude='test'>
+    <router-view/> <!-- 将不缓存name为test的组件 -->
+</keep-alive>
+```
 
 ### 插槽slot
 
@@ -251,6 +276,8 @@ mapMutations(['functionName'])
 $store.commit('functionName')
 $store.dispatch('functionName')
 ```
+
+> vue组件化设计的作用是将页面中相同的代码块抽出并整合成一个组件，这样可以减少多余的重复代码，优化代码的数量。
 
 ## Nuxt
 

@@ -84,6 +84,8 @@ span {
 
 - 框大小：width(宽)/height(高) + padding(内边距) + border(边框) = 元素实际宽度/高度
 - 设置 box-sizing: border-box; 内边距和边框也包含在width和height中
+- 盒子模型有四个部分：内容(content)，内边距(padding)，边框(border)，外边距(margin)
+- box-sizing = content + padding + border
 
 ```css
 div {

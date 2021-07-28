@@ -43,6 +43,8 @@ markdown工具：[https://www.typora.io/](https://www.typora.io/)
 
 > [https://www.runoob.com/](https://www.runoob.com/)
 
+> [https://www.parceljs.cn/](https://www.parceljs.cn/)
+
 ## git操作
 
 ```shell

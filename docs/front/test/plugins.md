@@ -470,6 +470,15 @@ element：在el-checkbox-group内写的div字体默认大小为0
 
 > [jQuery官方文档](https://www.jquery123.com/)
 
+### 元素操作
+
+```javascript
+$("p").append("追加文本");
+$("img").after("在后面添加文本");
+$("img").before("在前面添加文本");
+$("#div").remove();
+```
+
 ## sass
 
 > [sass官方文档](https://www.sass.hk/)
