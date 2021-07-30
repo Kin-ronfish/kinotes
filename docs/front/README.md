@@ -39,6 +39,8 @@ markdown工具：[https://www.typora.io/](https://www.typora.io/)
 
 ## 学习网址
 
+> [前端学习网站](https://developer.mozilla.org/zh-CN/docs/Learn)
+
 > [https://www.yuque.com/yingxiaobei/razng7](https://www.yuque.com/yingxiaobei/razng7)
 
 > [https://www.runoob.com/](https://www.runoob.com/)

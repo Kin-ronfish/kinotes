@@ -42,7 +42,8 @@ module.exports = {
                 collapsable: false,
                 children: [
                     '/front/test/JavaScript.md',
-                    '/front/test/CSS.md'
+                    '/front/test/CSS.md',
+                    '/front/test/base.md'
                 ]
             },
             {
