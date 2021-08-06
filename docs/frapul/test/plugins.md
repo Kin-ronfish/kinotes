@@ -1,8 +1,26 @@
-# 前端插件
+# 插件
 
 ## Typescript
 
 > [Typescript官方文档](https://www.tslang.cn/docs/home.html)
+
+typescript优点
+
+1.非常包容JavaScript
+
+2.定义简单到复杂的一切类型
+
+3.typescript如果报错，依然可以生成JavaScript文件
+
+4.typescript拥有活跃的社区
+
+typescript缺点
+
+1.学习成本高
+
+2.短期项目，简答的项目，效率低下
+
+3.跟其他库的兼容性不高
 
 
 ### 基础语法
@@ -25,6 +43,9 @@ declare enum message { //申明枚举对象
 }
 ```
 
+> null和undefined是所有类型的子类型
+>
+> 申明时未定义类型，默认会定义为任意类型，由于赋值为单一类型，typescript有类型推断规则，会将赋值的类型定义成变量的类型
 
 #### 定义实例
 
@@ -68,7 +89,7 @@ function add(x: number,y: number): number {
 ```
 
 
-可选参数函数，传入一、两个参数。
+可选参数函数（可选参数必须放在必选参数后面），传入一、两个参数。
 
 
 ```typescript
@@ -143,8 +164,80 @@ disp("abc")
 disp(1,"xyz");
 ```
 
+```typescript
+// 函数参数类型定义
+// => 在typescript中用于函数的定义，左边输入类型，右边输出类型
+let sum(x:number,y:umber) => number = function(x:number,y:number):number{
+    return x + y;
+}
+```
+
+重载，接受不同数量或者类型的参数
+
+```typescript
+function setabc(x:number|string):number|string{
+	return x;
+}
+```
+
+```typescript
+class animal{
+    static isAnimal(a) {
+        return a instanceof Animal;
+    }
+}
+let dog = new Animal();
+Animal.isAnimal(dog);
+```
+
+#### 接口定义
+
+> 对象必须和接口保持一致
+> 接口首字母为大写
+> 接口属性后加上?，表示此属性为可选属性
+
+```typescript
+interface Person{
+    name:string;
+    age:number;
+    hobby?:string;
+}
+let kin:Person = {
+    name:'kin',
+    age:18
+}
+```
+
+```typescript
+[propName:string]:any; // 可添加任意属性
+// 设置为只读属性，只能进行1次赋值，后面不可以在修改，但是可以获取
+readonly name:string;
+```
+
+```typescript
+let arr:Array<number> = [1,2,3] //数组泛型的定义方式
+```
+
+```typescript
+//implement，类实现接口的关键词
+class SmallCat implements Cat{
+    name:string = 'kin';
+    age:number = 16;
+    constructor(){}
+}
+```
 
 #### 面向对象
+
+类中的静态方法不需要实例化就可以直接调用
+
+类中三种修饰符：public，private，protect
+
+public 在任何地方都可以访问
+
+private 只有在本类中可以访问
+
+protect 在继承的子类中可以访问
 
 
 ```typescript
@@ -155,6 +248,41 @@ class Kin {
 }
 var obj = new Kin();
 obj.user();
+```
+
+
+
+```typescript
+class Apple {
+    protected name;
+    public constructor(name) {
+		this.name = name
+    }
+}
+// 如果构造函数私有的不能被实例化
+class BigApple extends Apple{
+    constructor(name) {
+        super(name)
+        console.log(this.name)
+    }
+}
+```
+
+抽象类，只能被继承不能被实例化
+
+```typescript
+abstract class Pig{
+    public name;
+    constructor(name){
+        this.name = name
+    }
+    public abstract say();
+}
+class SmallPig extends Pig{
+    say(){
+        console.log('hello')
+    }
+}
 ```
 
 ### Vue&Vuex

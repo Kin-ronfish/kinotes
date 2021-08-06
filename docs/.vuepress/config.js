@@ -33,34 +33,33 @@ module.exports = {
         smoothScroll: true,
         nav: [
             { text: '主页', link: '/' },
-            { text: '前端', link: '/front/'}
+            { text: '基础', link: '/base/'},
+            { text: '框架插件', link: '/frapul/'},
+            { text: '工具', link: '/front/'}
         ],
         sidebar: {
-            '/front/':['',
-            {
-                title: '基础语言',
-                collapsable: false,
-                children: [
-                    '/front/test/JavaScript.md',
-                    '/front/test/CSS.md',
-                    '/front/test/base.md'
-                ]
-            },
-            {
-                title: '框架插件',
-                collapsable: false,
-                children: [
-                    '/front/test/frame.md',
-                    '/front/test/plugins.md'
-                ]
-            },
-            {
-                title: '小程序',
-                collapsable: false,
-                children: [
-                    '/front/test/Applets.md'
-                ]
-            }]
+            '/base/':['',
+                {
+                    collapsable: false,
+                    children: [
+                        '/base/test/JavaScript.md',
+                        '/base/test/CSS.md',
+                        '/base/test/base.md',
+                        '/base/test/rule.md'
+                    ]
+                }
+            ],
+            '/frapul/':['',
+                {
+                    collapsable: false,
+                    children: [
+                        '/frapul/test/frame.md',
+                        '/frapul/test/plugins.md',
+                        '/frapul/test/other.md'
+                    ]
+                }
+            ],
+            '/front/':['']
         }
     },
     plugins: [

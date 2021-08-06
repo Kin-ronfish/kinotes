@@ -1,4 +1,8 @@
-# uniapp
+# 其他
+
+## node
+
+## uniapp
 
 > [uni-app官网](https://uniapp.dcloud.io/)
 
@@ -20,11 +24,11 @@ npm run build:%PLATFORM%
 
 %PLATFORM%对应的值：h5-H5，mp-weixin-微信小程序等
 
-## 代码区别
+### 代码区别
 
 小程序代码与html的区别
 
-### 对比
+#### 对比
 
 - html：div、[span,font]、a、img、select、iframe、事件@click、页面在route里注册、导航栏底部栏在vue页面创建
 - uniapp：view、text、navigator、image、picker、web-view、事件@tap、页面在page.json里注册、导航栏底部栏在也在page.json创建
@@ -35,7 +39,7 @@ npm run build:%PLATFORM%
 <view v-for="(value, key, index) in obj" :key="index"></view><!-- 不生效 -->
 ```
 
-### 改动
+#### 改动
 
 - html中的input包含多种功能，在uniapp里只是输入框，里面的功能被拆分出来成独立的组件
 - 在uniapp中ul、li用view替代，audio改成api方式，form、button、label、textarea、canvas、video 等还在
@@ -43,11 +47,11 @@ npm run build:%PLATFORM%
 - alert,confirm 改成 uni.showmodel，ajax 改成 uni.request
 - css不支持*选择器，body改为page，px单位改为rpx单位
 
-### 新增
+#### 新增
 
 - 新组件：scroll-view可区域滚动视图容器、swiper可滑动区域视图容器、icon图标、rich-text富文本、progress进度条、slider滑块指示器、switch开关选择器、camera相机、live-player直播、map地图、cover-view可覆盖原生组件的视图容器
 
-## 资源引入
+### 资源引入
 
 ```html
 <image class="logo" src="/static/logo.png"></image>
@@ -68,9 +72,9 @@ npm run build:%PLATFORM%
 
 
 
-## 生命周期
+### 生命周期
 
-### 应用层
+#### 应用层
 
 初始化(onLaunch)，进入前台(onShow) ，进入后台(onHide)，报错(onError)
 
@@ -88,7 +92,7 @@ export default {
 }
 ```
 
-### 页面层
+#### 页面层
 
 页面加载(onLoad)，完成渲染(onReady)，页面卸载(onUnload)，下拉刷新(onPullDownRefresh)
 
@@ -109,11 +113,11 @@ export default {
 }
 ```
 
-### 组件层
+#### 组件层
 
 uni-app组件生命周期与vue的周期相同，除了beforeUpdate、updated仅支持H5平台。
 
-## 页面路由
+### 页面路由
 
 页面路由在page.json里填写
 
@@ -139,7 +143,7 @@ uni.redirectTo({url:''}) //页面重定向
 uni.navigateBack() //页面返回
 ```
 
-## 运行环境
+### 运行环境
 
 `uni-app` 可通过 `process.env.NODE_ENV` 判断当前环境是开发环境还是生产环境。
 
@@ -168,7 +172,7 @@ switch(uni.getSystemInfoSync().platform){
 }
 ```
 
-## 数据存取
+### 数据存取
 
 ```javascript
 uni.setStorage({ // 保存
@@ -193,7 +197,7 @@ uni.removeStorage({  // 清除
 uni.clearStorage() // 清空
 ```
 
-## 组件学习
+### 组件学习
 
 1. `mescroll-uni` 组件学习
 
@@ -211,7 +215,7 @@ uni.clearStorage() // 清空
 </mescroll-uni>
 ```
 
-## 方法案例
+### 方法案例
 
 解决输入框被遮挡时的问题
 
@@ -240,5 +244,16 @@ export default {
     overflow: auto;
 }
 </style>
+```
+
+## git操作
+
+```shell
+git submodule init --update # 更新模块
+git checkout dev # 切换至dev分支
+git checkout master # 切换至master分支
+git merge dev # 合并dev分支代码
+git tag -a v1.0 -m 'v1.0 release' # 打tag
+git push origin --tags # 推送tag
 ```
 

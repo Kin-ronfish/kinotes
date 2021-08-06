@@ -4,16 +4,17 @@
 
 > [Vue框架官网文档](https://cn.vuejs.org/v2/guide/)
 
-- Vue是用于构建用户界面的渐进式框架。
+### 框架特点
 
-- Vue核心：减少不必要的DOM操作(虚拟DOM)，数据双向绑定。
+- 数据双向绑定，减少不必要的DOM操作(虚拟DOM)。
 - MVVM模式：View和Model用Vue关联起来。
+- 文件结构：view主要页面存放目录，components组件存放目录，文件为单一的.vue文件。
 
-### 页面渲染
+### 框架语法
 
 - `v-if`, `v-else` 设置此标签是否被渲染
 - `v-show` 设置标签是否显示
-- `v-for` 循环输出内容，key值可为每个item绑定一个标识
+- `v-for` 循环输出内容，key主要作用是提高渲染性能，key属性可以避免数据混乱的情况出现
 - `v-model` 数据双向绑定，即数据和页面渲染同时进行，是一个语法糖，包括属性绑定和时间监听两部分
 - `v-bind` 绑定属性，简写为 ':'
 - `v-on` 绑定事件，简写为 '@'
@@ -53,7 +54,7 @@ Vue[生命周期](https://v3.cn.vuejs.org/guide/instance.html#%E7%94%9F%E5%91%BD
 - beforeUpdate(), updated() 组件更新时触发
 - beforeDestroy(), destroyed() 组件销毁时触发
 
-### 内置常用对象
+### 内置对象
 
 - props 用于组件间的数据传输对象
 - data 用于放置当前组件可使用的数据
@@ -279,6 +280,317 @@ $store.dispatch('functionName')
 
 > vue组件化设计的作用是将页面中相同的代码块抽出并整合成一个组件，这样可以减少多余的重复代码，优化代码的数量。
 
+## React
+
+> [React框架官方文档](https://react.docschina.org/)
+
+### 框架特点
+
+- 最大限度的减少DOM的操作。
+- JSX(在JS里写HTML，JavaScript语法扩展)。
+- 单项数据流，没有双向绑定数据（数据-视图-事件-数据）。
+- JSX优点：执行更快，编译为JavaScript代码时进行优化；类型更安全，编译过程中能发现错误；编写模板更加简单快捷。(其性能次于vue)。
+- 文件结构：没有分目录，页面及组件被拆分成.js文件和.css文件。
+
+### 框架语法
+
+```javascript
+import React from 'react'; //React的核心库
+import ReactDOM from 'react-dom'; //提供与 DOM 相关的功能
+let root = document.querySelector('#root'); //获取根标签
+let app = <div> //JSX中必须只有一个根元素
+      		<h1>xx</h1> // 小写是普通HTML元素
+		  <Child/> // 大写默认是组件
+		</div>;
+ReactDOM.render(app,root); //标签渲染
+```
+
+### 生命周期
+
+生命周期是组件从实例化到渲染到最终从页面中销毁。在周期中可以调用事件。
+生命周期的3个状态:
+
+1. Mounting:将组件插入到DOM中
+2. Updating:将数据更新到DOM中
+3. Unmounting;:将组件移除DOM中
+
+生命周期中七个钩子函数（方法，事件)
+
+```javascript
+class ParentCom extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      msg: "hello"
+    }
+    console.log("构造函数")
+  }
+  componentWillMount(){
+    console.log("组件将要渲染")
+  }
+  componentDidMount(){
+    console.log("组件渲染完毕")
+  }
+  componentWillReceiveProps(){
+    console.log("组件将要接收新的state和props")
+  }
+  shouldComponentUpdate(){
+    console.log("组件接收到新的state或者 props,判断是否更新")
+    return true
+  }
+  componentWillUpdate(){
+    console.log("组件将要更新")
+  }
+  componentDidUpdate(){
+    console.log("组件更新完毕")
+  }
+  componentWillUnmount(){
+    console.log("组件将要卸载")
+  }
+  render(){
+    console.log("渲染函数")
+    return(
+      <div>
+        <h1>hello</h1>
+      </div>
+    )
+  }
+}
+```
+
+### 函数式组件
+
+用于静态没有交互事件内容的组件页面
+
+```javascript
+function Childcom(props){//props父传递给子组件数据、函数，单项流动，不能反向
+  return (
+	<div>
+	<h1>天气：{props.weather}</h1>
+	{/* 变量、属性、HTML、表达式和注释用{}插入 */}
+      <h1 className={title} style={Styles}>函数式组件</h1>
+      {/* 标签内多单词的需使用驼峰命名，{}内为变量 */}
+    </div>
+  )
+}
+```
+
+### 类组件
+
+用于有交互或数据修改操作的组件页面
+
+```javascript
+class Hello extends React.Component{
+constructor(props){
+    super(props)
+    //构造函数初始化数据，将需要改变的数据在state中初始化
+    this.state = { //state：相当于vue的data
+      time: new Date()
+    }
+  }
+  render(){
+    return (
+      <div>
+        <h1>类组件</h1>
+        <h1>{this.props.name}</h1>
+		{/* props父传子的name值 */}
+		<Childcom weather={this.props.weather}/>
+		{/* 复合组件：类组件内嵌套函数式组件 */}
+		<h1>时间:{this.state.time}</h1>
+		{/* 当前对象的state */}
+      </div>
+    )
+  }
+}
+ReactDOM.render(
+  // <Childcom weather={this.props.weather}/>,
+<Hello name="lin" weather="出太阳"/>，
+  document.querySelector('#root')
+)
+```
+
+### 绑定事件
+
+```javascript
+class Tab extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {//设置状态、数据
+      dispaly:'content'
+    }
+    // this.clickEvent = this.clickEvent.bind(this)绑定点击事件
+  }
+  clickEvent = (e) =>{ //使用ES6箭头函数不用在构造函数内绑定事件,可传递多个参数
+    console.log(e.target.dataset.index) //输出标签索引
+    this.setState({ //修改state数据的方法，数据会被重新渲染
+         display:'content active',
+      })
+  }
+  render(){
+    return (
+      <div>
+        <button data-index="1" onClick={this.clickEvent}>显示</button>
+        {/* 绑定事件的命名要用驼峰命名法 */}
+        <div className={this.state.display}>内容</div>
+      </div>
+    )
+  }
+}
+ReactDOM.render(
+  <Tab/>,
+  document.querySelector('#root')
+)
+```
+
+子组件传值给父组件的方法就是调用父元素传递进来的父元素函数
+
+```javascript
+class ParentCom extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      childData: null
+    }
+  }
+  render(){
+    return(
+      <div>
+        <h1>{this.state.childData}</h1>
+        <ChildCom setChildData={this.setChildData}/>//传入函数
+      </div>
+    )
+  }
+  setChildData = (data) =>{
+    this.setState({
+      childData:data
+    })
+  }
+}
+class ChildCom extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      msg:"helloworld"
+    }
+  }
+  render(){
+    return(
+      <div>
+        <button onClick={this.sendData}>传递给父元素</button>
+      </div>
+    )
+  }
+  sendData = () =>{
+    this.props.setChildData(this.state.msg)//使用父组件函数
+  }
+}
+ReactDOM.render(
+  <ParentCom/>,
+  document.querySelector('#root')
+)
+```
+
+列表渲染：使用数组的map方法，对每一项数据按照JSX的形式进行加工，最终得到一个每一项都是JSX对象的数组，将数组渲染到模板中，Key值需要放置到每一项中。
+
+```javascript
+let listArr = this.state.list.map((item,index)=>{ //list为数组
+   return (
+    <ListItem key={index} data={item} index={index}></ListItem>
+  )
+})
+```
+
+## Angular
+
+### 框架特点
+
+- 主要的逻辑语言是typescript。
+- 数据双向绑定，与vue相同。
+- 文件结构：没有分目录，页面及组件被拆分成.html文件、.ts文件、.css文件。
+
+> component.css仅用于组件，src根目录下的style.css全局的样式
+
+### 框架语法
+
+```typescript
+// app.module.ts
+@NgModule({ //装饰器
+  declarations: [ //导入组件申明
+    AppComponent, NewsComponent
+  ],
+  imports: [ //导入编译模块
+    BrowserModule,
+    FormsModule,
+    HttpModule
+  ],
+  providers: [], //自定义服务
+  bootstrap: [AppComponent] //挂载的根组件
+})
+```
+
+```typescript
+// app.component.ts
+import { Component } from '@angular/core';
+@Component({
+  // 组件名称
+  selector: 'app-root',
+  // 组件模板文件，定义组件布局和内容
+  templateUrl: './app.component.html',
+  //模板的css样式文件
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+    // 编写属性及函数方法
+    classStr = "bgBlue";
+    msg = "这是一个索引属性";
+    htmlStr = "<span>hello</span>";
+    title = 'app works!';
+    sum (a,b) {
+        return a+b;
+    };
+    classObj = {
+        "bgBlue": true,
+        "active": false
+    };
+    styleStr = "color:blue;";
+    styleObj = {
+        background: "pink",
+        width: "100px",
+        height: "100px"
+    };
+    widthNum = 200;
+    changeColor() {
+        this.classStr = "bg"
+    }
+    changeButton(event) {
+        console.log(event)
+        event.target.style.background = 'green'
+    }
+}
+```
+
+标签内数据绑定方式与vue相同
+
+```html
+<h1>{{title}}</h1>
+<p>{{1+2}}</p>
+<button class="{{classStr}}">按钮</button>
+<h1 [class]="classStr">class4</h1>
+<h1 [innerHtml]="htmlStr"></h1>
+<h1 [attr.data-index]="msg">msg</h1>
+<!-- 字符串 -->
+<h1 [style]="styleStr">zxczxczx</h1>
+<!-- 对象 -->
+<h1 [style]="styleObj"></h1>
+<!-- 对象内属性直接赋值 -->
+<h2 [style.width]="'100px'">adad</h2>
+<h2 [style.width.px]="widthNum">adad</h2>
+<!-- 事件绑定 -->
+<!-- 左侧事件名称，右侧调用事件的函数 -->
+<button (click)="changeColor()">改变</button>
+<button (click)="changeButton($event)">改变</button>
+```
+
 ## Nuxt
 
 > [Nuxt框架官网文档](https://www.nuxtjs.cn/)
@@ -445,224 +757,3 @@ export default {
 }
 </script>
 ```
-
-## React
-
-> [React框架官方文档](https://react.docschina.org/)
-
-框架特点：最大限度的减少DOM的操作；JSX(在JS里写HTML，JavaScript语法扩展)；组件化，模块化；单项数据流，没有双向绑定数据（数据-视图-事件-数据）。
-JSX优点：执行更快，编译为JavaScript代码时进行优化；类型更安全，编译过程中能发现错误；编写模板更加简单快捷。(其性能次于vue)
-
-### 安装方法
-
-- `npm install -g create-react-app` 安装脚手架
-- `create-react-app <文件名>` 创建react框架
-
-### 框架语法
-
-```javascript
-import React from 'react'; //React的核心库
-import ReactDOM from 'react-dom'; //提供与 DOM 相关的功能
-let root = document.querySelector('#root'); //获取根标签
-let app = <div> //JSX中必须只有一个根元素
-      		<h1>xx</h1> // 小写是普通HTML元素
-		  <Child/> // 大写默认是组件
-		</div>;
-ReactDOM.render(app,root); //标签渲染
-```
-
-### 函数式组件
-
-用于静态没有交互事件内容的组件页面
-
-```javascript
-function Childcom(props){//props父传递给子组件数据、函数，单项流动，不能反向
-  return (
-	<div>
-	<h1>天气：{props.weather}</h1>
-	{/* 变量、属性、HTML、表达式和注释用{}插入 */}
-      <h1 className={title} style={Styles}>函数式组件</h1>
-      {/* 标签内多单词的需使用驼峰命名，{}内为变量 */}
-    </div>
-  )
-}
-```
-
-### 类组件
-
-用于有交互或数据修改操作的组件页面
-
-```javascript
-class Hello extends React.Component{
-constructor(props){
-    super(props)
-    //构造函数初始化数据，将需要改变的数据在state中初始化
-    this.state = { //state：相当于vue的data
-      time: new Date()
-    }
-  }
-  render(){
-    return (
-      <div>
-        <h1>类组件</h1>
-        <h1>{this.props.name}</h1>
-		{/* props父传子的name值 */}
-		<Childcom weather={this.props.weather}/>
-		{/* 复合组件：类组件内嵌套函数式组件 */}
-		<h1>时间:{this.state.time}</h1>
-		{/* 当前对象的state */}
-      </div>
-    )
-  }
-}
-ReactDOM.render(
-  // <Childcom weather={this.props.weather}/>,
-<Hello name="lin" weather="出太阳"/>，
-  document.querySelector('#root')
-)
-```
-
-### 绑定事件
-
-```javascript
-class Tab extends React.Component{
-  constructor(props){
-    super(props)
-    this.state = {//设置状态、数据
-      dispaly:'content'
-    }
-    // this.clickEvent = this.clickEvent.bind(this)绑定点击事件
-  }
-  clickEvent = (e) =>{ //使用ES6箭头函数不用在构造函数内绑定事件,可传递多个参数
-    console.log(e.target.dataset.index) //输出标签索引
-    this.setState({ //修改state数据的方法，数据会被重新渲染
-         display:'content active',
-      })
-  }
-  render(){
-    return (
-      <div>
-        <button data-index="1" onClick={this.clickEvent}>显示</button>
-        {/* 绑定事件的命名要用驼峰命名法 */}
-        <div className={this.state.display}>内容</div>
-      </div>
-    )
-  }
-}
-ReactDOM.render(
-  <Tab/>,
-  document.querySelector('#root')
-)
-```
-
-子组件传值给父组件的方法就是调用父元素传递进来的父元素函数
-
-```javascript
-class ParentCom extends React.Component{
-  constructor(props){
-    super(props)
-    this.state = {
-      childData: null
-    }
-  }
-  render(){
-    return(
-      <div>
-        <h1>{this.state.childData}</h1>
-        <ChildCom setChildData={this.setChildData}/>//传入函数
-      </div>
-    )
-  }
-  setChildData = (data) =>{
-    this.setState({
-      childData:data
-    })
-  }
-}
-class ChildCom extends React.Component{
-  constructor(props){
-    super(props)
-    this.state = {
-      msg:"helloworld"
-    }
-  }
-  render(){
-    return(
-      <div>
-        <button onClick={this.sendData}>传递给父元素</button>
-      </div>
-    )
-  }
-  sendData = () =>{
-    this.props.setChildData(this.state.msg)//使用父组件函数
-  }
-}
-ReactDOM.render(
-  <ParentCom/>,
-  document.querySelector('#root')
-)
-```
-
-列表渲染：使用数组的map方法，对每一项数据按照JSX的形式进行加工，最终得到一个每一项都是JSX对象的数组，将数组渲染到模板中，Key值需要放置到每一项中。
-
-```javascript
-let listArr = this.state.list.map((item,index)=>{ //list为数组
-   return (
-    <ListItem key={index} data={item} index={index}></ListItem>
-  )
-})
-```
-
-### 生命周期
-
-生命周期是组件从实例化到渲染到最终从页面中销毁。在周期中可以调用事件。
-生命周期的3个状态:
-
-1. Mounting:将组件插入到DOM中
-2. Updating:将数据更新到DOM中
-3. Unmounting;:将组件移除DOM中
-
-生命周期中七个钩子函数（方法，事件)
-
-```javascript
-class ParentCom extends React.Component{
-  constructor(props){
-    super(props)
-    this.state = {
-      msg: "hello"
-    }
-    console.log("构造函数")
-  }
-  componentWillMount(){
-    console.log("组件将要渲染")
-  }
-  componentDidMount(){
-    console.log("组件渲染完毕")
-  }
-  componentWillReceiveProps(){
-    console.log("组件将要接收新的state和props")
-  }
-  shouldComponentUpdate(){
-    console.log("组件接收到新的state或者 props,判断是否更新")
-    return true
-  }
-  componentWillUpdate(){
-    console.log("组件将要更新")
-  }
-  componentDidUpdate(){
-    console.log("组件更新完毕")
-  }
-  componentWillUnmount(){
-    console.log("组件将要卸载")
-  }
-  render(){
-    console.log("渲染函数")
-    return(
-      <div>
-        <h1>hello</h1>
-      </div>
-    )
-  }
-}
-```
-

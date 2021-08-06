@@ -46,15 +46,3 @@ markdown工具：[https://www.typora.io/](https://www.typora.io/)
 > [https://www.runoob.com/](https://www.runoob.com/)
 
 > [https://www.parceljs.cn/](https://www.parceljs.cn/)
-
-## git操作
-
-```shell
-git submodule init --update # 更新模块
-git checkout dev # 切换至dev分支
-git checkout master # 切换至master分支
-git merge dev # 合并dev分支代码
-git tag -a v1.0 -m 'v1.0 release' # 打tag
-git push origin --tags # 推送tag
-```
-
