@@ -1,5 +1,19 @@
 # 前端框架
 
+MVVM设计模式起源于MVC
+
+M model 数据（模型）/状态
+
+V View 视图
+
+C 控制器 交互修改数据的方式
+
+M model
+
+V view
+
+VM 对数据和试图的双向绑定，只要修改数据，VM（框架）就会自动改变视图，视图的交互改变了数据
+
 ## Vue
 
 > [Vue框架官网文档](https://cn.vuejs.org/v2/guide/)
@@ -44,6 +58,8 @@ export default {}
 ```
 
 > 组件绑定key值，可以通过修改key值在重新渲染组件
+
+> vue中的data必须是函数是为了保证组件的独立性和可复用性
 
 ### 生命周期
 
@@ -375,8 +391,6 @@ const router = new VueRouter({
 })
 ```
 
-
-
 ## React
 
 > [React框架官方文档](https://react.docschina.org/)
@@ -599,6 +613,8 @@ let listArr = this.state.list.map((item,index)=>{ //list为数组
 
 ## Angular
 
+> [angular框架官方文档](https://angular.cn/docs)
+
 ### 优缺点
 
 优点：比较完善的前端框架，服务、模板、数据双向绑定、模块化、路由、过滤器、依赖注入等功能相当完整，模板功能强大，自带丰富的指令，易于操作。
@@ -687,6 +703,32 @@ export class AppComponent {
 <!-- 左侧事件名称，右侧调用事件的函数 -->
 <button (click)="changeColor()">改变</button>
 <button (click)="changeButton($event)">改变</button>
+```
+
+### 插值
+
+语法： {{...变量和表达式}} （与vue相同）
+
+自定义属性插入方式
+
+```html
+<h1 [attr.data-index]="msg">msg</h1>
+```
+
+绑定html自带的属性，可以这样绑定
+
+```html
+<h1 [class]="classStr"></h1>
+```
+
+样式和事件
+
+```html
+<!-- 这两种较为常见 -->
+<button class="{{classStr}}">按钮</button>
+<h1 [class]="classStr"></h1>
+
+<h1 [attr.data-index]="msg">msg</h1>
 ```
 
 ## Nuxt
