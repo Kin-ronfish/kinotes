@@ -1,6 +1,20 @@
 # 其他
 
-## node
+## webpack
+
+> [webpack](https://webpack.docschina.org/)
+
+## glup
+
+> [glup](https://www.gulpjs.com.cn/docs/getting-started/quick-start/)
+
+自动化构建工具
+
+## babel
+
+> [babel](https://www.babeljs.cn/docs/)
+
+Babel 是一个 JavaScript 编译器，将ES6代码转为ES5代码
 
 ## uniapp
 

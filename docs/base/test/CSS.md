@@ -124,3 +124,40 @@ div+h1 {} /*临近元素，所有在div后的元素*/
 }
 ```
 
+div四面居中
+
+```css
+/** 绝对/固定布局 */
+div {
+    position:absolute/fixed;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    margin:auto;
+}
+/** margin负值 */
+div {
+    width:200px;
+    height: 200px;
+    position: absolute;
+    left:50%;
+    top:50%;
+    margin-left:-100px;
+    margin-top:-100px;
+}
+/** css3 transform */
+div {
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+}
+/** flex布局 */
+div {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+```
+

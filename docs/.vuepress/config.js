@@ -34,7 +34,9 @@ module.exports = {
         nav: [
             { text: '主页', link: '/' },
             { text: '基础', link: '/base/'},
-            { text: '框架插件', link: '/frapul/'},
+            { text: '框架', link: '/frame/'},
+            { text: '插件', link: '/plugins/'},
+            { text: '其他', link: '/other/'},
             { text: '工具', link: '/front/'}
         ],
         sidebar: {
@@ -49,17 +51,10 @@ module.exports = {
                     ]
                 }
             ],
-            '/frapul/':['',
-                {
-                    collapsable: false,
-                    children: [
-                        '/frapul/test/frame.md',
-                        '/frapul/test/plugins.md',
-                        '/frapul/test/other.md'
-                    ]
-                }
-            ],
-            '/front/':['']
+            '/frame/': [''],
+            '/plugins/': [''],
+            '/front/':[''], 
+            '/other/':['']
         }
     },
     plugins: [

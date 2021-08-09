@@ -4,18 +4,18 @@
 
 > [Vue框架官网文档](https://cn.vuejs.org/v2/guide/)
 
-### 框架特点
+### 优缺点
 
-- 数据双向绑定，减少不必要的DOM操作(虚拟DOM)。
-- MVVM模式：View和Model用Vue关联起来。
-- 文件结构：view主要页面存放目录，components组件存放目录，文件为单一的.vue文件。
+优点：简洁、轻量、快速、指令、数据驱动、双向数据绑定、模块友好、组件化、插件化。
 
-### 框架语法
+缺点：部分功能还不够完善，支持的库和拓展的丰富性还有待提升，老浏览器的支持不太好，数据复杂起来不好维护。
+
+### 语法
 
 - `v-if`, `v-else` 设置此标签是否被渲染
 - `v-show` 设置标签是否显示
-- `v-for` 循环输出内容，key主要作用是提高渲染性能，key属性可以避免数据混乱的情况出现
-- `v-model` 数据双向绑定，即数据和页面渲染同时进行，是一个语法糖，包括属性绑定和时间监听两部分
+- `v-for` 循环输出内容，key主要作用是提高渲染性能，key属性可以避免出现数据混乱
+- `v-model` 数据双向绑定，是一个语法糖，绑定数据并且监听数据改变
 - `v-bind` 绑定属性，简写为 ':'
 - `v-on` 绑定事件，简写为 '@'
 
@@ -42,6 +42,8 @@ export default {}
 </script>
 <style></style>
 ```
+
+> 组件绑定key值，可以通过修改key值在重新渲染组件
 
 ### 生命周期
 
@@ -83,7 +85,7 @@ this.$emit('eventName',param) // 子组件传值给父组件的连接事件
 </script>
 ```
 
-#### 内置组件
+### 内置组件
 
 `<keep-alive>` 会缓存不活动的组件实例，这是一个抽象组件，自身不会渲染成一个DOM元素。缓存的组件可以防止重复渲染DOM，提高性能。
 
@@ -252,7 +254,7 @@ export default {
 </script>
 ```
 
-### Vuex状态管理
+### Vuex
 
 ***
 
@@ -280,19 +282,114 @@ $store.dispatch('functionName')
 
 > vue组件化设计的作用是将页面中相同的代码块抽出并整合成一个组件，这样可以减少多余的重复代码，优化代码的数量。
 
+### Router
+
+路由嵌套
+
+```javascript
+const router = new VueRouter({
+  routes: [
+    {
+      path: '/user/:id', //动态路由
+      component: User,
+      children: [
+        {
+          path: 'profile',
+          component: UserProfile,
+          redirect: '/new' //路由重定向
+        },
+        {
+          path: 'posts',
+          component: UserPosts
+        }
+      ]
+    }
+  ]
+})
+```
+
+视图嵌套
+
+- 通过设置视图名来定义不同视图
+
+- 确保正确使用components配置（加上s）
+
+```html
+<router-view/>
+<router-view name="helper"/>
+<script>
+	const router = new VueRouter({
+        routes: [
+            {
+                path: 'profile',
+                components: {
+                    default: UserProfile,
+                    helper: UserProfilePreview
+                }
+            }
+        ]
+    })
+</script>
+```
+
+路由跳转
+
+- 标签声明式跳转
+- 函数编程式跳转
+
+```html
+<router-link to="/foo">Go to Foo</router-link>
+<router-link to="/foo" replace>Go to Foo</router-link>
+<script>
+    router.push('home') //有存储历史记录
+    router.push({ path: 'register', query: { plan: 'private' }})
+    router.replace('home') //新路由代替旧路由，没有历史记录
+    router.go(1) //在历史记录里前进后退
+</script>
+```
+
+组件传参
+
+- 通过props传递对象，函数
+
+```javascript
+const router = new VueRouter({
+  routes: [
+    {
+      path: '/promotion/from-newsletter',
+      component: Promotion,
+      props: { newsletterPopup: false }
+    }
+  ]
+})
+```
+
+设置路由模式
+
+- 设置为hash模式。网址后有个#，设置为history则没有
+
+```javascript
+const router = new VueRouter({
+  mode: 'history' | 'hash',
+  routes
+})
+```
+
+
+
 ## React
 
 > [React框架官方文档](https://react.docschina.org/)
 
-### 框架特点
+### 优缺点
 
-- 最大限度的减少DOM的操作。
-- JSX(在JS里写HTML，JavaScript语法扩展)。
-- 单项数据流，没有双向绑定数据（数据-视图-事件-数据）。
-- JSX优点：执行更快，编译为JavaScript代码时进行优化；类型更安全，编译过程中能发现错误；编写模板更加简单快捷。(其性能次于vue)。
-- 文件结构：没有分目录，页面及组件被拆分成.js文件和.css文件。
+优点：运用了Virtual Dom技术，更新dom的次数少，速度快、兼容性好。采用声明式设计，可以轻松描述应用，更加灵活，也能和已知的框架或库很好的配合。
 
-### 框架语法
+缺点：不是一个完整的框架，很多功能无法直接实现，发布较新，很多功能还需要完善，缺少大项目的实际应用。
+
+>  JSX(在JS里写HTML，JavaScript语法扩展)。
+
+### 语法
 
 ```javascript
 import React from 'react'; //React的核心库
@@ -366,10 +463,10 @@ class ParentCom extends React.Component{
 function Childcom(props){//props父传递给子组件数据、函数，单项流动，不能反向
   return (
 	<div>
-	<h1>天气：{props.weather}</h1>
-	{/* 变量、属性、HTML、表达式和注释用{}插入 */}
-      <h1 className={title} style={Styles}>函数式组件</h1>
-      {/* 标签内多单词的需使用驼峰命名，{}内为变量 */}
+        <h1>天气：{props.weather}</h1>
+        {/* 变量、属性、HTML、表达式和注释用{}插入 */}
+        <h1 className={title} style={Styles}>函数式组件</h1>
+        {/* 标签内多单词的需使用驼峰命名，{}内为变量 */}
     </div>
   )
 }
@@ -502,12 +599,13 @@ let listArr = this.state.list.map((item,index)=>{ //list为数组
 
 ## Angular
 
-### 框架特点
+### 优缺点
 
-- 主要的逻辑语言是typescript。
-- 数据双向绑定，与vue相同。
-- 文件结构：没有分目录，页面及组件被拆分成.html文件、.ts文件、.css文件。
+优点：比较完善的前端框架，服务、模板、数据双向绑定、模块化、路由、过滤器、依赖注入等功能相当完整，模板功能强大，自带丰富的指令，易于操作。
+缺点：官方文档可操作性不强，缺乏实例，自学要求较高。版本较多，没有做到很好的兼容，整体较重，渲染初始化慢。
 
+> 主要的逻辑语言是typescript
+>
 > component.css仅用于组件，src根目录下的style.css全局的样式
 
 ### 框架语法

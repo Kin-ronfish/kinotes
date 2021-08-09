@@ -611,6 +611,9 @@ $("#div").remove();
 
 > [sass官方文档](https://www.sass.hk/)
 
+- 属性可以嵌套编写
+- 可以插入变量及函数
+
 ## less
 
 > [less官方文档](https://less.bootcss.com/)

@@ -606,6 +606,18 @@ inputTest.className = 'oInput' //添加类名
 inputTest.style.display = 'none' //销毁属性
 ```
 
+- 锚点滑动定位
+
+```javascript
+let height = document.getElementById('id').offsetTop //滚动条高度
+window.scrollTo({ 
+    top: height, 
+    behavior: "smooth" 
+})
+```
+
+
+
 ## 防抖节流
 
 ### 基础方法
@@ -657,3 +669,58 @@ throttle
 
 - 鼠标不断点击触发，mousedown(单位时间内只触发一次)
 - 监听滚动事件，比如是否滑到底部自动加载更多，用throttle来判断
+
+# ES6新特性
+
+- let，const变量申明
+- import导入模块、export导出模块
+
+```javascript
+import people from './example'
+export default App
+```
+
+- class类、extends继承、super
+
+```javascript
+class Animal {
+    constructor() {
+    	this.type = 'animal';
+	}
+}
+class Cat extends Animal {
+    constructor() {
+        super();
+        this.type = 'cat';
+    }
+}
+```
+
+- 箭头函数 `()=>{}`
+
+- 模板字符串，字符串新方法 `includes` , `repeat`
+
+```javascript
+let num = 12;
+let str = `数值为${num}`
+```
+
+- 数组、对象解构
+- 函数定义默认参数
+- 对象简写，对象新方法 `assign`
+
+```javascript
+let obj = {str: str}; // 等同于 obj = {str}
+```
+
+- promise同步方式写异步代码
+- generator是能返回一个迭代器的函数
+
+**require与import的区别**
+
+- require/exports 是运行时动态加载，import/export 是静态编译
+- require/exports 输出的是一个值的拷贝，import/export 模块输出的是值的引用
+- 用法不一致，import/export 不能对引入模块重新赋值/定义；import/export 只能在模块顶层使用，不能在函数、判断语句等代码块之中引用；import/export 导出的模块默认调用严格模式
+
+
+
