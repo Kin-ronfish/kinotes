@@ -391,6 +391,37 @@ const router = new VueRouter({
 })
 ```
 
+### 跨域问题
+
+- 根目录下如果不存在 `vue.config.js` 文件，就先创建一个
+
+```javascript
+// vue.config.js
+module.exports = {
+    devServer: {
+      proxy: {
+        '/api': {
+            target: url,
+            changeOrigin: true,
+            pathRewrite: {
+                '^/api': ''
+          }
+        }
+      }
+    }
+}
+```
+
+- 安装[axios](http://www.axios-js.com/zh-cn/docs/)插件，在 `main.js` 文件下添加以下代码
+
+```javascript
+// main.js
+import axios from 'axios'
+Vue.prototype.$axios = axios
+axios.defaults.baseURL = '/api'
+axios.defaults.headers.common['Authorization'] = 'xxx' //根据情况添加请求头
+```
+
 ## React
 
 > [React框架官方文档](https://react.docschina.org/)
