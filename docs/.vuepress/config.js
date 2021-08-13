@@ -37,7 +37,8 @@ module.exports = {
             { text: '框架', link: '/frame/'},
             { text: '插件', link: '/plugins/'},
             { text: '其他', link: '/other/'},
-            { text: '工具', link: '/front/'}
+            { text: '工具', link: '/front/'},
+            { text: '规范', link: '/rule/' }
         ],
         sidebar: {
             '/base/':['',
@@ -54,7 +55,24 @@ module.exports = {
             '/frame/': [''],
             '/plugins/': [''],
             '/front/':[''], 
-            '/other/':['']
+            '/other/':[''],
+            '/rule/':['', {
+                collapsable: false,
+                    children: [
+                        '/rule/test/chart.md',
+                        '/rule/test/css-style.md',
+                        '/rule/test/directory.md',
+                        '/rule/test/e-json.md',
+                        '/rule/test/es-next-style.md',
+                        '/rule/test/html-style.md',
+                        '/rule/test/javascript-style.md',
+                        '/rule/test/less-code-style.md',
+                        '/rule/test/module.md',
+                        '/rule/test/package.md',
+                        '/rule/test/react-style.md'
+                    ]
+                }
+            ]
         }
     },
     plugins: [
