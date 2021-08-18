@@ -2,8 +2,7 @@
 
 > 基础是根基
 
-- **JavaScript基础及场景案例**
-- **CSS基础及用法**
-- 万维网
-- **代码编写规范**
+- [JavaScript](./test/javascript.md)
+- [CSS](./test/CSS.md)
+- [万维网](./test/base.md)
 

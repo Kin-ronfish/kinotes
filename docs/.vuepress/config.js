@@ -28,7 +28,7 @@ module.exports = {
         search: true,
         searchMaxSuggestions: 10,
         // lastUpdated: 'Last Updated',
-        // repo: 'Kin-ronfish/kinote',
+        // repo: 'Kin-ronfish/kinotes',
         // repoLabel: 'GitHub',
         smoothScroll: true,
         nav: [
@@ -47,8 +47,7 @@ module.exports = {
                     children: [
                         '/base/test/JavaScript.md',
                         '/base/test/CSS.md',
-                        '/base/test/base.md',
-                        '/base/test/rule.md'
+                        '/base/test/base.md'
                     ]
                 }
             ],
@@ -56,23 +55,7 @@ module.exports = {
             '/plugins/': [''],
             '/front/':[''], 
             '/other/':[''],
-            '/rule/':['', {
-                collapsable: false,
-                    children: [
-                        '/rule/test/chart.md',
-                        '/rule/test/css-style.md',
-                        '/rule/test/directory.md',
-                        '/rule/test/e-json.md',
-                        '/rule/test/es-next-style.md',
-                        '/rule/test/html-style.md',
-                        '/rule/test/javascript-style.md',
-                        '/rule/test/less-code-style.md',
-                        '/rule/test/module.md',
-                        '/rule/test/package.md',
-                        '/rule/test/react-style.md'
-                    ]
-                }
-            ]
+            '/rule/':['']
         }
     },
     plugins: [
