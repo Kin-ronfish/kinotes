@@ -46,3 +46,10 @@ export function a6(arr, key) {
     })
     return result
 }
+// 数组创建对象数组
+export function a7(arr) {
+    const result = arr.map(item => {
+        return {[item]: ''}
+    })
+    return result
+}
