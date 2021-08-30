@@ -1,40 +1,45 @@
 <template>
   <div id="app">
-    <div class="item">
-      1.数组去重——a1(arr)
-      <div class="content"><button @click="run(1)">运行</button>&nbsp;结果：{{result1}}</div>
-    </div><hr>
-    <div class="item">
-      2.数组过滤——a2(arr1, arr2, flag)
-      <div class="content"><button @click="run(2)">运行</button>&nbsp;结果：{{result2}}</div>
-    </div><hr>
-    <div class="item">
-      3.对象数组与数组间过滤——a3(arr1, arr2, flag, key)
-      <div class="content"><button @click="run(3)">运行</button>&nbsp;结果：{{result3}}</div>
-    </div><hr>
-    <div class="item">
-      4.对象数组根据某一键值分组——a4(arr, key)
-      <div class="content"><button @click="run(4)">运行</button>&nbsp;结果：{{result4}}</div>
-    </div><hr>
-    <div class="item">
-      5.对象数组去重——a5(arr, key)
-      <div class="content"><button @click="run(5)">运行</button>&nbsp;结果：{{result5}}</div>
-    </div><hr>
-    <div class="item">
-      6.对象数组提取单个值——a6(arr, key)
-      <div class="content"><button @click="run(6)">运行</button>&nbsp;结果：{{result6}}</div>
-    </div><hr>
-    <div class="item">
-      7.数组创建对象数组——a7(arr)
-      <div class="content"><button @click="run(7)">运行</button>&nbsp;结果：{{result7}}</div>
-    </div><hr>
+    <div v-if="num === 1" class="item">
+      <button @click="run(1)">运行</button>&nbsp;结果：{{result1}}
+    </div>
+    <div v-if="num === 2" class="item">
+      <button @click="run(2)">运行</button>&nbsp;结果：{{result2}}
+    </div>
+    <div v-if="num === 3" class="item">
+      <button @click="run(3)">运行</button>&nbsp;结果：{{result3}}
+    </div>
+    <div v-if="num === 4" class="item">
+      <button @click="run(4)">运行</button>&nbsp;结果：{{result4}}
+    </div>
+    <div v-if="num === 5" class="item">
+      <button @click="run(5)">运行</button>&nbsp;结果：{{result5}}
+    </div>
+    <div v-if="num === 6" class="item">
+      <button @click="run(6)">运行</button>&nbsp;结果：{{result6}}
+    </div>
+    <div v-if="num === 7" class="item">
+      <button @click="run(7)">运行</button>&nbsp;结果：{{result7}}
+    </div>
+    <div v-if="num === 8" class="item">
+      <button @click="run(8)">运行</button>&nbsp;结果：{{result8}}
+    </div>
+    <div v-if="num === 9" class="item">
+      <button @click="run(9)">运行</button>&nbsp;结果：{{result9}}
+    </div>
+    <div v-if="num === 10" class="item">
+      <button @click="run(10)">运行</button>&nbsp;结果：{{result10}}
+    </div>
   </div>
 </template>
 
 <script>
-import {a1,a2,a3,a4,a5,a6,a7} from './linr'
+import {a1,a2,a3,a4,a5,a6,a7,a8,a9,a10} from './linr'
 export default {
   name: 'App',
+  props: {
+    num: Number
+  },
   data() {
     return {
       result1: '',
@@ -66,7 +71,12 @@ export default {
         {groupIndex: 1,groupNumber: "aa"},{groupCheckBasis: 3,groupNumber: "cc"}],
       arr6: [{name: 'ZYTX'},{name: 'ZYTA'},{name: 'ZYTX'}],
       arr7: [{name: 'kin',age: 15,mess: 'qwert'},{name: 'lin',age: 18,mess: 'asdf'},{
-      name: 'yin',age: 14,mess: 'qzxcbv'},{name: 'rin',age: 19,mess: 'qwert'}]
+      name: 'yin',age: 14,mess: 'qzxcbv'},{name: 'rin',age: 19,mess: 'qwert'}],
+      arr8: ['a', 'b', 'c'],
+      arr9: [1,2,3,[4,5,6]],
+      arr10: [{a:[1,2,3]},{a:[4,5,6]},{a:[7,8,9]}],
+      arr11: [{name:'xx',num:5},{name:'yy',num:7},{name:'ww',num:4}],
+      arr12: [{name:'aa',num:48},{name:'xx',num:62},{name:'gj',num:4},{name:'yu',num:15}]
     }
   },
   methods: {
@@ -91,7 +101,16 @@ export default {
           this.result6 = a6(this.arr7,'name')
           break
         case 7:
-          this.result7 = a7(this.arr2)
+          this.result7 = a7(this.arr8)
+          break
+        case 8:
+          this.result8 = a8(this.arr9, 2)
+          break
+        case 9:
+          this.result9 = a9(this.arr10, 'a')
+          break
+        case 10:
+          this.result10 = a10(this.arr11, this.arr12, 'name')
           break
       }
     }
@@ -101,11 +120,6 @@ export default {
 
 <style>
 .item {
-  background: #ddd;
-  color: blueviolet;
   padding: 8px 15px;
-}
-.content {
-  margin-top: 15px;
 }
 </style>

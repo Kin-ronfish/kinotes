@@ -47,7 +47,8 @@ module.exports = {
                     children: [
                         '/base/test/JavaScript.md',
                         '/base/test/CSS.md',
-                        '/base/test/base.md'
+                        '/base/test/base.md',
+                        '/base/test/tool.md'
                     ]
                 }
             ],
