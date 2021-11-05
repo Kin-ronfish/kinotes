@@ -721,4 +721,3 @@ let obj = {str: str}; // 等同于 obj = {str}
 - require/exports 是运行时动态加载，import/export 是静态编译
 - require/exports 输出的是一个值的拷贝，import/export 模块输出的是值的引用
 - 用法不一致，import/export 不能对引入模块重新赋值/定义；import/export 只能在模块顶层使用，不能在函数、判断语句等代码块之中引用；import/export 导出的模块默认调用严格模式
-

@@ -33,30 +33,68 @@ module.exports = {
         smoothScroll: true,
         nav: [
             { text: '主页', link: '/' },
-            { text: '基础', link: '/base/'},
-            { text: '框架', link: '/frame/'},
-            { text: '插件', link: '/plugins/'},
-            { text: '其他', link: '/other/'},
-            { text: '工具', link: '/front/'},
-            { text: '规范', link: '/rule/' }
+            { text: '笔记', link: '/note/' },
+            { text: '其他', link: '/other/'}
         ],
         sidebar: {
-            '/base/':['',
+            '/note/':[
                 {
+                    title: '基础笔记',
                     collapsable: false,
                     children: [
-                        '/base/test/JavaScript.md',
-                        '/base/test/CSS.md',
-                        '/base/test/base.md',
-                        '/base/test/tool.md'
+                        '/note/test/JS.md',
+                        '/note/test/CSS.md'
+                    ]
+                },
+                {
+                    title: '框架笔记',
+                    collapsable: false,
+                    children: [
+                        '/note/test/vue.md',
+                        '/note/test/nuxt.md',
+                        '/note/test/react.md',
+                        '/note/test/angular.md'
+                    ]
+                },
+                {
+                    title: '插件笔记',
+                    collapsable: false,
+                    children: [
+                        '/note/test/TS.md',
+                        '/note/test/loadsh.md',
+                        '/note/test/other1.md'
+                    ]
+                },
+                {
+                    title: '工具方案',
+                    collapsable: false,
+                    children: [
+                        '/note/test/uniapp.md',
+                        '/note/test/other2.md'
                     ]
                 }
             ],
-            '/frame/': [''],
-            '/plugins/': [''],
-            '/front/':[''], 
-            '/other/':[''],
-            '/rule/':['']
+            '/other/':[
+                {
+                    title: '开发工具',
+                    collapsable: false,
+                    children: [
+                        '/other/test/tool.md'
+                    ]
+                },{
+                    title: '代码规范',
+                    collapsable: false,
+                    children: [
+                        '/other/test/rule.md'
+                    ]
+                },{
+                    title: '方法整合',
+                    collapsable: false,
+                    children: [
+                        '/other/test/linr.md'
+                    ]
+                }
+            ]
         }
     },
     plugins: [
