@@ -173,7 +173,7 @@ print({
 ### 安装方法
 
 ```shell
-npm install animate --save
+npm install animate.css --save
 ```
 
 ### 基本用法
