@@ -82,7 +82,8 @@ module.exports = {
                     collapsable: false,
                     children: [
                         '/end/test/php.md',
-                        '/end/test/python.md'
+                        '/end/test/python.md',
+                        '/end/test/java.md'
                     ]
                 }
             ],
