@@ -241,3 +241,107 @@ export default {
 }
 </style>
 ```
+
+## webView
+
+1. 页面嵌入html文件
+
+- 在组件内通过 wv.evalJS('')方法调用html文件里绑定的islog事件。
+- 在html文件里通过uni.postMessage()方法传值给组件。
+
+> webView的层级是最高的，会遮挡页面内的所有组件。
+
+```html
+<!--html页面-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://js.cdn.aliyun.dcloud.net.cn/dev/uni-app/uni.webview.1.5.2.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">点击</button>
+    <script type="text/javascript">
+    	window.islog = function(value) {
+            console.log(value)
+        }
+        document.getElementById('btn').addEventListener('click', function () {
+            uni.postMessage({ //发送消息到外部
+                data: '数据'
+            }, '*');
+        })
+    </script>
+</body>
+</html>
+```
+
+```html
+<!--组件-->
+<template>
+    <view>
+        <web-view ref="webview" src="test.html" @message="handleMessage"></web-view>
+    </view>
+</template>
+<script>
+export default {
+  created() {
+      // #ifdef APP-PLUS
+	var currentWebview = this.$mp.page.$getAppWebview()
+    setTimeout(function() {
+        const wv = currentWebview.children()[0]
+        if(!wv) return
+        wv.setStyle({
+            width:'100%',
+            height:'100%',
+            background: 'transparent'
+        })
+        wv.evalJS(`islog("${flag}")`) //执行html里的函数
+    }, 500) //如果是页面初始化调用时，需要延时一下
+    // #endif
+  },
+  methods: {
+      handleMessage(value) {
+          console.log(value)
+      }
+  }
+}
+</script>
+```
+
+## 跨域问题
+
+1. uniapp-h5跨域处理
+
+- 在manifest.json源码试图内添加以下代码。
+
+```json
+"h5" : {
+    "devServer" : {
+        "port" : 8080, // 本地端口号
+        "disableHostCheck" : true,
+        "proxy" : {
+            "/api" : {
+                "target" : "http://192.168.1.1:4000",
+                "changeOrigin" : true,
+                "secure" : false,
+                "pathRewrite" : {
+                    "^/api" : "/"
+                }
+            }
+        }
+    }
+}
+```
+
+2. uniapp-app全屏显示
+
+- 在page.json里给路由样式添加以下代码，去掉uniapp原生导航栏。
+
+```json
+"style": {
+	"app-plus": { "titleNView": false } //去除导航栏
+}
+```

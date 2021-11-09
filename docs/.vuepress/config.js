@@ -33,7 +33,9 @@ module.exports = {
         smoothScroll: true,
         nav: [
             { text: '主页', link: '/' },
-            { text: '笔记', link: '/note/' },
+            { text: '前端', link: '/note/' },
+            { text: '后端', link: '/end/'},
+            { text: '硬件', link: '/hardware/'},
             { text: '其他', link: '/other/'}
         ],
         sidebar: {
@@ -71,6 +73,25 @@ module.exports = {
                     children: [
                         '/note/test/uniapp.md',
                         '/note/test/other2.md'
+                    ]
+                }
+            ],
+            '/end/': [
+                {
+                    title: '基础笔记',
+                    collapsable: false,
+                    children: [
+                        '/end/test/php.md',
+                        '/end/test/python.md'
+                    ]
+                }
+            ],
+            '/hardware/': [
+                {
+                    title: '基础笔记',
+                    collapsable: false,
+                    children: [
+                        '/hardware/test/arduino.md'
                     ]
                 }
             ],

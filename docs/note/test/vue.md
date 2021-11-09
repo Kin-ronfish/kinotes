@@ -254,9 +254,185 @@ export default {
 </script>
 ```
 
-## Vuex
+## 组件通讯
 
-***
+1. 父组件通过改变传入子组件的状态来调用子组件的函数
+
+```html
+<!-- 父组件 -->
+<template>
+	<div>
+        <child :flag="flag"></child>
+        <button @click="flag=!flag">点击</button>
+	</div>
+</template>
+<script>
+    import child from '../components/child.vue'
+    export default {
+        data() {
+            return {
+                flag: true
+            }
+        }
+    }
+</script>
+```
+
+```html
+<!-- 子组件 -->
+<template>
+	<div v-if="show">内容</div>
+</template>
+<script>
+    export default {
+        props: {
+            flag: {
+                type: Boolean,
+                default: () => {return false}
+            }
+        },
+        data() {
+            return {
+                show: false
+            }
+        },
+        watch: {
+            flag(newVal,oldVal) {
+                this.print()
+            }
+        },
+        methods: {
+            print() {
+                console.log('事件触发')
+                this.show = true
+            }
+        }
+    }
+</script>
+```
+
+2. 子组件通过事件调用父组件的函数
+
+```html
+<!-- 父组件 -->
+<template>
+	<view>
+        <child @event="getValue"></child>
+	</view>
+</template>
+<script>
+    import child from '../components/child.vue'
+    export default {
+        methods: {
+            getValue(value) {
+                console.log('事件触发',value)
+            }
+        }
+    }
+</script>
+```
+
+```html
+<!-- 子组件 -->
+<template>
+    <button @click="print">点击</button>
+</template>
+<script>
+    export default {
+        methods: {
+            print() {
+                this.$emit('event',0) // 子组件传出的事件
+            }
+        }
+    }
+</script>
+```
+
+3. 父子组件通过状态及事件控制内容显示和隐藏
+
+> 如果子组件中的状态是由父组件传进来的，需要通过事件改变父组件的状态来同步修改。
+>
+> 在子组件里修改flag，父组件里的flag不会随之改变。
+
+```html
+<!-- 父组件 -->
+<template>
+  <div>
+    <child :flag="flag" @event="getValue"></child>
+    父组件内容：<span v-if="show">{{content}}</span>
+    <button @click="setValue">父组件按钮</button>
+  </div>
+</template>
+<script>
+import child from './components/child.vue'
+export default {
+  data() {
+      return {
+          flag: true,
+          content: '新增内容',
+          show: false
+      }
+  },
+  components: {
+    child
+  },
+  methods: {
+      setValue() {
+          this.flag = !this.flag
+      },
+      getValue(value) {
+          this.show = value
+          console.log('显示或隐藏父组件内容')
+      }
+  }
+}
+</script>
+```
+
+```html
+<!-- 子组件 -->
+<template>
+    <div>
+        子组件内容：<span v-if="show">{{content}}</span>
+        <button @click="setValue">子组件按钮</button>
+    </div>
+</template>
+<script>
+    export default {
+        props: {
+            flag: {
+                type: Boolean,
+                default: () => {return false}
+            }
+        },
+        data() {
+            return {
+                show: false,
+                content: '新增内容',
+                val: false
+            }
+        },
+        watch: {
+            flag(newVal, oldVal) {
+                console.log(newVal, oldVal)
+                this.setVal(newVal)
+            }
+        },
+        methods: {
+            setVal(val) {
+                this.show = val
+                console.log('显示或隐藏子组件内容')
+            },
+            setValue() {
+                this.val = !this.val
+                this.$emit('event',this.val) // 子组件传出的事件
+            }
+        }
+    }
+</script>
+```
+
+## Vuex
 
 此组件相当于定义了一个全局的data，在多个组件同时需要要到同组数据时可使用。
 
@@ -377,15 +553,18 @@ const router = new VueRouter({
 
 ## 跨域问题
 
-- 根目录下如果不存在 `vue.config.js` 文件，就先创建一个
+1. vue-h5跨域处理
+
+>  在调用接口时在接口前将目标地址替换成api即可。
+
+- 在根目录下创建 `vue.config.js` 文件，添加以下代码。
 
 ```javascript
-// vue.config.js
 module.exports = {
     devServer: {
       proxy: {
         '/api': {
-            target: url,
+            target: url, // 目标地址，例：http://192.168.1.1:4000/
             changeOrigin: true,
             pathRewrite: {
                 '^/api': ''
@@ -405,4 +584,3 @@ Vue.prototype.$axios = axios
 axios.defaults.baseURL = '/api'
 axios.defaults.headers.common['Authorization'] = 'xxx' //根据情况添加请求头
 ```
-

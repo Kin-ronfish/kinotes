@@ -28,6 +28,8 @@ function fun(name, age=2){} // 设置默认值(ES6)，不能有同名参数
 ```
 
 > this: 函数中所属的对象；单独使用为全局对象；严格模式未定义；箭头函数外层this对象
+>
+> 函数参数以对象的形式传入，可以忽略其先后顺序
 
 ## 关键字
 
@@ -212,132 +214,6 @@ tmp.next() //输出
 ```
 
 #### 场景案例
-
-- 数组包装
-
-```javascript
-array.map((item, index) => {
-	return 'newVal:' + item + index
-}) // 改变数组每个值
-```
-
-- 数组去重
-
-```javascript
-[...new Set(arr)]
-```
-
-```javascript
-Array.from(new Set(arr))
-```
-
-```javascript
-arr.filter((item, index, arr) => return arr.indexOf(item, 0) === index
-```
-
-- 数组过滤
-
-```javascript
-// 提取两个数组中的相同值和不同值
-let arr1 = [1, 2, 3, 4, 5, 6, 7, 8]
-let arr2 = [1, 2, 6]
-arr1.filter((item) => {
-    return !arr2.includes(item) // [3,4,5,7,8],arr2.includes(item)->[1,2,6]
-})
-```
-
-```javascript
-// 
-let arr1 = [{num: 1},{num: 2},{num: 6}]
-let arr2 = [1, 2, 3, 4]
-arr1.filter((item) => {
-    return arr2.includes(item.num) // [{num: 1},{num: 2}]
-})
-```
-
-
-
-- 根据字段分组
-
-```javascript
-let arr = [
-    {
-        groupCheckBasis: 3,
-        groupNumber: "bb"
-    },
-    {
-        groupIndex: 2,
-        groupNumber: "bb"
-    },
-    {
-        groupCheckBasis: 3,
-        groupNumber: "cc"
-    },
-    {
-        groupIndex: 2,
-        groupNumber: "aa"
-    },
-    {
-        groupIndex: 1,
-        groupNumber: "aa"
-    },
-    {
-        groupCheckBasis: 3,
-        groupNumber: "cc"
-    }
-]
-let obj = {}
-arr.forEach(item => {
-    if (!obj[item.groupNumber]) {
-    	obj[item.groupNumber] = []
-    }
-    obj[item.groupNumber].push(item)
-})
-```
-
-- 根据字段去重
-
-```javascript
-let data = [
-    {
-        name: 'ZYTX'
-    },
-    {
-        name: 'ZYTA'
-    },
-    {
-        name: 'ZYTX'
-    }
-]
-let hash = {}
-let newData=[]
-data.forEach(item => {
-    if (!hash[item.name]) {
-        hash[item.name] = true
-        newData.push(item)
-    }
-})
-```
-
-- 数组求平均数
-
-```javascript
-const average = (...nums) =>
-nums.reduce((acc, val) => acc + val, 0) / nums.length;
-average(...[1, 2, 3]); // 2
-average(1, 2, 3); // 2
-```
-
-- 求对象数组中的平均数
-
-```javascript
-const averageBy = (arr, fn) =>
-  arr
-    .map(typeof fn === 'function' ? fn : val => val[fn])
-    .reduce((acc, val) => acc + val, 0) / arr.length;
-averageBy([{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }], o => o.n); // 5
-averageBy([{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }], 'n'); // 5
-```
 
 - 根据日期排序
 
