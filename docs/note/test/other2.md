@@ -2,21 +2,21 @@
 
 ## webpack
 
-> [webpack](https://webpack.docschina.org/)
+> [webpack](https://webpack.docschina.org/) 项目打包工具
 
-项目打包工具
+*未学习*
 
 ## glup
 
-> [glup](https://www.gulpjs.com.cn/docs/getting-started/quick-start/)
+> [glup](https://www.gulpjs.com.cn/docs/getting-started/quick-start/) 自动化构建工具
 
-自动化构建工具
+*未学习*
 
 ## babel
 
-> [babel](https://www.babeljs.cn/docs/)
+> [babel](https://www.babeljs.cn/docs/) Babel 是一个 JavaScript 编译器，将ES6代码转为ES5代码
 
-Babel 是一个 JavaScript 编译器，将ES6代码转为ES5代码
+*未学习*
 
 ## git操作
 
@@ -32,7 +32,11 @@ git rebase master # 合并master分支代码
 
 git tag -a v1.0 -m 'v1.0 release' # 打tag
 git push origin --tags # 推送tag
+
+git revert branch #切换分支后形成一个历史提交，可用于历史提交记录还原
 ```
 
 > 出现冲突时，rebase需要解决多个冲突，但是 merge 出现冲突只需要解决一次。
+
+*已学习*
 

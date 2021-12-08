@@ -345,3 +345,60 @@ export default {
 	"app-plus": { "titleNView": false } //去除导航栏
 }
 ```
+
+## 离线打包
+
+- 下载[appSDK](https://nativesupport.dcloud.net.cn/AppDocs/usesdk/android)导入示例项目HBuilder-Integrate-AS
+- 登录uniapp开发者中心获取Android-AppKey，配置AndroidManifest.xml
+
+```xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="填入包名">
+    <provider
+              android:name="io.dcloud.common.util.DCloud_FileProvider"
+              android:authorities="填入包名.dc.fileprovider"
+              android:exported="false"
+              android:grantUriPermissions="true">
+        <meta-data
+              android:name="android.support.FILE_PROVIDER_PATHS"
+              android:resource="@xml/dcloud_file_provider" />
+    </provider>
+    <meta-data
+        android:name="dcloud_appkey"
+        android:value="填入appKey" />
+</manifest>
+```
+
+- 打开build.gradle文件，配置以下参数
+
+> keystore为证书文件，放置于当前路径，[证书生成](https://ask.dcloud.net.cn/article/35777)
+
+```json
+defaultConfig {
+    applicationId "包名"
+    minSdkVersion 21
+    targetSdkVersion 28
+    versionCode 1
+    versionName "1.0"
+    multiDexEnabled true
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+signingConfigs {
+    config {
+        keyAlias 'keystore别名'
+        keyPassword '密码'
+        storeFile file('keystore文件名称')
+        storePassword '密码'
+        v1SigningEnabled true
+        v2SigningEnabled true
+    }
+}
+```
+
+- 在hbuildX里 发行 / 原生App-本地打包 / 生成本地打包App资源
+- 将生成的文件夹替换 simpleDemo/src/main/assets/apps/_UNI_A
+- 把 simpleDemo/src/main/assets/data/dcloud_control.xml 下的appid改为本项目appid
+

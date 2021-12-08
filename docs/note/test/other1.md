@@ -2,12 +2,20 @@
 
 ## element
 
-> [element官方文档](https://element.eleme.cn/#/zh-CN/component/installation) UI框架
+> [element](https://element.eleme.cn/#/zh-CN/component/installation) UI框架，主要用于PC端
 
 ### 安装方法
 
 ```shell
 npm i element-ui --save
+```
+
+```js
+// main.js
+import Vue from 'vue';
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
 ```
 
 ### 要点提示
@@ -22,9 +30,11 @@ element：在el-checkbox-group内写的div字体默认大小为0
 </el-checkbox-group>
 ```
 
+*已学习*
+
 ## vant
 
-> [vant官方文档](https://vant-contrib.gitee.io/vant/#/zh-CN/home) UI框架
+> [vant官方文档](https://vant-contrib.gitee.io/vant/#/zh-CN/home) UI框架，主要用于app端
 
 ### 安装方法
 
@@ -32,9 +42,65 @@ element：在el-checkbox-group内写的div字体默认大小为0
 npm install vant --save
 ```
 
+```js
+// main.js
+import Vant from 'vant';
+import 'vant/lib/index.css';
+Vue.use(Vant);
+```
+
+*已学习*
+
+## uView
+
+> [uView](https://www.uviewui.com/components/intro.html) UI框架，主要用于app端(uniapp)
+
+### 安装方法
+
+```shell
+npm i node-sass -D
+npm i sass-loader@10 -D
+npm install uview-ui
+```
+
+```js
+// main.js
+import uView from "uview-ui";
+Vue.use(uView);
+```
+
+```css
+/* uni.scss */
+@import 'uview-ui/theme.scss';
+```
+
+```html
+<!-- App.vue -->
+<style lang="scss">
+	/* 注意要写在第一行，同时给style标签加入lang="scss"属性 */
+	@import "uview-ui/index.scss";
+</style>
+```
+
+```json
+// pages.json
+{
+	"easycom": {
+		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+	},
+	
+	// 此为本身已有的内容
+	"pages": [
+		// ......
+	]
+}
+```
+
+*已学习*
+
 ## axios
 
-> [axios官方文档](http://www.axios-js.com/zh-cn/docs/) Ajax请求插件
+> [axios](http://www.axios-js.com/zh-cn/docs/) Ajax请求插件
 
 ### 安装方法
 
@@ -42,9 +108,11 @@ npm install vant --save
 npm install axios --save
 ```
 
+*未学习*
+
 ## jQuery
 
-> [jQuery官方文档](https://www.jquery123.com/) DOM整合插件
+> [jQuery](https://www.jquery123.com/) DOM整合插件
 
 ### 安装方法
 
@@ -61,9 +129,11 @@ $("img").before("在前面添加文本");
 $("#div").remove();
 ```
 
+*学习中*
+
 ## sass
 
-> [sass官方文档](https://www.sass.hk/) css预编译器
+> [sass/scss](https://www.sass.hk/) css预编译器
 
 - 属性可以嵌套编写
 - 可以插入变量及函数
@@ -74,9 +144,11 @@ $("#div").remove();
 npm install sass --save
 ```
 
+*未学习*
+
 ## less
 
-> [less官方文档](https://less.bootcss.com/) css预编译器
+> [less](https://less.bootcss.com/) css预编译器
 
 ### 安装方法
 
@@ -84,9 +156,11 @@ npm install sass --save
 npm install less --save
 ```
 
+*未学习*
+
 ## bootstrap
 
-> [bootstrap官方文档](https://www.bootcss.com/) UI框架
+> [bootstrap](https://v3.bootcss.com/css/) UI框架，用于适配多端页面
 
 ### 安装方法
 
@@ -94,9 +168,11 @@ npm install less --save
 npm install bootstrap --save
 ```
 
+*学习中*
+
 ## dayjs
 
-> [dayjs官方文档](https://dayjs.fenxianglu.cn/) 时间处理插件
+> [dayjs](https://dayjs.fenxianglu.cn/) 时间处理插件
 
 ### 安装方法
 
@@ -112,9 +188,11 @@ dayjs.add(1, 'day') // 添加时间，week，day，month，year，hour，minute�
 dayjs.subtract(1, 'year') // 减去时间
 ```
 
+*已学习*
+
 ## html2canvas
 
-> [html2canvas官方文档](http://html2canvas.hertzen.com/) 自定义区域html标签转canva
+> [html2canvas](http://html2canvas.hertzen.com/) 自定义区域html标签转canva
 
 ### 安装方法
 
@@ -127,6 +205,7 @@ npm install html2canvas --save
 - 截取网页指定区域，保存为图片
 
 ```javascript
+import html2canvas from 'html2canvas';
 const docArea: any = this.$refs.Image // 在标签里添加 ref="Image"作为截取区域
 html2canvas(docArea, {
 	useCORS: true // 允许在截取区域内部加载外部图片
@@ -143,9 +222,11 @@ html2canvas(docArea, {
 })
 ```
 
+*已学习*
+
 ## printjs
 
-> [printjs官方文档](https://printjs.crabbly.com/) 自定义打印对应区域
+> [printjs](https://printjs.crabbly.com/) 自定义打印对应区域
 
 ### 安装方法
 
@@ -166,9 +247,11 @@ print({
 })
 ```
 
+*已学习*
+
 ## animate
 
-> [animate官方文档](http://www.animate.net.cn/) 动画插件
+> [animate](http://www.animate.net.cn/) 动画插件
 
 ### 安装方法
 
@@ -187,9 +270,11 @@ animate设置修改原有动画
 }
 ```
 
+*已学习*
+
 ## particles
 
-> 动态粒子插件
+> [particles](https://vue-particles.netlify.app/) 动态粒子插件
 
 ### 安装方法
 
@@ -221,6 +306,8 @@ npm install particles --save
 </vue-particles>
 ```
 
+*已学习*
+
 ### 属性声明
 
 | 属性            | 类型      | default   | 描述                                                   |
@@ -243,7 +330,7 @@ npm install particles --save
 
 ## md5
 
->  字符串加密插件
+>  [md5](https://www.npmjs.com/package/js-md5) 字符串加密插件
 
 ### 安装方法
 
@@ -263,3 +350,4 @@ Vue.prototype.$md5 = md5
 this.$md5('str')
 ```
 
+*已学习*

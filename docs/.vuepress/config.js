@@ -64,6 +64,7 @@ module.exports = {
                     children: [
                         '/note/test/TS.md',
                         '/note/test/loadsh.md',
+                        '/note/test/babylon.md',
                         '/note/test/other1.md'
                     ]
                 },
@@ -72,6 +73,7 @@ module.exports = {
                     collapsable: false,
                     children: [
                         '/note/test/uniapp.md',
+                        '/note/test/eslint.md',
                         '/note/test/other2.md'
                     ]
                 }

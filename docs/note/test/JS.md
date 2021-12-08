@@ -335,6 +335,14 @@ const pattern = new RegExp(/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12)
 pattern.test('11010519880605371X')
 ```
 
+- 获取字符串中的数字
+
+```javascript
+var s ="价格4500元";
+var num= s.replace(/[^0-9]/ig,"");
+alert(num);//4500
+```
+
 ### Date
 
 #### 基础方法

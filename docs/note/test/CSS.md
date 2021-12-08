@@ -93,7 +93,7 @@ div {
     justify-content: space-between; /*横轴*/
     align-items: center; /*纵轴*/
     flex-direction: row; /*盒子方向*/
-    flex-wrap: nowrap; /*换行方式*/
+    flex-wrap: nowrap; /*盒子元素溢出换行方式*/
     align-content: center; /*设置flex-wrap属性*/
     align-self: center; /*纵轴*/
 }
@@ -161,3 +161,4 @@ div {
 }
 ```
 
+> 绝对/固定布局的层级最高

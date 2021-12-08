@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "vuepress dev docs",
+    "serve": "vuepress dev docs",
     "dev:md": "node ./builds/addComponents.js && vuepress dev docs && node ./builds/delComponents.js",
     "docs:dev": "vuepress dev docs",
     "build": "vuepress build docs",
