@@ -33,23 +33,25 @@ module.exports = {
         smoothScroll: true,
         nav: [
             { text: '主页', link: '/' },
-            { text: '前端', link: '/note/' },
-            { text: '后端', link: '/end/'},
-            { text: '硬件', link: '/hardware/'},
-            { text: '其他', link: '/other/'}
+            { text: '笔记', link: '/note/' },
+            { text: '作品', link: '/work/'}
         ],
         sidebar: {
             '/note/':[
                 {
-                    title: '基础笔记',
+                    title: '基础',
                     collapsable: false,
                     children: [
                         '/note/test/JS.md',
-                        '/note/test/CSS.md'
+                        '/note/test/CSS.md',
+                        '/note/test/php.md',
+                        '/note/test/python.md',
+                        '/note/test/java.md',
+                        '/note/test/arduino.md'
                     ]
                 },
                 {
-                    title: '框架笔记',
+                    title: '框架',
                     collapsable: false,
                     children: [
                         '/note/test/vue.md',
@@ -59,63 +61,30 @@ module.exports = {
                     ]
                 },
                 {
-                    title: '插件笔记',
+                    title: '插件',
                     collapsable: false,
                     children: [
                         '/note/test/TS.md',
                         '/note/test/loadsh.md',
                         '/note/test/babylon.md',
-                        '/note/test/other1.md'
+                        '/note/test/other.md'
                     ]
                 },
                 {
-                    title: '工具方案',
+                    title: '工具',
                     collapsable: false,
                     children: [
                         '/note/test/uniapp.md',
-                        '/note/test/eslint.md',
-                        '/note/test/other2.md'
+                        '/note/test/eslint.md'
                     ]
-                }
-            ],
-            '/end/': [
+                },
                 {
-                    title: '基础笔记',
+                    title: '其他',
                     collapsable: false,
                     children: [
-                        '/end/test/php.md',
-                        '/end/test/python.md',
-                        '/end/test/java.md'
-                    ]
-                }
-            ],
-            '/hardware/': [
-                {
-                    title: '基础笔记',
-                    collapsable: false,
-                    children: [
-                        '/hardware/test/arduino.md'
-                    ]
-                }
-            ],
-            '/other/':[
-                {
-                    title: '开发工具',
-                    collapsable: false,
-                    children: [
-                        '/other/test/tool.md'
-                    ]
-                },{
-                    title: '代码规范',
-                    collapsable: false,
-                    children: [
-                        '/other/test/rule.md'
-                    ]
-                },{
-                    title: '方法整合',
-                    collapsable: false,
-                    children: [
-                        '/other/test/linr.md'
+                        '/note/test/tool.md',
+                        '/note/test/rule.md',
+                        '/note/test/linr.md'
                     ]
                 }
             ]

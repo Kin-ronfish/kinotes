@@ -132,3 +132,49 @@ export function setArr(arr, type='', key='') {
         }
     }
 }
+
+/**
+ * 时间排序
+ * @param {*} arr 
+ * @param {*} key 
+ * @returns 
+ */
+export function timeSort(arr, key='') {
+    let tmpArr = arr
+    tmpArr.sort(function(a,b){
+        return a[key] > b[key] ? 1 : -1
+    })
+    return tmpArr
+}
+
+/**
+ * 对象数组转化为树形结构
+ * @param {*} array 
+ * @param {*} id 子级键名
+ * @param {*} parent_id 父级键名
+ * @param {*} value 根部键值
+ * @returns 
+ */
+export function buildTree(array,id,parent_id,value) {
+    // 创建临时对象
+    let temp = {};
+    // 创建需要返回的树形对象
+    let tree = {};
+    // 先遍历数组，将数组的每一项添加到temp对象中
+    for(let i in array) {
+        temp[array[i][id]] = array[i];
+    }
+    // 遍历temp对象，将当前子节点与父节点建立连接
+    for(let i in temp) {
+        // 判断是否是根节点下的项
+        if(temp[i][parent_id] !== value) {
+             if(!temp[temp[i][parent_id]].children) {
+                 temp[temp[i][parent_id]].children = new Array();
+             }
+             temp[temp[i][parent_id]].children.push(temp[i]);
+        } else {
+            tree[temp[i][id]] = temp[i];
+        }
+    }
+    return tree;
+}
