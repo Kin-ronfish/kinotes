@@ -2,6 +2,9 @@
 
 ## 数组去重
 
+- 数值数组去重
+- 对象数组去重
+
 ```js
 /**
  * 数组去重
@@ -28,6 +31,12 @@
 ```
 
 ## 数组过滤
+
+- 数值数组-单值过滤
+- 数值数组-数值数组过滤
+- 对象数组-单值过滤
+- 对象数组-数值数组过滤
+- 对象数组-对象数组过滤
 
 ```js
 /**
@@ -62,7 +71,43 @@ export function filterArr(arr=[], val, key='') {
 }
 ```
 
+## 数组树形
+
+- 对象数组转成树形结构
+
+```js
+/**
+ * 数组转树形结构
+ * @param {*} array 主要数组
+ * @param {*} id 子节点id
+ * @param {*} parent_id 父节点id
+ * @param {*} name 根节点键名
+ * @returns 
+ */
+export function buildTree(array,id,parent_id, name) {
+    let temp = {};// 创建临时对象
+    let tree = {};// 创建需要返回的树形对象
+    for(let i in array) {// 先遍历数组，将数组的每一项添加到temp对象中
+        temp[array[i][id]] = array[i];
+    }
+    for(let i in temp) {// 遍历temp对象，将当前子节点与父节点建立连接
+        // 判断是否是根节点下的项
+        if(temp[i][parent_id] !== name) {
+             if(!temp[temp[i][parent_id]].children) {
+                 temp[temp[i][parent_id]].children = new Array();
+             }
+             temp[temp[i][parent_id]].children.push(temp[i]);
+        } else {
+            tree[temp[i][id]] = temp[i];
+        }
+    }
+    return tree;
+}
+```
+
 ## 键值分组
+
+- 根据键值进行分组
 
 ```js
 /**
@@ -85,6 +130,8 @@ export function filterArr(arr=[], val, key='') {
 
 ## 更换键名
 
+- 对象数组键名替换
+
 ```js
 /**
  * 1.更改键名{value: 2, name: 'xx'}, 'value', 'num'
@@ -101,6 +148,9 @@ export function changeKey(obj={}, oldKey='', newKey='') {
 ```
 
 ## 数组降维
+
+- 数组降维
+- 对象数组降维
 
 ```js
 /**
@@ -127,13 +177,20 @@ export function changeKey(obj={}, oldKey='', newKey='') {
 
 ## 数组操作
 
+- 创建对象数组
+- 化简对象数组
+- 对象数组求和
+- 单值数组求和
+- 对象数组按时间排序
+
 ```js
 /**
  * 创建对象数组 ['a','b','c'],'objArr','value' //key可选
  * 化简对象数组 [{name: 'kin',age: 15},{name: 'lin',age: 18},{name: 'yin',age: 14}],'mapObjArr','name'
  * 对象数组求和 [{num: 5},{num: 1},{num: 3},{num: 8},{num: 4}],'sum','num'
  * 数组求和 [1,2,3,4,7,5,8],'sum'
- * @param {*} arr 
+ * 对象数组按时间排序 [{id:1,time:'2020-10-06 12:00:11'},{id:1,time:'2020-10-06 09:00:11'},{id:1,time:'2020-10-06 13:10:16'},{id:1,time:'2020-10-06 20:20:51'}],'time','time'
+ * @param {*} arr
  * @returns 
  */
 export function setArr(arr, type='', key='') {
@@ -160,6 +217,12 @@ export function setArr(arr, type='', key='') {
         }else {
             return arr.reduce((pre,next) => pre+next)
         }
+    } else if(type==='time') {
+        let tmpArr = arr
+        tmpArr.sort(function(a,b){
+            return a.time > b.time ? 1 : -1
+        })
+        return tmpArr
     }
 }
 ```
@@ -272,7 +335,7 @@ export function countSubstrings(str, searchValue) {
 }
 ```
 
-3.单词首字母小写或全转未大写
+3.单词首字母小写或全转为大写
 
 ```js
 const str = 'FooBar';
