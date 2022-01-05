@@ -1,16 +1,17 @@
 <template>
     <div>
         <div class="content">
-            <div class="item" v-for="(item,index) in list" :key="index">
-            <div class="title">{{item.title}}</div>
-            <div class="moto">{{item.moto}}</div>
-        </div>
+            <div class="item animate__animated animate__fadeInUp" v-for="(item,index) in list" :key="index">
+                <div class="title">{{item.title}}</div>
+                <div class="moto">{{item.moto}}</div>
+            </div>
         </div>
         <div class="footer">MIT Licensed | Copyright © 2021-present Kinron</div>
     </div>
 </template>
 
 <script>
+import 'animate.css'
 export default {
     data() {
         return {
