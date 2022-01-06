@@ -211,7 +211,7 @@ export default {
     font-size: 25px;
     height: 35px;
     text-align: center;
-    padding: 5px;
+    padding-top: 15px;
     background-color: rgb(97, 53, 138);
     color: #fff;
 }
