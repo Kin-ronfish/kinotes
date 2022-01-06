@@ -2,10 +2,10 @@
     <div>
         <div class="content"></div>
         <div class="font animate__animated animate__flipInX">Print & Diy Work</div>
-        <button @click="change">转换</button>
         <div class="box">
             <div class="item" v-for="(item,index) in img" :key="index">
-                <img :src="item" alt="">
+                <img :src="item">
+                <div class="title">{{titleList[index]}}</div>
             </div>
         </div>
     </div>
@@ -18,6 +18,7 @@ export default {
         return {
             img: [
                 require('./img/2011/1.jpg'),
+                require('./img/2013/1.jpg'),
                 require('./img/2013/2.jpg'),
                 require('./img/2013/3.jpg'),
                 require('./img/2013/4.jpg'),
@@ -131,15 +132,42 @@ export default {
                 require('./img/2021/18.jpg'),
                 require('./img/2021/19.jpg'),
                 require('./img/2021/20.jpg'),
-                require('./img/2021/21.jpg'),
-
-
+                require('./img/2021/21.jpg')
+            ],
+            titleList: [
+                '品茶老人','山水画','刻画蝴蝶','小兰新一',
+                '霸气苍龙','想象之地','天边之树',
+                '家中客厅','花花世界','雄鹰展翅',
+                '盘曲的龙','七彩凤凰','麒麟腾云驾雾',
+                '热火标志','火箭标志','树','树','树',
+                '客厅盆栽','嫦娥奔月','杜甫',
+                '茶具试绘','茶具套装','双花',
+                '玫瑰花','手绘雪碧','手绘可乐',
+                '木制飞机','山水画','湖边',
+                '立体魔方','立体魔方','纸板凉亭',
+                '手绘西红柿','手绘德芙巧克力','纸板风扇',
+                '手绘汉堡','御膳房','纸板沙漠之鹰',
+                '天地壹号','意大利面','喜迎国庆手抄报',
+                '手绘曼妥思','手绘好丽友派','海边',
+                '意大利面','德芙巧克力','玫瑰花',
+                '纸板弓弩','弓','炒饭','炒饭','炒饭',
+                '炒饭','炒饭','手绘月饼','手绘蛋黄派',
+                '手绘阿尔卑斯','炒饭','意大利面','手绘维他柠檬茶',
+                '纸板水笔','纸板小风扇','意大利面','手绘雪碧',
+                '木制纸板弓弩', '手绘月饼','板绘建筑','蓝牙音箱',
+                '纸板机械臂','3D打印机','板绘萧炎云韵','板绘美杜莎',
+                '板绘萧炎云韵','手绘月饼','塑料机械臂','3D打印机2',
+                '手绘士力架','手绘一束花','手绘雪碧','手写打印机',
+                '小古筝','木制小枪','手绘&板绘壁纸','手绘焰灵姬',
+                '手绘阿尔卑斯','大古筝','木制机械臂','手绘月饼',
+                '手绘蛋糕','手绘蛋糕','手绘海琴烟','手绘吉他',
+                '手绘笔记本电脑','正光广场','壁纸临摹','小哥',
+                '小物品','人物素描','人物素描','M&M糖果',
+                '华为手机','第三代蓝牙音箱','蛋炒饭','意大利面',
+                '人物素描','香菇炒肉','海鲜意大利面','月饼',
+                '人物上色','手机壳插画','小盆栽','德芙巧克力',
+                '人物素描','户外写生','美杜莎女王'
             ]
-        }
-    },
-    methods: {
-        change() {
-
         }
     }
 }
@@ -182,6 +210,7 @@ export default {
     font-family: fonts;
     font-size: 30px;
     text-align: center;
+    padding: 5px;
     background-color: rgb(97, 53, 138);
     color: #fff;
 }
@@ -194,5 +223,11 @@ export default {
 .item:hover {
     transform: translateY(-5px);
     transition-duration: 500ms;
+}
+.title {
+    margin-top: -4px;
+    text-align: center;
+    color: #fff;
+    background-image: linear-gradient(90deg, rgba(255,77,79,0.00) 0%, #79a4c7 15%, #79a4c7 85%, rgba(255,77,79,0.00) 100%);
 }
 </style>

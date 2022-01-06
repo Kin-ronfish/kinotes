@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="content">
-            <div class="item animate__animated animate__fadeInUp" v-for="(item,index) in list" :key="index">
+        <div class="content animate__animated animate__fadeInUp">
+            <div class="item" v-for="(item,index) in list" :key="index">
                 <div class="title">{{item.title}}</div>
                 <div class="moto">{{item.moto}}</div>
             </div>
@@ -26,23 +26,27 @@ export default {
 </script>
 
 <style scoped>
-.content {
-    display: flex;
-    justify-content: space-between;
+@media (min-width:768px) {
+    .content {
+        display: flex;
+        justify-content: space-between;
+    }
+    .item {
+        width: 30%;
+    }
 }
 .item {
     margin: 20px;
     padding: 20px;
-    width: 30%;
     text-align: center;
     border: 1px solid #c9c0c0;
     border-radius: 5px;
     box-shadow: 2px 2px 5px rgb(162, 147, 167);
-    transition-duration: 300ms;
+    transition-duration: 500ms;
 }
 .item:hover {
-    transform: translateY(-5px);
-    transition-duration: 300ms;
+    transform: translateY(-10px);
+    transition-duration: 500ms;
 }
 .title {
     color: #5f4a86;
