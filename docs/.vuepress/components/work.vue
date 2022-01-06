@@ -209,7 +209,7 @@ export default {
 .font {
     font-family: fonts;
     font-size: 25px;
-    height: 40px;
+    height: 35px;
     text-align: center;
     padding: 5px;
     background-color: rgb(97, 53, 138);
