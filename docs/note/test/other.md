@@ -76,6 +76,18 @@ Vue.use(uView);
 }
 ```
 
+## three
+
+> [tree](http://www.webgl3d.cn/threejs/docs/) 3D渲染框架
+
+## electron
+
+> [electron](https://www.electronjs.org/zh/docs/latest) 跨平台桌面应用程序
+
+## matter
+
+> [matter](https://brm.io/matter-js/demo/#stack) 2D物理引擎
+
 ## axios
 
 > [axios](http://www.axios-js.com/zh-cn/docs/) Ajax请求插件
@@ -111,7 +123,7 @@ $("#div").remove();
 > [dayjs](https://dayjs.fenxianglu.cn/) 时间处理插件
 
 ```javascript
-dayjs.format('YYYY-MM-DD') // 格式转换
+dayjs.format('YYYY-MM-DD HH:mm:ss') // 格式转换
 dayjs.add(1, 'day') // 添加时间，week，day，month，year，hour，minute，second
 dayjs.subtract(1, 'year') // 减去时间
 ```

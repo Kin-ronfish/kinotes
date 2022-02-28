@@ -114,6 +114,30 @@ div+h1 {} /*临近元素，所有在div后的元素*/
 - :nth-child(n)选择父元素的第n个子元素
 - :nth-of-type(n)选择父元素内具有指定类型的第n个元素
 
+## 屏目操作
+设置触摸屏用户如何操纵元素的区域 (例如，浏览器内置的缩放功能)
+
+```css
+* {
+    touch-action: auto;  /* 初始值 当触控事件发生在元素上时，由浏览器来决定进行哪些操作，比如对viewport进行平滑、缩放等 */
+    touch-action: none;  /* 当触控事件发生在元素上时，不进行任何操作 */
+    touch-action: pan-x;  /* 启用单指水平平移手势 */
+    touch-action: pan-left;  /* */
+    touch-action: pan-right;
+    touch-action: pan-y;  /* 启用单指垂直平移手势 */
+    touch-action: pan-up;
+    touch-action: pan-down;
+    touch-action: pinch-zoom;  /* 启用多手指平移和缩放页面。 这可以与任何平移值组合。 */
+    touch-action: manipulation;  /* 浏览器只允许进行滚动和持续缩放操作。 */
+    
+    /* Global values */
+    touch-action: inherit;
+    touch-action: initial;
+    touch-action: unset;
+}
+```
+
+
 ## 案例方法
 
 ```css

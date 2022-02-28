@@ -1,6 +1,6 @@
-# loadsh
+# lodash
 
-> [loadsh官方文档](https://www.lodashjs.com/) 数据操作函数整合库
+> [lodash官方文档](https://www.lodashjs.com/) 数据操作函数整合库
 
 ## 安装方法
 
