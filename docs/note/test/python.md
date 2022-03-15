@@ -124,4 +124,3 @@ cv2.namedWindow('Video',flags=cv2.WINDOW_NORMAL)
 cv2.imshow('Video', sample_image)
 cv2.waitKey(0)
 ```
-

@@ -82,7 +82,6 @@ module.exports = {
                     title: '其他',
                     collapsable: false,
                     children: [
-                        '/note/test/tool.md',
                         '/note/test/rule.md',
                         '/note/test/linr.md'
                     ]
