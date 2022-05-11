@@ -40,6 +40,15 @@ export default class Kintool {
     }
 
     /**
+     * 深度克隆
+     * @param {*} obj 对象
+     * @returns 
+     */
+    copy(obj) {
+        return JSON.parse(JSON.stringify(obj));
+    }
+
+    /**
      * 数组去重
      * 1. 数值数组[1,2,3,4,2,6,5]
      * 2. 对象数组[{value:1},{value:2},{value:1},{value:'xx'}], 'value'
@@ -47,7 +56,7 @@ export default class Kintool {
      * @param {*} key 对象数组键名
      * @returns 
      */
-    queArr(arr=[],key='') {
+    setArr(arr=[],key='') {
         if(key) {
             arr.forEach(item => {
                 if(!this.obj[item[key]]) {
@@ -186,44 +195,6 @@ export default class Kintool {
         obj[newKey] = obj[oldKey]
         delete obj[oldKey]
         return obj
-    }
-
-    /**
-     * 函数防抖
-     * @param {*} fn 执行函数
-     * @param {*} delay 延时
-     * @returns 
-     */
-    debounce(fn,delay){
-        let timer = null //借助闭包
-        return function() {
-            if(timer){
-                clearTimeout(timer) 
-            }
-            timer = setTimeout(fn,delay) // 简化写法
-        }
-    }
-
-    /**
-     * 函数节流
-     * @param {*} fn 执行函数
-     * @param {*} delay 延时
-     * @returns 
-     */
-    throttle(fn,delay){
-        let valid = true
-        return function() {
-           if(!valid){
-               //休息时间 暂不接客
-               return false 
-           }
-           // 工作时间，执行函数并且在间隔期内把状态位设为无效
-            valid = false
-            setTimeout(() => {
-                fn()
-                valid = true;
-            }, delay)
-        }
     }
 }
 

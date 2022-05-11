@@ -67,6 +67,7 @@ module.exports = {
                     collapsable: false,
                     children: [
                         '/note/test/rule.md',
+                        '/note/test/method.md',
                         '/note/test/项目总结.md'
                     ]
                 }
