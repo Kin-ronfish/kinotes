@@ -174,10 +174,6 @@ export default {
 </script>
 
 <style scoped>
-@font-face {
-    font-family: fonts;
-    src: url('./font/renaissance.ttf');
-}
 @media (min-width:768px) {
     .item {
         width: 28%;
@@ -207,11 +203,9 @@ export default {
     z-index: 0;
 }
 .font {
-    font-family: fonts;
     font-size: 25px;
     height: 35px;
     text-align: center;
-    padding-top: 15px;
     background-color: rgb(97, 53, 138);
     color: #fff;
 }

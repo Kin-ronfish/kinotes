@@ -1,8 +1,16 @@
 # babylon
 
-> [babylon](https://www.babylonjs.com/) 前端3D显示插件
+框架熟练程度：⭐⭐
 
-model.vue
+> [babylon官方文档](https://www.babylonjs.com/) 前端3D渲染框架
+>
+> [babylon模型演示网站](https://sandbox.babylonjs.com/)
+>
+> 在vue项目中要导入三维模型，需要确认模型的**具体路径**
+
+以下笔记为独一的功能模块，在初始开发时可以直接使用
+
+- 主程序入口
 
 ```html
 <template>
@@ -53,7 +61,7 @@ model.vue
 </style>
 ```
 
-## 相机模块
+- 相机模块
 
 ```javascript
 export function createCamera(scene) {
@@ -75,7 +83,7 @@ export function createCamera(scene) {
 }
 ```
 
-## 场景材质
+- 场景材质
 
 ```javascript
 // 设置场景HDR材质
@@ -98,9 +106,23 @@ export function createDDS(scene) {
     scene.environmentTexture = hdrTexture;
 }
 
+// 设置全景图像
+export function photo(scene) {
+    let dome = new BABYLON.PhotoDome("testdome","./img/sidexside.jpg",
+        {resolution: 32,size: 2000},scene);
+    dome.imageMode = BABYLON.PhotoDome.MODE_SIDEBYSIDE;
+}
+
+// 设置全景视频
+function video(scene) {
+    new BABYLON.VideoDome(
+        "videoDome",["./video/2.mp4"],
+        {resolution: 32, clickToPlay: true},scene
+    );
+}
 ```
 
-## 灯光模块
+- 灯光模块
 
 ```javascript
 export function createDirectionalLight(scene) {
@@ -139,7 +161,7 @@ export function createSpotLight(scene) {
 // groundColor 背光面颜色
 ```
 
-## 加载模块
+- 加载模块
 
 ```javascript
 // 加载模型
@@ -153,7 +175,7 @@ export function loadGltf(scene, path) {
 }
 ```
 
-载入obj文件和mtl文件，mtl文件里的贴图路径要对应图片的相对路径，才能正常显示贴图信息。
+载入obj文件和mtl文件，mtl文件里的贴图路径要对应图片的相对路径，才能正常显示贴图信息
 
 ```txt
 newmtl blinn1SG
@@ -174,7 +196,7 @@ Ks 0.50 0.50 0.50
 map_Kd ./img/img2.png //贴图路径
 ```
 
-## GUI模块
+- GUI模块
 
 ```javascript
 // 创建UI弹窗
@@ -191,20 +213,203 @@ export function createGUI() {
 }
 ```
 
-App.vue
+- 物体编辑器
 
-```html
-<style>
-html,
-body,
-#app {
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
+```javascript
+// 物体编辑工具
+// mesh 为物体对象，type为功能数组：1为移动，2为旋转，3为缩放
+export function createEditTool(scene,mesh,type) {
+    let utilLayer = new BABYLON.UtilityLayerRenderer(scene)
+    utilLayer.utilityLayerScene.autoClearDepthAndStencil = false;
+    if(type.includes(1)) {
+        let gizmo_2 = new BABYLON.PositionGizmo(utilLayer);
+        gizmo_2.attachedMesh = mesh;
+    }
+    if(type.includes(2)) {
+        let gizmo_3 = new BABYLON.RotationGizmo(utilLayer);
+        gizmo_3.attachedMesh = mesh;
+    }
+    if(type.includes(3)) {
+        let gizmo = new BABYLON.ScaleGizmo(utilLayer);
+        gizmo.attachedMesh = mesh;
+    }
+    if(type.includes(4)) {
+        let gizmo_1 = new BABYLON.BoundingBoxGizmo(BABYLON.Color3.FromHexString("#0984e3"), utilLayer)
+        gizmo_1.attachedMesh = mesh;
+    }
 }
-</style>
 ```
 
-> 在vue项目中要导入三维模型，需要确认模型的具体路径
+- 相机第一人称移动UI
+
+```javascript
+export function operation(camera,scene) {
+    let adt = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
+    let xAddPos = 0;
+    let yAddPos = 0;
+    let xAddRot = 0;
+    let yAddRot = 0;
+    let sideJoystickOffset = 50;
+    let bottomJoystickOffset = -50;
+    let translateTransform;
+
+    let leftThumbContainer = makeThumbArea("leftThumb", 2, "blue", null);
+        leftThumbContainer.height = "100px";
+        leftThumbContainer.width = "100px";
+        leftThumbContainer.isPointerBlocker = true;
+        leftThumbContainer.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+        leftThumbContainer.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
+        leftThumbContainer.alpha = 0.4;
+        leftThumbContainer.left = sideJoystickOffset;
+        leftThumbContainer.top = bottomJoystickOffset;
+
+    let leftInnerThumbContainer = makeThumbArea("leftInnterThumb", 4, "blue", null);
+        leftInnerThumbContainer.height = "40px";
+        leftInnerThumbContainer.width = "40px";
+        leftInnerThumbContainer.isPointerBlocker = true;
+        leftInnerThumbContainer.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_CENTER;
+        leftInnerThumbContainer.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_CENTER;
+
+
+    let leftPuck = makeThumbArea("leftPuck",0, "blue", "blue");
+        leftPuck.height = "30px";
+        leftPuck.width = "30px";
+        leftPuck.isPointerBlocker = true;
+        leftPuck.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_CENTER;
+        leftPuck.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_CENTER;
+
+        leftThumbContainer.onPointerDownObservable.add(function(coordinates) {
+            leftPuck.isVisible = true;
+            leftPuck.floatLeft = coordinates.x-(leftThumbContainer._currentMeasure.width*.5)-sideJoystickOffset;
+            leftPuck.left = leftPuck.floatLeft;
+            leftPuck.floatTop = adt._canvas.height - coordinates.y-(leftThumbContainer._currentMeasure.height*.5)+bottomJoystickOffset;
+            leftPuck.top = leftPuck.floatTop*-1;
+            leftPuck.isDown = true;
+            leftThumbContainer.alpha = 0.9;
+        });
+
+        leftThumbContainer.onPointerUpObservable.add(function() {
+            xAddPos = 0;
+            yAddPos = 0;
+            leftPuck.isDown = false;
+            leftPuck.isVisible = false;
+            leftThumbContainer.alpha = 0.4;
+        });
+
+        leftThumbContainer.onPointerMoveObservable.add(function(coordinates) {
+            if (leftPuck.isDown) {
+                xAddPos = coordinates.x-(leftThumbContainer._currentMeasure.width*.5)-sideJoystickOffset;
+                yAddPos = adt._canvas.height - coordinates.y-(leftThumbContainer._currentMeasure.height*.5)+bottomJoystickOffset;
+                leftPuck.floatLeft = xAddPos;
+                leftPuck.floatTop = yAddPos*-1;
+                leftPuck.left = leftPuck.floatLeft;
+                leftPuck.top = leftPuck.floatTop;
+            }
+        });
+
+    adt.addControl(leftThumbContainer);
+    leftThumbContainer.addControl(leftInnerThumbContainer);
+    leftThumbContainer.addControl(leftPuck);
+    leftPuck.isVisible = false;
+
+    let rightThumbContainer = makeThumbArea("rightThumb", 2, "red", null);
+        rightThumbContainer.height = "100px";
+        rightThumbContainer.width = "100px";
+        rightThumbContainer.isPointerBlocker = true;
+        rightThumbContainer.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+        rightThumbContainer.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
+        rightThumbContainer.alpha = 0.4;
+        rightThumbContainer.left = -sideJoystickOffset;
+        rightThumbContainer.top = bottomJoystickOffset;
+
+    let rightInnerThumbContainer = makeThumbArea("rightInnterThumb", 4, "red", null);
+        rightInnerThumbContainer.height = "40px";
+        rightInnerThumbContainer.width = "40px";
+        rightInnerThumbContainer.isPointerBlocker = true;
+        rightInnerThumbContainer.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_CENTER;
+        rightInnerThumbContainer.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_CENTER;
+
+    let rightPuck = makeThumbArea("rightPuck",0, "red", "red");
+        rightPuck.height = "30px";
+        rightPuck.width = "30px";
+        rightPuck.isPointerBlocker = true;
+        rightPuck.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_CENTER;
+        rightPuck.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_CENTER;
+
+        rightThumbContainer.onPointerDownObservable.add(function(coordinates) {
+            rightPuck.isVisible = true;
+            rightPuck.floatLeft = adt._canvas.width - coordinates.x-(rightThumbContainer._currentMeasure.width*.5)-sideJoystickOffset;
+            rightPuck.left = rightPuck.floatLeft*-1;
+            rightPuck.floatTop = adt._canvas.height - coordinates.y-(rightThumbContainer._currentMeasure.height*.5)+bottomJoystickOffset;
+            rightPuck.top = rightPuck.floatTop*-1;
+            rightPuck.isDown = true;
+            rightThumbContainer.alpha = 0.9;
+        });
+
+        rightThumbContainer.onPointerUpObservable.add(function() {
+            xAddRot = 0;
+            yAddRot = 0;
+            rightPuck.isDown = false;
+            rightPuck.isVisible = false;
+            rightThumbContainer.alpha = 0.4;
+        });
+        rightThumbContainer.onPointerMoveObservable.add(function(coordinates) {
+            if (rightPuck.isDown) {
+                xAddRot = adt._canvas.width - coordinates.x-(rightThumbContainer._currentMeasure.width*.5)-sideJoystickOffset;
+                yAddRot = adt._canvas.height - coordinates.y-(rightThumbContainer._currentMeasure.height*.5)+bottomJoystickOffset;
+                rightPuck.floatLeft = xAddRot*-1;
+                rightPuck.floatTop = yAddRot*-1;
+                rightPuck.left = rightPuck.floatLeft;
+                rightPuck.top = rightPuck.floatTop;
+            }
+        });
+
+    adt.addControl(rightThumbContainer);
+    rightThumbContainer.addControl(rightInnerThumbContainer);
+    rightThumbContainer.addControl(rightPuck);
+    rightPuck.isVisible = false;
+
+    scene.registerBeforeRender(function(){
+        translateTransform = BABYLON.Vector3.TransformCoordinates(
+            new BABYLON.Vector3(xAddPos/1000, 0, yAddPos/1000), 
+            BABYLON.Matrix.RotationY(camera.rotation.y));
+        camera.cameraDirection.addInPlace(translateTransform);
+        camera.position._y -= yAddRot/50*-1;
+        camera.cameraRotation.y += xAddRot/25000*-1;
+    });
+}
+
+export function makeThumbArea(name, thickness, color, background){
+    let rect = new BABYLON.GUI.Ellipse();
+    rect.name = name;
+    rect.thickness = thickness;
+    rect.color = color;
+    rect.background = background;
+    return rect;
+}
+```
+
+- 物理引擎
+
+> 添加物理引擎需要引入cannon.js
+
+```javascript
+export function createScene() { // 场景
+    let scene = new BABYLON.Scene(engine);
+    scene.enablePhysics(); // 开启物理动效
+    return scene;
+}
+export function createBackground(scene) { // 创建平面
+    let ground = new BABYLON.Mesh.CreateGround("ground", 30, 30, 2, scene);
+    ground.position = new BABYLON.Vector3(0,-20,0);
+    ground.physicsImpostor = new BABYLON.PhysicsImpostor(ground, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);
+    return ground;
+}
+
+export function createBox(scene) { // 创建方块
+    let box = new BABYLON.MeshBuilder.CreateBox("box", {height: 2, width:2, depth: 2});
+    box.physicsImpostor = new BABYLON.PhysicsImpostor(box, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 10, restitution: 0.9 }, scene);
+    return box;
+}
+```
+

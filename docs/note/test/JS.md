@@ -1,103 +1,64 @@
 # JavaScript
 
-## 变量定义
+基础熟练程度：⭐⭐
 
-var（全局变量），let（局部变量），const（常量）
+## 学习工具
 
-> let 不能在定义之前访问该变量，不能被重新定义，无法在作用域外调用
->
-> const定义的值不可修改，不能被重新定义
->
-> !!num : 将数值强制转换为布尔值
+[学习网址](http://caibaojian.com/fedbook/learning/js.html)
 
-## 类型转换
+[学习工具](http://caibaojian.com/fedbook/tools/js.html)
 
-内置数据类型： `null`，`undefined`，`boolean`，`number`，`string`，`symbol`
+[JavaScript学习手册](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript)
 
-typeof对于基本类型，除了 `null` 都可以显示正确的类型
+[实用工具](https://tool.ityuan.com/)
 
-Boolean除了 `undefined`， `null`， `false`， `NaN`， `''`， `0`， `-0`，其他值都转为 true
+- json格式化
+- logo设计
+- 图片转svg
+- base64加密、解密
+- 码表
+- 二维码、条形码生成
 
-四则运算：数值连接字符串结果为字符串；数组与字符串连接只取[]内的内容
+[前后端项目模板自动生成](http://coderd.adjustrd.com/)
 
-## 函数定义
+[前端页面自动生成平台](http://www.magicalcoder.com/)
+
+[bootstrap页面自动生成平台](http://www.ibootstrap.cn/)
+
+## 笔记提示
+
+- 数值连接字符串结果为字符串；数组与字符串连接只取[]内的内容
+- this: 函数中所属的对象；单独使用为全局对象；严格模式未定义；箭头函数表示为外层对象
+- 对象实例：new Foo() 的优先级大于 new Foo
+- for...of 便利数组，类数组的对象，for...in 便利对象
+
+一次性函数：初始函数只执行一次
 
 ```javascript
-function fun(name, age=2){} // 设置默认值(ES6)，不能有同名参数
-(a,b) => {a+b} // 箭头函数，同一行可省略{}，单参数可省略()，无参数必须保留
+function Func() {
+    console.log("x");
+    Func = function() {
+        console.log("y");
+    }
+}
 ```
 
-> this: 函数中所属的对象；单独使用为全局对象；严格模式未定义；箭头函数外层this对象
->
-> 函数参数以对象的形式传入，可以忽略其先后顺序
-
-## 关键字
-
-### new
-
-运算符优先级
+数组空值过滤：undefined,null,””,0,false,NaN
 
 ```javascript
-function Foo() {
-    return this;
-};
-Foo.getName = function () {
-    console.log('1');
-};
-Foo.prototype.getName = function () {
-    console.log('2');
-};
-
-new Foo.getName();   // -> 1，执行getName()
-new Foo().getName(); // -> 2，执行Foo()产生实例，再通过原型链找到getName()
+const arr = [undefined, null, "", 0, false, NaN, 1, 2].filter(Boolean);
 ```
 
-> new Foo() 的优先级大于 new Foo
-
-## 内置对象
-
-instanceof判断对象的类型
+数组深度克隆
 
 ```javascript
-const arr = [];
-const obj = {};
-const str = '';
-arr instanceof Array // true
-obj instanceof Array // false
+let arr1 = [1,2,3];
+let arr2 = JSON.parse(JSON.stringify(arr1));
 ```
 
 ### Object
 
-#### 基础方法
-
-创建及调用方式
-
-```javascript
-obj = {name: 'Kin', age: 15}
-obj.name = 'Lin' // 直接调用
-obj['name'] = 'Lin' //key值调用
-obj.sex = '男' // 加key并赋值
-test = {test: '1', ...obj} //(ES6)对象解构
-Object.assign(obj,{email: '1451@de.com'}) // (ES6)对象加值
-Object.is("1","1") // (ES6)与'==='类似
-Object.keys(obj) // (ES5)将对象中的key值整合为数组
-```
-
-> ES6属性名与属性值相同时只写一个
->
-> prototype对象是原始对象，可通过此对象添加属性和方法
->
-> 每个对象都有 `__proto__` 属性，对象可以通过 `__proto__` 来寻找不属于该对象的属性，`__proto__` 将对象连接起来组成了原型链
-
-#### 场景案例
-
-- 对象判空
-
-```javascript
-JSON.stringify(data) == "{}"
-```
-
-- 遍历对象
+- 对象遍历
 
 ```javascript
 Object.keys(obj).forEach(key => {
@@ -105,214 +66,229 @@ Object.keys(obj).forEach(key => {
 })
 ```
 
-- 传入一个**特定位置**含有对应字段的值，判断该值属于哪个类型
+- 根据键值查找对应键名
 
 ```javascript
-const str = 'note.txt'
-const file: any = {pdf: '演示稿',doc: '文档',xls: '表格',txt: '文本'}
-const tmpStr: string = str.split('.')[name.split('.').length - 1] //文件截取后缀名
-const result = file[tmpStr]
+const ages = { Leo: 20, Zoey: 21, Jane: 20};
+let val = 20;
+export function findKeys(obj, val) {
+    return Object.keys(obj).filter(key => obj[key] === val);
+}
+```
+
+- 对象数组键名替换
+
+```js
+/**
+ * 1.更改键名{value: 2, name: 'xx'}, 'value', 'num'
+ * @param {*} obj 
+ * @param {*} oldKey 
+ * @param {*} newKey 
+ * @returns 
+ */
+export function changeKey(obj={}, oldKey='', newKey='') {
+    obj[newKey] = obj[oldKey]
+    delete obj[oldKey]
+    return obj
+}
 ```
 
 ### Array
 
-#### 基础方法
+- 数值数组、对象数组去重
 
-```javascript
-array.concat(arr1,arr2) //参数：两个数组，合并数组
-array.pop() //删除数组尾部
-array.shift() //删除数组头部
-array.push(val) //数组尾部追加
-array.splice(index,num) //参数：索引、个数，删除指定索引的数值
-array.sort(arr) //排序
-array.reverse(arr) //转置
-array.toString(arr) //数组转字符串
-array.join(str|num) //参数：字符串或数值，以指定内容为连接符将数组转化为字符串
-array.includes(val) //(ES6)数组是否包含指定值，减少if的使用
+```js
+/**
+ * 数组去重
+ * 1. 数值数组[1,2,3,4,2,6,5]
+ * 2. 对象数组[{value:1},{value:2},{value:1},{value:'xx'}], 'value'
+ * @param {*} arr 数组
+ * @param {*} key 对象数组键名
+ * @returns 
+ */
+ export function queArr(arr=[],key='') {
+    if(key) {
+        let obj = {}
+        let data = []
+        arr.forEach(item => {
+            if(!obj[item[key]]) {
+                obj[item[key]] = true
+                data.push(item)
+            }
+        })
+        return data
+    }
+    return [...new Set(arr)]
+}
 ```
 
-```javascript
-for(let item of arr){
-    console.log(item)
-} // 便利数组，类数组的对象
+- 数值数组单个值、数值数组过滤
+- 对象数组单个值、数值数组、对象数组过滤
 
-for(let item in obj){
-    console.log(item)
-} // 便利对象
-```
-
-```javascript
-arr.forEach((item, index) => {
-    console.log(item, index)
-}) //数组循环，无返回值
-```
-
-```javascript
-arr.map((item, index) => {
-    console.log(item, index)
-}) // 处理数组每一项并返回一个数组
-```
-
-```javascript
-arr.filter((item, index) => {
-    console.log(item, index)
-}) // 过滤不符合条件的内容，即：return一个true的结果
-```
-
-```javascript
-arr.reduce((prev, next) => {
-    console.log('存储值' + prev, '当前值' + next)
-}) // 数组每处理好一项，返回一个值
-```
-
-```javascript
-Array.of(1,2,3) //(ES6)将输入的参数合为一个数组
-// [1,2,3]
-```
-
-```javascript
-let arr = new Set([{a:1},{b:2},{c:3}])
-arr = {0:'1',1:'2',2:'3',length:3}; //类数组对象写法
-Array.from(arr) //(ES6)将类数组对象或可迭代对象转化为数组
-```
-
-```javascript
-arr.find((item, index) => {
-    return item > 0
-}) //(ES6)查找符合条件的元素，如有多个，只返回第一个
-
-arr.findIndex(function) //(ES6)同上，但只返回索引
-```
-
-```javascript
-arr.fill(val,start,end) //(ES6)填充数组
-[1,5,2,6].fill(1) // [1,1,1,1]
-```
-
-```javascript
-arr.every((item, index) => {
-    return item > 0
-}) //(ES6)数组中所有项都满足某条件
-```
-
-```javascript
-array.some((item, index) => {
-    return item > 0
-}) //(ES6)数组中是否有某一项满足条件
-```
-
-```javascript
-// 以下返回的是generator函数，可通过next()输出对应的值
-const tmp = arr.entries() //(ES6)遍历键值对
-const tmp = arr.keys() //(ES6)遍历键名
-const tmp = arr.values() //(ES6)遍历键值
-tmp.next() //输出
-```
-
-```javascript
-...arr //(ES6)数组解构
-```
-
-#### 场景案例
-
-- 根据日期排序
-
-```javascript
-arr = [{
-  id: 1,
-  time:'2021-07-6 18:21:00'
-},
-{
-  id: 2,
-  time:'2021-07-08 17:53:00'
-},
-{
-  id: 3,
-  time:'2021-07-05 09:28:00'
-},
-{
-  id: 4,
-  time:'2021-05-19 19:38:00'
-},
-{
-  id: 5,
-  time:'2021-06-19 17:11:00'
-}]
-dateData(property) {
-    return function(a, b) {
-        const value1 = a[property]
-        const value2 = b[property]
-        return Date.parse(value2) - Date.parse(value1)
+```js
+/**
+ * 数组过滤
+ * 1. 数值数组[1,2,3,4,5], 2
+ * 2. 数值数组[1,2,3,4,5], [2,4]
+ * 3. 对象数组[{num: 1},{num: 2},{num: 3}], 3, 'num'
+ * 4. 对象数组[{num: 1},{num: 2},{num: 3}], [1,3], 'num'
+ * 5. 对象数组[{num: 4},{num: 5},{num: 6}], [{num: 5}], 'num'
+ * @param {*} arr 主要数组
+ * @param {*} val 操作值
+ * @param {*} key 对象数组键名
+ * @returns 
+ */
+export function filterArr(arr=[], val, key='') {
+    if(!key && typeof val === 'number') { // 1
+        return arr.filter(item => item!=val)
+    }
+    if(!key && val instanceof Array) { // 2
+        return arr.filter(item => !val.includes(item))
+    }
+    if(key && typeof val === 'number') { // 3
+        return arr.filter(item => item[key]!=val)
+    }
+    if(key && val instanceof Array && typeof val[0] === 'number') { // 4
+        return arr.filter(item => !val.includes(item[key]))
+    }
+    if(key && val instanceof Array && val[0] instanceof Object) { // 5
+        let tmpArr = val.map(item => item[key])
+        return arr.filter(item => !tmpArr.includes(item[key]))
     }
 }
-arr.sort(this.dateData('time'))
+```
+
+- 对象数组转成树形结构
+
+```js
+/**
+ * 数组转树形结构
+ * @param {*} array 主要数组
+ * @param {*} id 子节点id
+ * @param {*} parent_id 父节点id
+ * @param {*} name 根节点键名
+ * @returns 
+ */
+export function buildTree(array,id,parent_id, name) {
+    let temp = {};// 创建临时对象
+    let tree = {};// 创建需要返回的树形对象
+    for(let i in array) {// 先遍历数组，将数组的每一项添加到temp对象中
+        temp[array[i][id]] = array[i];
+    }
+    for(let i in temp) {// 遍历temp对象，将当前子节点与父节点建立连接
+        // 判断是否是根节点下的项
+        if(temp[i][parent_id] !== name) {
+             if(!temp[temp[i][parent_id]].children) {
+                 temp[temp[i][parent_id]].children = new Array();
+             }
+             temp[temp[i][parent_id]].children.push(temp[i]);
+        } else {
+            tree[temp[i][id]] = temp[i];
+        }
+    }
+    return tree;
+}
+```
+
+- 数组根据键值进行分组
+
+```js
+/**
+ * 1.键值分组[{name:'a',val:2},{name:'c',val:5},{name:'a',val:6},{name:'b',val:1},{name:'c',val:4},{name:'b',val:7}], 'name'
+ * @param {*} arr 
+ * @param {*} key 
+ * @returns 
+ */
+ export function groupKey(arr, key) {
+    let obj = {}
+    arr.forEach(item => {
+        if (!obj[item[key]]) {
+            obj[item[key]] = []
+        }
+        obj[item[key]].push(item)
+    })
+    return obj
+}
+```
+
+- 创建、化简对象数组
+- 单值数组、对象数组求和
+- 对象数组按时间排序
+
+```js
+/**
+ * 创建对象数组 ['a','b','c'],'objArr','value' //key可选
+ * 化简对象数组 [{name: 'kin',age: 15},{name: 'lin',age: 18},{name: 'yin',age: 14}],'mapObjArr','name'
+ * 对象数组求和 [{num: 5},{num: 1},{num: 3},{num: 8},{num: 4}],'sum','num'
+ * 数组求和 [1,2,3,4,7,5,8],'sum'
+ * 对象数组按时间排序 [{id:1,time:'2020-10-06 12:00:11'},{id:1,time:'2020-10-06 09:00:11'},{id:1,time:'2020-10-06 13:10:16'},{id:1,time:'2020-10-06 20:20:51'}],'time','time'
+ * @param {*} arr
+ * @returns 
+ */
+export function setArr(arr, type='', key='') {
+    if(type==='objArr') {
+        if(key) {
+            const result = arr.map(item => {
+                return {[key]: item}
+            })
+            return result
+        }else {
+            const result = arr.map(item => {
+                return {[item]: ''}
+            })
+            return result
+        }
+    } else if(type==='mapObjArr') {
+        const result = arr.map(item => {
+            return {[key]: item[key]}
+        })
+        return result
+    } else if(type==='sum') {
+        if(key) {
+            return arr.map(item => item[key]).reduce((pre,next) => pre+next)
+        }else {
+            return arr.reduce((pre,next) => pre+next)
+        }
+    } else if(type==='time') {
+        let tmpArr = arr
+        tmpArr.sort(function(a,b){
+            return a.time > b.time ? 1 : -1
+        })
+        return tmpArr
+    }
+}
 ```
 
 ### Number
 
-数值类型的转换，默认为浮点型
-
-#### 基础方法
-
-```javascript
-Number() // 转数值型
-parseFloat() // 转浮点型
-parseInt() // 转整型
-isNaN() //是否为空
-```
-
-#### 场景案例
-
-```javascript
-// 布尔型转数值型
-bool = true
-num = bool ? 1 : 0
-num = +bool
-num = Number(bool)
-// 数值型转布尔型
-num = 1
-bool = Boolean(num)
-bool = !!num
-```
+- !!num : 将数值强制转换为布尔值等同于Boolean(num)
 
 ### String
 
-#### 基础方法
+- 获取字符串中重复子串的次数
 
-```javascript
-str.charAt(index) //获取指定索引的字符
-str.concat(string) //连接多个字符串
-str.indexOf(char) //获取字符串中指定子串的索引
-str.replace(string, string) //字符串的替换
-str.substr() //参数：索引、长度，截取字符串长度，长度为选填参数
-str.split(string) //以指定子串将字符串分割为数组
-str.includes("hello") //(ES6)判断是否存在字符串
-str.startsWith("he") //(ES6)判断头部是否为此字符串
-str.endsWith("Kin") //(ES6)判断尾部
-str.repeat(3) //(ES6)字符串重复
+```js
+const str = 'tiktok tok tok tik tok tik';
+const searchValue = 'tik';
+export function countSubstrings(str, searchValue) {
+  let count = 0,i = 0;
+  while (true) {
+    const r = str.indexOf(searchValue, i);
+    if (r !== -1) [count, i] = [count + 1, r + 1];
+    else return count;
+  }
+}
 ```
-
-> 字符串反引号可以传入一个变量值
 
 ### RegExp
 
-#### 基础方法
-
-| 修饰符       | 描述                                         |
-| :----------- | -------------------------------------------- |
-| [0-9], [a-z] | 查找任何从 0 至 9 的数字，a至z的字符         |
-| ^, $         | 开始位置，结束位置                           |
-| {n}          | n 是一个非负整数。匹配确定的 n 次            |
+| 修饰符          | 描述                            |
+| :----------- | ----------------------------- |
+| [0-9], [a-z] | 查找任何从 0 至 9 的数字，a至z的字符        |
+| ^, $         | 开始位置，结束位置                     |
+| {n}          | n 是一个非负整数。匹配确定的 n 次           |
 | \d           | 匹配一个（）非数字字符，等价于 [0-9]         |
 | w            | 匹配字母、数字、下划线。等价于'[A-Za-z0-9_]' |
-
-```javascript
-var pat = new RegExp("e")
-pat.test("The best things") //搜索字符串指定的值，返回真或假
-pat.exec("The best things") //检索字符串指定的值，返回被找到的值或返回null
-```
-
-#### 场景案例
 
 - 验证手机号
 
@@ -345,17 +321,23 @@ alert(num);//4500
 
 ### Date
 
-#### 基础方法
+- 计算时间差
 
 ```javascript
-const date = new Date()
-console.log(date.getFullYear(),date.getMonth()+1,date.getDate()); // 年月日
-console.log(date.getHours(),date.getMinutes(),date.getSeconds()); // 时分秒
+export function getTimeDiff(old_time) {
+  let new_date = new Date();
+  let difftime = (new_date - old_date)/1000;
+  let days = parseInt(difftime/86400);
+  let hours = parseInt(difftime/3600)-24*days;
+  let minutes = parseInt(difftime%3600/60);
+  let seconds = parseInt(difftime%60);
+  return days+"天"+hours+"时"+minutes+"分"+seconds+"秒";
+}
 ```
 
 ### Math
 
-#### 基础方法
+- 生成随机数
 
 ```javascript
 Math.round() //四舍五入
@@ -365,22 +347,9 @@ Math.floor(Math.random()*n*10) //生成 [0,n*10-1] 的随机数
 Math.floor(Math.random()*(n-m+1))+m //生成 [m,n] 的随机数
 ```
 
-### Symbol
-
-symbol(ES6)定义的属性值都是不相等的，有多种写法
-
-```javascript
-let sy = Symbol("key")
-let syObject = {}
-syObject[sy] = "kk"
-console.log(syObject) // {Symbol(key1): "kk"}
-```
-
 ### Promise
 
-#### 基础方法
-
-Promise是ES6新增加的类，目的是更加优雅地书写复杂的异步任务
+- Promise是**ES6**新增加的类，目的是更加优雅地书写复杂的异步任务
 
 ```javascript
 const p1 = new Promise(function(resolve,reject){    
@@ -394,9 +363,9 @@ p1.then(function(value){ //then方法接收resolve和reject函数
 
 > promise执行时无法中途取消
 
-### Generator函数
+### Generator
 
-在function后有个*，函数内部有yield表达式
+在function后有个*，函数内部有yield表达式，**ES6方法**
 
 函数通过next()方法调用，函数执行至yieId时停止执行并返回一个指向内部状态对象的指针
 
@@ -413,9 +382,9 @@ var f = fun();
 f.next();
 ```
 
-### async函数
+### async
 
-async 函数返回一个Promise对象，可以使用 then 方法添加回调函数
+async 函数返回一个Promise对象，可以使用 then 方法添加回调函数，**ES6方法**
 
 await 操作符用于等待一个 Promise 对象, 它只能在异步函数 async function 内部使用
 
@@ -425,27 +394,11 @@ async function fun(){
 }
 ```
 
-接口调用规范
-
-- 调用接口要采用异步的方式
-
-- 接口调用后要判断返回值是否为空
-
-- 在页面数据显示有问题时，可以从接口得到的数据这开始找原因
-
-```javascript
-async handleGetlist() {
-  const { data, code, msg } = await apiGetlist()
-  if (code !== this.$consts.RET_CODE.SUCCESS) {
-    this.$toast(msg)
-    return
-  }
-}
-```
+- 接口异步请求后要判空
 
 ## 数据存储
 
-#### 基础方法
+> sessionStorage与localStorage相同
 
 ```javascript
 localStorage.setItem(key,value); //保存数据
@@ -455,28 +408,7 @@ localStorage.clear(); //删除所有数据
 localStorage.key(index); //得到某个索引的key
 ```
 
-> sessionStorage与localStorage相同
-
 ## DOM
-
-### 基础方法
-
-```javascript
-document.getElementById("id_name"); //获取单个ID
-document.getElementsByTagName("p"); //返回HTMLCollection(标签)对象数组
-document.getElementsByClassName("class_name"); //返回NodeList(类)对象数组
-document.querySelector("#app");//内部所有的标签和属性
-// 节点和属性操作
-var tmp = document.getElementById("id_name")
-tmp.createElement("p") //创建<p>元素
-tmp.appendChild("a") //添加<a>元素
-tmp.removeChild("a") //移除<a>元素
-tmp.getAttribute //获取属性
-tmp.setAttribute //设置属性
-tmp.removeAttribute //删除属性
-```
-
-### 场景案例
 
 - 原始内容复制到剪切板
 
@@ -500,11 +432,7 @@ window.scrollTo({
 })
 ```
 
-
-
 ## 防抖节流
-
-### 基础方法
 
 在第一次触发事件时，不立即执行函数，而是给出一个期限值比如200ms
 
@@ -542,8 +470,6 @@ function throttle(fn,delay){
 }
 ```
 
-### 场景案例
-
 debounce
 
 - search搜索联想，用户在不断输入值时，用防抖来节约请求资源
@@ -554,15 +480,7 @@ throttle
 - 鼠标不断点击触发，mousedown(单位时间内只触发一次)
 - 监听滚动事件，比如是否滑到底部自动加载更多，用throttle来判断
 
-# ES6新特性
-
-- let，const变量申明
-- import导入模块、export导出模块
-
-```javascript
-import people from './example'
-export default App
-```
+## ES6特性
 
 - class类、extends继承、super
 
@@ -580,12 +498,9 @@ class Cat extends Animal {
 }
 ```
 
-- 箭头函数 `()=>{}`
-
-- 模板字符串，字符串新方法 `includes` , `repeat`
+- 字符串传变量
 
 ```javascript
-let num = 12;
 let str = `数值为${num}`
 ```
 
@@ -596,9 +511,6 @@ let str = `数值为${num}`
 ```javascript
 let obj = {str: str}; // 等同于 obj = {str}
 ```
-
-- promise同步方式写异步代码
-- generator是能返回一个迭代器的函数
 
 **require与import的区别**
 

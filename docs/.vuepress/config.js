@@ -44,10 +44,9 @@ module.exports = {
                     children: [
                         '/note/test/JS.md',
                         '/note/test/CSS.md',
+                        '/note/test/typescript.md',
                         '/note/test/php.md',
-                        '/note/test/python.md',
-                        '/note/test/java.md',
-                        '/note/test/arduino.md'
+                        '/note/test/python.md'
                     ]
                 },
                 {
@@ -55,27 +54,12 @@ module.exports = {
                     collapsable: false,
                     children: [
                         '/note/test/vue.md',
-                        '/note/test/nuxt.md',
                         '/note/test/react.md',
-                        '/note/test/angular.md'
-                    ]
-                },
-                {
-                    title: '插件',
-                    collapsable: false,
-                    children: [
-                        '/note/test/TS.md',
-                        '/note/test/lodash.md',
                         '/note/test/babylon.md',
-                        '/note/test/other.md'
-                    ]
-                },
-                {
-                    title: '工具',
-                    collapsable: false,
-                    children: [
+                        '/note/test/three.md',
+                        '/note/test/ui.md',
                         '/note/test/uniapp.md',
-                        '/note/test/eslint.md'
+                        '/note/test/plugin.md'
                     ]
                 },
                 {
@@ -83,7 +67,7 @@ module.exports = {
                     collapsable: false,
                     children: [
                         '/note/test/rule.md',
-                        '/note/test/linr.md'
+                        '/note/test/项目总结.md'
                     ]
                 }
             ]
