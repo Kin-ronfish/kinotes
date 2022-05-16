@@ -1,4 +1,6 @@
-# 方法整合
+# 自定义插件
+
+<plugin />
 
 ## randomNum
 

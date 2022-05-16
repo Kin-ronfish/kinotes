@@ -33,44 +33,48 @@ module.exports = {
         smoothScroll: true,
         nav: [
             { text: '主页', link: '/' },
-            { text: '笔记', link: '/note/' },
-            { text: '作品', link: '/work/'}
+            { text: '前端', link: '/front/' },
+            { text: '日常', link: '/day/' },
+            { text: '作品', link: '/works/'}
         ],
         sidebar: {
-            '/note/':[
+            '/front/':[
                 {
-                    title: '基础',
+                    title: '语法基础',
                     collapsable: false,
                     children: [
-                        '/note/test/JS.md',
-                        '/note/test/CSS.md',
-                        '/note/test/typescript.md',
-                        '/note/test/php.md',
-                        '/note/test/python.md'
+                        '/front/base/JS.md',
+                        '/front/base/CSS.md',
+                        '/front/base/typescript.md',
+                        '/front/base/php.md',
+                        '/front/base/python.md'
                     ]
                 },
                 {
-                    title: '框架',
+                    title: '框架用法',
                     collapsable: false,
                     children: [
-                        '/note/test/vue.md',
-                        '/note/test/react.md',
-                        '/note/test/babylon.md',
-                        '/note/test/three.md',
-                        '/note/test/ui.md',
-                        '/note/test/uniapp.md',
-                        '/note/test/plugin.md'
+                        '/front/frame/vue.md',
+                        '/front/frame/react.md',
+                        '/front/frame/babylon.md',
+                        '/front/frame/three.md',
+                        '/front/frame/ui.md',
+                        '/front/frame/uniapp.md',
+                        '/front/frame/plugin.md'
                     ]
                 },
                 {
                     title: '其他',
                     collapsable: false,
                     children: [
-                        '/note/test/rule.md',
-                        '/note/test/method.md',
-                        '/note/test/项目总结.md'
+                        '/front/other/rule.md',
+                        '/front/other/method.md',
+                        '/front/other/项目总结.md'
                     ]
                 }
+            ],
+            '/day/': [
+
             ]
         }
     },

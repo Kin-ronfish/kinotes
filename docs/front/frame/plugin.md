@@ -65,7 +65,7 @@ git rebase master # 合并master分支代码
 
 > 出现冲突时，rebase需要解决多个冲突，但是 merge 出现冲突只需要解决一次。
 
-# 不常用
+## 不常用
 
 - [matter](https://brm.io/matter-js/demo/#stack) 2D物理引擎
 - [jQuery](https://www.jquery123.com/) DOM整合插件

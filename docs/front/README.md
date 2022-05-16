@@ -1,3 +1,5 @@
+# 快捷导航
+
 <template>
   <div class="home">
     <div class="content">
