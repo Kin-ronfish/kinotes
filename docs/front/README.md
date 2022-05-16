@@ -214,7 +214,6 @@ export default {
 </script>
 <style scoped>
 .content {
-  width: 50%;
   height: 300px;
   overflow: scroll;
   position: relative;
@@ -235,7 +234,7 @@ export default {
   height: 30px;
   padding-top: 10px;
   background-color: #fff;
-  z-index: 10;
+  z-index: 1;
 }
 .search {
   position: sticky;
@@ -248,7 +247,7 @@ export default {
   height: 30px;
   top: 40px;
   padding: 2px 5px;
-  z-index: 10;
+  z-index: 1;
 }
 .item {
   margin: 10px;
