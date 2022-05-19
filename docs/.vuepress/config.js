@@ -81,7 +81,9 @@ module.exports = {
                         '/day/test/规划第一年.md',
                         '/day/test/视频学习.md',
                         '/day/test/素质学习.md',
-                        '/day/test/认知误区.md'
+                        '/day/test/认知误区.md',
+                        '/day/test/绘画笔记.md',
+                        '/day/test/兴趣分析.md'
                     ]
                 }
             ]

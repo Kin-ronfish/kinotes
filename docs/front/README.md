@@ -190,6 +190,10 @@ export default {
           title: "阿里云图标",
           url: "https://www.iconfont.cn/",
         },
+        {
+          title: "瑞文网",
+          url: "https://www.ruiwen.com/",
+        },
       ],
       tmpList_2: [],
     };
