@@ -1,7 +1,5 @@
 # 自定义插件
 
-<plugin />
-
 ## randomNum
 
 - 在确定范围生成随机数
@@ -284,3 +282,6 @@ position(id) {
 }
 ```
 
+## 插件演示
+
+<plugin />

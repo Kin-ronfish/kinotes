@@ -80,6 +80,9 @@ export function createCamera(scene) {
     camera.setPosition(new BABYLON.Vector3(90, 80, 100));
     // 相机自动旋转
     camera.useFramingBehavior = true;
+    //变焦速度
+    camera.wheelPrecision = 20; //电脑滚轮速度，越小灵敏度越高
+    camera.pinchPrecision = 20; //手机放大缩小速度，越小灵敏度越高
 }
 ```
 
