@@ -1,8 +1,6 @@
 <template>
   <div>
-    <k-select :list="list" objKey="title" search>
-      <div slot="search_left">搜索</div>
-    </k-select>
+    <k-select :list="list" objKey="title" search></k-select>
   </div>
 </template>
 
@@ -13,28 +11,21 @@ export default {
     return {
       list: [
         {
-          title: 'asd'
+          title: '西瓜'
         },
         {
-          title: 'qwwqe'
+          title: '苹果'
         },
         {
-          title: 'sdf'
+          title: '香蕉'
         },
         {
-          title: 'afgh'
+          title: '菠萝'
         },
         {
-          title: 'qasdwqe'
-        },
-        {
-          title: 'sasdf'
-        },
-        {
-          title: 'agh'
+          title: '草莓'
         }
-      ],
-      list_1: [1,5,4,6,6,46,6,5,'dfd','werw']
+      ]
     }
   },
   components: { kSelect },

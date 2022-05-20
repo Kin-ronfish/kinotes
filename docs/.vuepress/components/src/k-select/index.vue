@@ -6,12 +6,12 @@
 			<i class="iconfont icon-icon-24-shangjiantou" v-show="!open"></i>
 		</div>
 		<div v-if="type==='select'" :class="open?'close':'open'" :style="`width:${width};`">
-			<div class="search" :style="`background:${searchStyle.background};${searchStyle.round?'border-radius: 15px;':''}`" v-if="search">
-				<i class="search_icon iconfont icon-search"></i>
-				<input class="search_input" :style="search_focus?searchStyle.border:'border: 1px solid #ffffff00;'" type="text" 
+			<div class="search" :style="`background:${searchStyle.background};`" v-if="search">
+				<i class="search_icon iconfont icon-search" :style="searchStyle.l_icon"></i>
+				<input class="search_input" :style="`${search_focus?searchStyle.border:'border: 1px solid #ffffff00'};${searchStyle.round?'border-radius: 15px;':''}`" type="text" 
 				v-model="keyword" @input="searchVal(keyword)" @focus="search_focus=true"
 				@blur="search_focus=false">
-				<i v-show="keyword" class="close_icon iconfont icon-roundclose" @click="clear"></i>
+				<i v-show="keyword" class="close_icon iconfont icon-roundclose" :style="searchStyle.l_icon" @click="clear"></i>
 			</div>
 			<div class="content_list" v-if="tmpList.length">
 				<div class="item" v-for="(item,index) in tmpList" @click="chose(item)" :key="index">
@@ -41,7 +41,9 @@
 				return {
 					border: 'border: 1px solid #5F4A86',
 					background: '#f8f8f8',
-					round: true
+					round: true,
+					l_icon: '#97979b',
+					r_icon: '#97979b'
 				}
 			}}
 		},
@@ -154,6 +156,7 @@
 		display: flex;
 		align-items: center;
 		position: relative;
+		padding-left: 2px;
 	}
 	.search_icon {
 		position: absolute;

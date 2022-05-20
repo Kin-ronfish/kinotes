@@ -194,6 +194,14 @@ export default {
           title: "瑞文网",
           url: "https://www.ruiwen.com/",
         },
+        {
+          title: "前端导航",
+          url: "https://www.kwgg2020.com/",
+        },
+        {
+          title: "艾瑞网",
+          url: "https://www.iresearch.cn/",
+        },
       ],
       tmpList_2: [],
     };
