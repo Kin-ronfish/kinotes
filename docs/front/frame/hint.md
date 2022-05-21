@@ -1,16 +1,8 @@
-# 常用插件
+# 使用提示
 
-## lodash
+## 插件
 
-插件熟练程度：⭐⭐
-
-> [lodash](https://www.lodashjs.com/) 数据操作函数整合库
-
-## dayjs
-
-插件熟练程度：⭐⭐⭐
-
-> [dayjs](https://dayjs.fenxianglu.cn/) 时间处理插件
+- dayjs
 
 ```javascript
 dayjs.format('YYYY-MM-DD HH:mm:ss') // 格式转换
@@ -18,17 +10,7 @@ dayjs.add(1, 'day') // 添加时间，week，day，month，year，hour，minute�
 dayjs.subtract(1, 'year') // 减去时间
 ```
 
-## axios
-
-插件熟练程度：⭐⭐
-
-> [axios](http://www.axios-js.com/zh-cn/docs/) Ajax请求插件
-
-## amimate
-
-插件熟练程度：⭐⭐⭐
-
-> [animate](http://www.animate.net.cn/) 动画插件
+- amimate
 
 ```html
 <div class="animate__animated animate__fadeIn"></div>
@@ -41,11 +23,7 @@ dayjs.subtract(1, 'year') // 减去时间
 }
 ```
 
-## git
-
-插件熟练程度：⭐⭐
-
-> [git官方文档](https://git-scm.com/book/zh/v2) 代码托管工具
+- git
 
 ```shell
 git init # 初始化
@@ -65,10 +43,7 @@ git rebase master # 合并master分支代码
 
 > 出现冲突时，rebase需要解决多个冲突，但是 merge 出现冲突只需要解决一次。
 
-## 不常用
-
-- [matter](https://brm.io/matter-js/demo/#stack) 2D物理引擎
-- [jQuery](https://www.jquery123.com/) DOM整合插件
+- jQuery
 
 ```javascript
 $("p").append("追加文本");
@@ -77,9 +52,7 @@ $("img").before("在前面添加文本");
 $("#div").remove();
 ```
 
-- [sass/scss](https://www.sass.hk/) css预编译器
-- [less](https://less.bootcss.com/) css预编译器
-- [html2canvas](http://html2canvas.hertzen.com/) 自定义区域html标签转canva
+- html2canvas
 
 ```javascript
 // 截取网页指定区域，保存为图片
@@ -100,7 +73,7 @@ html2canvas(docArea, {
 })
 ```
 
-- [printjs](https://printjs.crabbly.com/) 自定义打印对应区域
+- printjs
 
 ```javascript
 // 截取网页特定区域作为打印区域
@@ -112,8 +85,7 @@ print({
 })
 ```
 
-- [particles](https://vue-particles.netlify.app/) 动态粒子插件
-- [md5](https://www.npmjs.com/package/js-md5) 字符串加密插件
+- md5
 
 ```javascript
 // 在文件内使用是直接引入
@@ -125,7 +97,63 @@ Vue.prototype.$md5 = md5
 this.$md5('str')
 ```
 
-- [webpack](https://webpack.docschina.org/) 项目打包工具
-- [glup](https://www.gulpjs.com.cn/docs/getting-started/quick-start/) 自动化构建工具
-- [eslint](https://eslint.bootcss.com/docs/user-guide/getting-started) 代码校验工具
-- [babel](https://www.babeljs.cn/docs/) Babel 是一个 JavaScript 编译器，将ES6代码转为ES5代码
+## UI框架
+
+- element
+
+```js
+// main.js
+import Vue from 'vue';
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
+```
+
+- 在el-checkbox-group内写的div字体默认大小为0
+
+```html
+<el-checkbox-group v-model="aimList">
+    <div style="font-size:14px">这里添加的东西不起效果</div>
+    <el-checkbox label="复选框 A"></el-checkbox>
+    <el-checkbox label="复选框 B"></el-checkbox>
+</el-checkbox-group>
+```
+
+- vant
+
+```js
+// main.js
+import Vant from 'vant';
+import 'vant/lib/index.css';
+Vue.use(Vant);
+```
+
+- uView
+
+```js
+// main.js
+import uView from "uview-ui";
+Vue.use(uView);
+```
+
+```css
+/* uni.scss */
+@import 'uview-ui/theme.scss';
+```
+
+```html
+<!-- App.vue -->
+<style lang="scss">
+	/* 注意要写在第一行，同时给style标签加入lang="scss"属性 */
+	@import "uview-ui/index.scss";
+</style>
+```
+
+```json
+// pages.json
+{
+	"easycom": {
+		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+	}
+}
+```

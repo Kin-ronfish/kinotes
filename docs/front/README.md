@@ -167,6 +167,14 @@ export default {
           title: "git",
           url: "https://git-scm.com/book/zh/v2",
         },
+        {
+          title: "eslint",
+          url: "https://eslint.bootcss.com/docs/user-guide/getting-started",
+        },
+        {
+          title: "babel",
+          url: "https://www.babeljs.cn/docs/",
+        }
       ],
       tmpList_1: [],
       urlList_2: [
@@ -202,6 +210,10 @@ export default {
           title: "艾瑞网",
           url: "https://www.iresearch.cn/",
         },
+        {
+          title: "ant-design",
+          url: "https://ant.design/docs/react/introduce-cn"
+        }
       ],
       tmpList_2: [],
     };
@@ -271,3 +283,17 @@ export default {
   cursor: pointer;
 }
 </style>
+
+
+
+## 技术框架
+
+- layabox 整套web3D游戏开发方案
+
+## 素材网站
+
+- [mixkit](https://mixkit.co/)
+- [videvo](https://www.videvo.net/)
+- [自然音效](https://www.soundgator.com/)
+- [newcger](https://www.newcger.com/)
+
