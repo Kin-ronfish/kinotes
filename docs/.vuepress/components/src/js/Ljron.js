@@ -5,6 +5,8 @@ export default class Kintool {
         this.data = []
         this.temp = {}
         this.tree = {}
+        this.tmpList = []
+        this.flag = true
     }
 
     /**
@@ -13,8 +15,8 @@ export default class Kintool {
      * @param {*} n 结束
      * @returns 
      */
-    randomNum(m,n) {
-        return Math.floor(Math.random()*(n-m+1)+m);
+    randomNum(m, n) {
+        return Math.floor(Math.random() * (n - m + 1) + m);
     }
 
     /**
@@ -24,7 +26,7 @@ export default class Kintool {
      * @returns 
      */
     regStr(str, type) {
-        switch(type) {
+        switch (type) {
             case 'phone':
                 this.patt = /^[1][3,4,5,6,7,8,9][0-9]{9}$/
                 break;
@@ -56,10 +58,10 @@ export default class Kintool {
      * @param {*} key 对象数组键名
      * @returns 
      */
-    setArr(arr=[],key='') {
-        if(key) {
+    setArr(arr = [], key = '') {
+        if (key) {
             arr.forEach(item => {
-                if(!this.obj[item[key]]) {
+                if (!this.obj[item[key]]) {
                     this.obj[item[key]] = true
                     this.data.push(item)
                 }
@@ -81,20 +83,20 @@ export default class Kintool {
      * @param {*} key 对象数组键名
      * @returns 
      */
-    filterArr(arr=[], val, key='') {
-        if(!key && typeof val === 'number') { // 1
-            return arr.filter(item => item!=val)
+    filterArr(arr = [], val, key = '') {
+        if (!key && typeof val === 'number') { // 1
+            return arr.filter(item => item != val)
         }
-        if(!key && val instanceof Array) { // 2
+        if (!key && val instanceof Array) { // 2
             return arr.filter(item => !val.includes(item))
         }
-        if(key && typeof val === 'number') { // 3
-            return arr.filter(item => item[key]!=val)
+        if (key && typeof val === 'number') { // 3
+            return arr.filter(item => item[key] != val)
         }
-        if(key && val instanceof Array && typeof val[0] === 'number') { // 4
+        if (key && val instanceof Array && typeof val[0] === 'number') { // 4
             return arr.filter(item => !val.includes(item[key]))
         }
-        if(key && val instanceof Array && val[0] instanceof Object) { // 5
+        if (key && val instanceof Array && val[0] instanceof Object) { // 5
             let tmpArr = val.map(item => item[key])
             return arr.filter(item => !tmpArr.includes(item[key]))
         }
@@ -108,16 +110,16 @@ export default class Kintool {
      * @param {*} name 根节点键名
      * @returns 
      */
-    buildTree(array,id,parent_id, name) {
-        for(let i in array) {// 先遍历数组，将数组的每一项添加到temp对象中
+    buildTree(array, id, parent_id, name) {
+        for (let i in array) {// 先遍历数组，将数组的每一项添加到temp对象中
             this.temp[array[i][id]] = array[i];
         }
-        for(let i in this.temp) {// 遍历temp对象，将当前子节点与父节点建立连接
+        for (let i in this.temp) {// 遍历temp对象，将当前子节点与父节点建立连接
             // 判断是否是根节点下的项
-            if(this.temp[i][parent_id] !== name) {
-                if(!this.temp[this.temp[i][parent_id]].children) {
+            if (this.temp[i][parent_id] !== name) {
+                if (!this.temp[this.temp[i][parent_id]].children) {
                     this.temp[this.temp[i][parent_id]].children = new Array();
-                 }
+                }
                 this.temp[this.temp[i][parent_id]].children.push(this.temp[i]);
             } else {
                 this.tree[this.temp[i][id]] = this.temp[i];
@@ -151,33 +153,33 @@ export default class Kintool {
      * @param {*} arr
      * @returns 
      */
-    setArr(arr, type='', key='') {
-        if(type==='objArr') {
-            if(key) {
+    setArr(arr, type = '', key = '') {
+        if (type === 'objArr') {
+            if (key) {
                 const result = arr.map(item => {
-                    return {[key]: item}
+                    return { [key]: item }
                 })
                 return result
-            }else {
+            } else {
                 const result = arr.map(item => {
-                    return {[item]: ''}
+                    return { [item]: '' }
                 })
                 return result
             }
-        } else if(type==='mapObjArr') {
+        } else if (type === 'mapObjArr') {
             const result = arr.map(item => {
-                return {[key]: item[key]}
+                return { [key]: item[key] }
             })
             return result
-        } else if(type==='sum') {
-            if(key) {
-                return arr.map(item => item[key]).reduce((pre,next) => pre+next)
-            }else {
-                return arr.reduce((pre,next) => pre+next)
+        } else if (type === 'sum') {
+            if (key) {
+                return arr.map(item => item[key]).reduce((pre, next) => pre + next)
+            } else {
+                return arr.reduce((pre, next) => pre + next)
             }
-        } else if(type==='time') {
+        } else if (type === 'time') {
             let tmpArr = arr
-            tmpArr.sort(function(a,b){
+            tmpArr.sort(function (a, b) {
                 return a.time > b.time ? 1 : -1
             })
             return tmpArr
@@ -191,7 +193,7 @@ export default class Kintool {
      * @param {*} newKey 
      * @returns 
      */
-    changeKey(obj={}, oldKey='', newKey='') {
+    changeKey(obj = {}, oldKey = '', newKey = '') {
         obj[newKey] = obj[oldKey]
         delete obj[oldKey]
         return obj
@@ -199,7 +201,7 @@ export default class Kintool {
 }
 
 export class Kindom {
-    constructor() {}
+    constructor() { }
 
     /**
      * 文本复制
@@ -221,9 +223,9 @@ export class Kindom {
      */
     position(id) {
         let height = document.getElementById(`${id}`).offsetTop //滚动条高度
-        window.scrollTo({ 
-            top: height, 
-            behavior: "smooth" 
+        window.scrollTo({
+            top: height,
+            behavior: "smooth"
         })
     }
 }

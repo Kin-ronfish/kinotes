@@ -28,7 +28,7 @@ export default {
       ]
     }
   },
-  components: { kSelect },
+  components: { kSelect }
 };
 </script>
 
