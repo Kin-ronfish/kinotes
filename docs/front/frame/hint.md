@@ -2,6 +2,22 @@
 
 ## 插件
 
+- axios
+
+```javascript
+// 封装附件上传
+export function upload(file) {
+  let param = new FormData()
+  param.append('file', file)
+  param.append('chunk', '0')
+  axios.post(url,param, {
+    headers: {
+    	"content-type": "multipart/form-data;"
+    }
+  })
+}
+```
+
 - dayjs
 
 ```javascript

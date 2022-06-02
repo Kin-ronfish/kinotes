@@ -278,6 +278,27 @@ throttle
 - 鼠标不断点击触发，mousedown(单位时间内只触发一次)
 - 监听滚动事件，比如是否滑到底部自动加载更多，用throttle来判断
 
+## 上拉加载
+
+```javascript
+window.onscroll = ()=> {
+  //变量scrollTop是滚动条滚动时，距离顶部的距离
+  let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  //变量windowHeight是可视区的高度
+  let windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+  //变量scrollHeight是滚动条的总高度
+  let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+  //滚动条到底部的条件
+  //scrollTop!=0是由于其他功能在body上设置了最小高度100vh，切换tab的时候body高度位100vh。
+  if ((Math.ceil(scrollTop + windowHeight)== parseInt(scrollHeight))&&scrollTop!=0) {
+  	this.param.current += 1
+  	this.getList()
+  }
+}
+```
+
+
+
 ## ES6特性
 
 - class类、extends继承、super
