@@ -34,7 +34,6 @@ module.exports = {
         nav: [
             { text: '主页', link: '/' },
             { text: '前端', link: '/front/' },
-            { text: '日常', link: '/day/' },
             { text: '作品', link: '/works/'}
         ],
         sidebar: {
@@ -68,20 +67,6 @@ module.exports = {
                         '/front/other/rule.md',
                         '/front/other/method.md',
                         '/front/other/项目总结.md'
-                    ]
-                }
-            ],
-            '/day/': [
-                {
-                    title: '综合提升',
-                    collapsable: false,
-                    children: [
-                        '/day/test/规划第一年.md',
-                        '/day/test/视频学习.md',
-                        '/day/test/素质学习.md',
-                        '/day/test/认知误区.md',
-                        '/day/test/绘画笔记.md',
-                        '/day/test/兴趣分析.md'
                     ]
                 }
             ]
