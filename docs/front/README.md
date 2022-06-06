@@ -91,12 +91,12 @@ export default {
         },
         {
           title: "babylon",
-          remark:"",
+          remark:"3D引擎",
           url: "https://www.babylonjs.com/",
         },
         {
           title: "three",
-          remark:"",
+          remark:"3D引擎",
           url: "http://www.webgl3d.cn/threejs/docs/",
         },
         {
@@ -121,7 +121,7 @@ export default {
         },
         {
           title: "matter",
-          remark:"",
+          remark:"2D物理引擎",
           url: "https://brm.io/matter-js/demo/#stack",
         },
         {
@@ -156,7 +156,7 @@ export default {
         },
         {
           title: "html2canvas",
-          remark:"",
+          remark:"标签转画布",
           url: "http://html2canvas.hertzen.com/",
         },
         {
@@ -171,7 +171,7 @@ export default {
         },
         {
           title: "particles",
-          remark:"",
+          remark:"粒子插件",
           url: "https://vue-particles.netlify.app/",
         },
         {
@@ -181,12 +181,12 @@ export default {
         },
         {
           title: "webpack",
-          remark:"",
+          remark:"打包工具",
           url: "https://webpack.docschina.org/",
         },
         {
           title: "gulp",
-          remark:"",
+          remark:"自动化构建工具",
           url: "https://www.gulpjs.com.cn/docs/getting-started/quick-start/",
         },
         {
@@ -201,7 +201,7 @@ export default {
         },
         {
           title: "babel",
-          remark:"",
+          remark:"es6编译器",
           url: "https://www.babeljs.cn/docs/",
         },
         {
@@ -281,6 +281,16 @@ export default {
           title: "newcger",
           remark:"",
           url: "https://www.newcger.com/",
+        },
+        {
+          title: "PS画笔素材",
+          remark:"",
+          url: "https://brushes8.com/",
+        },
+        {
+          title: "PS素材",
+          remark:"",
+          url: "https://www.16sucai.com/",
         }
       ],
       tmpList_2: [],
