@@ -2,37 +2,6 @@
 
 基础熟练程度：⭐⭐⭐
 
-## 生成工具
-
-> [grid网格布局生成器](https://cssgr.id/)
->
-> [gif图标设计](https://loading.io/animation/icon/)
->
-> [flex弹性盒子](https://cssflex-generator.netlify.app/)
->
-> [元素样式预览](https://www.html.cn/tool/css3Preview/Box-Shadow.html)
->
-> - 阴影、文字阴影
-> - 文本
-> - 边框
-> - 线性渐变
-> - 变换
-> - 弹性盒子
->
-> [动态样式设计网站](https://loading.io/)
->
-> - 动态图标、文本、背景，加载等
->
-> [css样式高级玩法](https://lhammer.cn/You-need-to-know-css/#/)
-
-## 学习手册
-
-[学习网址](http://caibaojian.com/fedbook/learning/html-css.html)
-
-[学习工具](http://caibaojian.com/fedbook/learning/html-css.html)
-
-[css学习手册](https://developer.mozilla.org/zh-CN/docs/Web/CSS)
-
 ## 笔记提示
 
 > 在学习当中遇到的难点做个简单记录，便于开发中快速提示

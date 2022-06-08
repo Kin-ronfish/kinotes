@@ -101,26 +101,3 @@ os.path.getsize("tu.png") 返回文件大小，目录返回0L
 > shutil.copy(oldfile,newfile) oldfile只能是文件夹，newfile是目录或文件夹
 > shutil.copytree(oldfile,newfile) 都只能是目录
 > shutil.rmtree("dir") 空目录和有内容的目录都可以删除
-
-## opencv
-
-- 包安装
-
-```shell
-pip install opencv-python
-```
-
-- 打开视频
-
-```python
-import  cv2
-face = cv2.CascadeClassifier('./haar/haarcascade_frontalface_default.xml')#训练数据
-sample_image = cv2.imread('a.jpg')#读取图片
-faces = face.detectMultiScale(sample_image,scaleFactor=1.1,minNeighbors=5,minSize=(10,10))
-for(x,y,w,h) in faces:
-    cv2.rectangle(sample_image, (x,y), (x+w,y+h), (0,0,255), 2)
-cv2.imwrite('peopleResult.png',sample_image)#输出图片
-cv2.namedWindow('Video',flags=cv2.WINDOW_NORMAL)
-cv2.imshow('Video', sample_image)
-cv2.waitKey(0)
-```

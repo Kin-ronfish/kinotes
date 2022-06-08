@@ -178,3 +178,66 @@ signingConfigs {
 安卓离线打包(包含视频播放)，须在proguard-rules.pro文件内添加以下混淆规则
 
 > -keep class tv.danmaku.ijk.media.player.** {*;}
+
+- [uniapp使用安卓原生插件](https://nativesupport.dcloud.net.cn/UniMPDocs/Extension/android)
+
+[百度文档](https://wenku.baidu.com/view/285ec401cfbff121dd36a32d7375a417876fc14c.html)
+
+1.new > Module > Android Library > next
+
+module的build.gradle添加以下配置
+
+```
+ //导入aar需要的配置
+ repositories {
+     flatDir {
+         dirs 'libs'
+     }
+ }
+ dependencies {
+     //必须添加的依赖
+     compileOnly 'com.android.support:recyclerview-v7:27.1.0'
+     compileOnly 'com.android.support:support-v4:27.1.0'
+     compileOnly 'com.android.support:appcompat-v7:27.1.0'
+     compileOnly 'com.alibaba:fastjson:1.1.46.android'
+
+     compileOnly fileTree(include: ['uniapp-release.aar'], dir: '../app/libs')
+ }
+```
+
+> SDK需要将compileSdkVersion调高至29+
+
+2.在app模块的assets中的dcloud_uniplugins.json⽂件中注册组件
+
+```json
+{
+  "nativePlugins": [
+    {
+      "plugins": [
+        {
+          "type": "module",
+          "name": "插件名",
+          "class": "packageName"
+        }
+      ]
+    }
+  ]
+}
+```
+
+3.在app模块下添加新建的组件
+
+```
+implementation project(':插件名')
+```
+
+4.uniapp-Android通讯事件
+
+```java
+String TAG = "TestModule";
+@UniJSMethod(uiThread = true)
+public void  getMessage(JSONObject options) {
+	Log.i(TAG, String.valueOf(options));
+}
+```
+

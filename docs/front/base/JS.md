@@ -4,12 +4,6 @@
 
 ## 学习工具
 
-[学习网址](http://caibaojian.com/fedbook/learning/js.html)
-
-[学习工具](http://caibaojian.com/fedbook/tools/js.html)
-
-[JavaScript学习手册](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript)
-
 [实用工具](https://tool.ityuan.com/)
 
 - json格式化
@@ -18,12 +12,6 @@
 - base64加密、解密
 - 码表
 - 二维码、条形码生成
-
-[前后端项目模板自动生成](http://coderd.adjustrd.com/)
-
-[前端页面自动生成平台](http://www.magicalcoder.com/)
-
-[bootstrap页面自动生成平台](http://www.ibootstrap.cn/)
 
 ## 简单算法
 
