@@ -33,8 +33,7 @@ module.exports = {
         smoothScroll: true,
         nav: [
             { text: '主页', link: '/' },
-            { text: '前端', link: '/front/' },
-            { text: '作品', link: '/works/'}
+            { text: '前端', link: '/front/' }
         ],
         sidebar: {
             '/front/':[
