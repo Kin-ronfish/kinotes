@@ -42,6 +42,7 @@ module.exports = {
                     collapsable: false,
                     children: [
                         '/front/base/JS.md',
+                        '/front/base/node.md',
                         '/front/base/CSS.md',
                         '/front/base/typescript.md',
                         '/front/base/php.md',
