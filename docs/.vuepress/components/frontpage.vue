@@ -25,6 +25,29 @@
       </div>
     </div>
     <div class="content">
+      <div class="title">功能快速查找</div>
+      <input class="search" v-model="value_3" placeholder="输入关键词" />
+      <div
+        class="item"
+        :style="
+          index < tmpList_3.length - 1
+            ? 'border-bottom:1px solid rgb(241, 241, 241)'
+            : ''
+        "
+        v-for="(item, index) in tmpList_3"
+        :key="index"
+      >
+        <a
+          :id="item.title"
+          :href="item.url"
+          target="_blank"
+          style="text-decoration: none; color: rgb(60, 81, 124)"
+          rel="noopener noreferrer"
+          >{{ item.title }}</a
+        >
+      </div>
+    </div>
+    <div class="content">
       <div class="title">其他常用网址</div>
       <input class="search" v-model="value_2" placeholder="输入关键词" />
       <div
@@ -57,6 +80,7 @@ export default {
     return {
       value_1: "",
       value_2: "",
+      value_3: "",
       urlList_1: [
         {
           title: "vue",
@@ -90,12 +114,12 @@ export default {
         },
         {
           title: "babylon",
-          remark:"",
+          remark:"3D渲染引擎",
           url: "https://www.babylonjs.com/",
         },
         {
           title: "three",
-          remark:"",
+          remark:"3D渲染引擎",
           url: "http://www.webgl3d.cn/threejs/docs/",
         },
         {
@@ -105,7 +129,7 @@ export default {
         },
         {
           title: "uniapp",
-          remark:"",
+          remark:"跨平台解决方案",
           url: "https://uniapp.dcloud.io/",
         },
         {
@@ -120,7 +144,7 @@ export default {
         },
         {
           title: "matter",
-          remark:"",
+          remark:"2D渲染引擎",
           url: "https://brm.io/matter-js/demo/#stack",
         },
         {
@@ -195,12 +219,12 @@ export default {
         },
         {
           title: "eslint",
-          remark:"",
+          remark:"代码检查工具",
           url: "https://eslint.bootcss.com/docs/user-guide/getting-started",
         },
         {
           title: "babel",
-          remark:"",
+          remark:"ES6编译器",
           url: "https://www.babeljs.cn/docs/",
         },
         {
@@ -247,6 +271,11 @@ export default {
           url: "https://www.runoob.com/",
         },
         {
+          title: "花瓣网",
+          remark:"设计素材",
+          url: "https://huaban.com/home/",
+        },
+        {
           title: "阿里云图标",
           remark:"",
           url: "https://www.iconfont.cn/",
@@ -258,11 +287,11 @@ export default {
         },
         {
           title: "艾瑞网",
-          remark:"",
+          remark:"互联网新闻",
           url: "https://www.iresearch.cn/",
         },
         {
-          title: "JavaScript学习手册",
+          title: "MDN学习手册",
           remark: "",
           url: "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript"
         },
@@ -308,6 +337,49 @@ export default {
         }
       ],
       tmpList_2: [],
+      urlList_3: [
+        {
+          title: "气泡提示框",
+          remark:"css",
+          url: "https://qishaoxuan.github.io/css_tricks/poptip/",
+        },
+        {
+          title: "气泡提示框",
+          remark:"css",
+          url: "https://lhammer.cn/You-need-to-know-css/#/zh-cn/poptip",
+        },
+        {
+          title: "设置滚动条样式",
+          remark:"css",
+          url: "https://qishaoxuan.github.io/css_tricks/scrollTemp/",
+        },
+        {
+          title: "元素垂直居中",
+          remark:"css",
+          url: "https://qishaoxuan.github.io/css_tricks/verticalMiddle/#%E6%9C%AA%E7%9F%A5%E7%88%B6%E5%85%83%E7%B4%A0%E9%AB%98%E5%BA%A6",
+        },
+        {
+          title: "文本溢出",
+          remark:"css",
+          url: "https://qishaoxuan.github.io/css_tricks/ellipsis/#%E5%8D%95%E8%A1%8C%E6%96%87%E5%AD%97",
+        },
+        {
+          title: "列表自适应对齐",
+          remark:"css",
+          url: "https://qishaoxuan.github.io/css_tricks/align/",
+        },
+        {
+          title: "绝对底部",
+          remark:"css",
+          url: "https://lhammer.cn/You-need-to-know-css/#/zh-cn/sticky-footer",
+        },
+        {
+          title: "flex布局",
+          remark:"css",
+          url: "https://lhammer.cn/You-need-to-know-css/#/zh-cn/flexbox-layout",
+        },
+      ],
+      tmpList_3: []
     };
   },
   watch: {
@@ -321,10 +393,16 @@ export default {
         (item) => item.title.indexOf(newVal) != -1
       );
     },
+    value_3(newVal) {
+      this.tmpList_3 = this.urlList_3.filter(
+        (item) => item.title.indexOf(newVal) != -1
+      );
+    },
   },
   created() {
     this.tmpList_1 = this.urlList_1;
     this.tmpList_2 = this.urlList_2;
+    this.tmpList_3 = this.urlList_3;
   },
 };
 </script>
