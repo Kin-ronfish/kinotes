@@ -101,7 +101,7 @@
 </script>
 
 <style scoped>
-	@import './iconfont.css';
+	@import './iconfont/iconfont.css';
 	.content {
 		margin: 5px;
 	}
