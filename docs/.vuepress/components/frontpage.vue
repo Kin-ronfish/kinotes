@@ -241,6 +241,11 @@ export default {
           title: "layabox",
           remark:"web3D游戏开发方案",
           url: "https://www.layabox.com/"
+        },
+        {
+          title: "mqtt",
+          remark:"实时通讯协议",
+          url: "https://www.emqx.com/zh/products/mqttx"
         }
       ],
       tmpList_1: [],

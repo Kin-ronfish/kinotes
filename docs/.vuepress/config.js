@@ -57,6 +57,7 @@ module.exports = {
                         '/front/frame/react.md',
                         '/front/frame/babylon.md',
                         '/front/frame/uniapp.md',
+                        '/front/frame/mqtt.md',
                         '/front/frame/hint.md'
                     ]
                 },
@@ -65,8 +66,7 @@ module.exports = {
                     collapsable: false,
                     children: [
                         '/front/other/rule.md',
-                        '/front/other/method.md',
-                        '/front/other/项目总结.md'
+                        '/front/other/method.md'
                     ]
                 }
             ]
