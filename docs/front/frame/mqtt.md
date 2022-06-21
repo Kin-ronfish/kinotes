@@ -108,3 +108,17 @@ export default class MqttX {
 }
 ```
 
+> 在vue项目中报buffer未定义的错误，需在vue.config.js中加入以下代码
+
+```javascript
+const webpack = require('webpack')
+configureWebpack: {
+    plugins: [
+      new webpack.ProvidePlugin({
+        process: 'process/browser', 
+        Buffer: ['buffer', 'Buffer']
+      })
+    ]
+ }
+```
+
