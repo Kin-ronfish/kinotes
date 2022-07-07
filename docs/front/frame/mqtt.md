@@ -13,8 +13,8 @@ import mqtt from 'mqtt'
 
 export default class MqttX {
     constructor() {
-        this.receiveNews = receiveNews
-        this.client = client
+        this.receiveNews = ''
+        this.client = ''
         this.options = {
             host: 'broker.emqx.io',
             port: 8083,
@@ -106,6 +106,12 @@ export default class MqttX {
         }
     }
 }
+```
+
+> webpack>5的vue项目需要安装node-polyfill-webpack-plugin插件
+
+```shell
+npm install node-polyfill-webpack-plugin
 ```
 
 > 在vue项目中报buffer未定义的错误，需在vue.config.js中加入以下代码
