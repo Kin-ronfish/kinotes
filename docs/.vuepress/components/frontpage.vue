@@ -115,12 +115,22 @@ export default {
         {
           title: "babylon",
           remark:"3D渲染引擎",
-          url: "https://www.babylonjs.com/",
+          url: "https://www.babylonjs.com/",  
+        },
+        {
+          title: "echarts",
+          remark:"图表",
+          url: "https://echarts.apache.org/zh/index.html",
         },
         {
           title: "three",
           remark:"3D渲染引擎",
           url: "http://www.webgl3d.cn/threejs/docs/",
+        },
+        {
+          title: "agora",
+          remark:"声网",
+          url: "https://docs.agora.io/cn",
         },
         {
           title: "electron",
