@@ -45,6 +45,7 @@
           rel="noopener noreferrer"
           >{{ item.title }}</a
         >
+        <div style="font-size:10px;">{{item.remark}}</div>
       </div>
     </div>
     <div class="content">
@@ -68,6 +69,7 @@
           rel="noopener noreferrer"
           >{{ item.title }}</a
         >
+        <div style="font-size:10px;">{{item.remark}}</div>
       </div>
     </div>
   </div>
@@ -262,22 +264,22 @@ export default {
       urlList_2: [
         {
           title: "前端导航",
-          remark:"",
+          remark:"学习网址整合网站",
           url: "https://www.kwgg2020.com/",
         },
         {
           title: "github",
-          remark:"",
+          remark:"代码托管网站",
           url: "https://github.com/",
         },
         {
           title: "gitee",
-          remark:"",
+          remark:"代码托管网站",
           url: "https://gitee.com/",
         },
         {
           title: "vercel",
-          remark:"",
+          remark:"静态页面部署网站",
           url: "https://vercel.com/",
         },
         {
@@ -302,8 +304,23 @@ export default {
         },
         {
           title: "艾瑞网",
-          remark:"互联网新闻",
+          remark:"互联网行业研究报告",
           url: "https://www.iresearch.cn/",
+        },
+        {
+          title: "腾讯研究所",
+          remark:"互联网产业的数据和报告",
+          url: "https://www.tisi.org/",
+        },
+        {
+          title: "36氪",
+          remark:"各个行业的前沿研究报告",
+          url: "https://36kr.com/",
+        },
+        {
+          title: "移动观象台",
+          remark:"移动互联网行业报告",
+          url: "https://mi.talkingdata.com/reports.html",
         },
         {
           title: "MDN学习手册",

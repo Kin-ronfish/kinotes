@@ -57,7 +57,6 @@ module.exports = {
                         '/front/frame/react.md',
                         '/front/frame/babylon.md',
                         '/front/frame/uniapp.md',
-                        '/front/frame/mqtt.md',
                         '/front/frame/hint.md'
                     ]
                 },

@@ -281,3 +281,30 @@ position(id) {
   })
 }
 ```
+## getUrlParam
+
+- 获取链接参数
+
+```javascript
+getUrlParam(url) {
+  let obj = {};
+  url.match(/(\w+)=(\w+)/g).forEach(item => {
+      Object.assign(obj, {
+          [item.split('=')[0]]: item.split('=')[1]
+      })
+  })
+  return obj;
+}
+```
+
+## flatten
+
+- 数组深度扁平化
+
+```javascript
+flatten(arr) {
+  return arr.flat(infinity);
+  // `${arr}`.split(item => Number(item));
+}
+```
+
