@@ -65,7 +65,9 @@ module.exports = {
                     collapsable: false,
                     children: [
                         '/front/other/rule.md',
-                        '/front/other/method.md'
+                        '/front/other/method.md',
+                        '/front/note/note.md',
+                        '/front/note/question.md'
                     ]
                 }
             ]
