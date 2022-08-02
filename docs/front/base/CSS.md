@@ -86,7 +86,7 @@ div {
 }
 ```
 
-> margin值可设置未负数，padding不可以
+> margin值可设置为负数，padding不可以
 
 - 选择器
 

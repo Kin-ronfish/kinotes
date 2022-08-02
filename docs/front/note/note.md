@@ -276,3 +276,36 @@ vue3组件支持多个根节点，修复vue2的警告问题
 Vue2 响应式原理基础是Object.defineProperty；Vue3 响应式原理基础是 Proxy
 
 v-if和v-for不要放在同一个元素上，vue2和vue3两者的优先级正好相反
+
+# React
+
+元素渲染必须只有一个根节点
+
+路由安装
+
+```shell
+npm install react-router-dom --save
+```
+
+状态管理redux
+
+```shell
+npm install redux --save
+npm install react-redux --save
+```
+
+> 项目共享数据较多时使用
+
+store：数据仓库
+
+state：数据存储对象
+
+action：触发数据改变的方法
+
+dispatch：触发action的方法
+
+reducer：通过获取动作，改变数据
+
+
+
+自开发项目：简单答题系统

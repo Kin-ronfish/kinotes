@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=utf-8>
+        <!-- <style>
+            #rect {
+                width: 120px;
+                height: 100px;
+                background-color: black;
+                /*补全代码*/
+                animation: rect 10s linear infinite;
+            }
+            @keyframes rect {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+        </style> -->
+    </head>
+    <body>
+    	<!-- <button class='up'>销量升序</button>
+        <button class='down'>销量降序</button>
+        <ul></ul>
+
+        <script type="text/javascript">
+            var cups = [
+                { type: 1, price: 100, color: 'black', sales: 3000, name: '牛客logo马克杯' },
+                { type: 2, price: 40, color: 'blue', sales: 1000, name: '无盖星空杯' },
+                { type: 4, price: 60, color: 'green', sales: 200, name: '老式茶杯' },
+                { type: 3, price: 50, color: 'green', sales: 600, name: '欧式印花杯' }
+            ]
+            var ul = document.querySelector('ul');
+            var upbtn = document.querySelector('.up');
+            var downbtn = document.querySelector('.down');
+            // 补全代码
+            let temp;
+            upbtn.onclick = function() {
+                for(let i = 0; i < cups.length; i++) {
+                    for(let j = i+1; j < cups.length; j++) {
+                        if(cups[i].sales > cups[j].sales) {
+                            temp = cups[i]
+                            cups[i] = cups[j]
+                            cups[j] = temp
+                        }
+                    }
+                }
+                document.querySelector('li') && document.querySelectorAll('li').forEach(item => {
+                    item.remove()
+                })
+                cups.forEach(item => {
+                    var li = document.createElement('li')
+                    li.innerText = item.name
+                    ul.append(li)
+                })
+
+            }
+            
+            downbtn.onclick = function() {
+                for(let i = 0; i < cups.length; i++) {
+                    for(let j = i+1; j < cups.length; j++) {
+                        if(cups[i].sales < cups[j].sales) {
+                            temp = cups[i]
+                            cups[i] = cups[j]
+                            cups[j] = temp
+                        }
+                    }
+                }
+                document.querySelector('li') && document.querySelectorAll('li').forEach(item => {
+                    item.remove()
+                })
+                cups.forEach(item => {
+                    var li = document.createElement('li')
+                    li.innerText = item.name
+                    ul.append(li)
+                })
+            }
+        </script> -->
+
+        <!-- <select name="" id="">
+            <option value="0">请选择销量范围</option>
+            <option value="1">&lt100</option>
+            <option value="2">100~500</option>
+            <option value="3">&gt500</option>
+        </select>
+        <ul>
+            <li>牛客logo马克杯</li>
+            <li>无盖星空杯</li>
+            <li>老式茶杯</li>
+            <li>欧式印花杯</li>
+        </ul>
+
+        <script>
+            var cups = [
+                { type: 1, price: 100, color: 'black', sales: 60, name: '牛客logo马克杯' },
+                { type: 2, price: 40, color: 'blue', sales: 100, name: '无盖星空杯' },
+                { type: 4, price: 60, color: 'green', sales: 200, name: '老式茶杯' },
+                { type: 3, price: 50, color: 'green', sales: 600, name: '欧式印花杯' }
+            ]
+            var select = document.querySelector('select');
+            var ul = document.querySelector('ul');
+            // 补全代码
+            let result;
+            select.onchange = function(e) {
+                switch(this.value) {
+                    case "1":
+                        result = cups.filter(item=> item.sales<100)
+                    break;
+                    case "2":
+                        result = cups.filter(item=> item.sales>=100&&item.sales<=500)
+                    break;
+                    case "3":
+                        result = cups.filter(item=> item.sales>=500)
+                    break;
+                }
+                ul.innerHTML = ''
+                let str = ''
+                result.forEach(item => {
+                    str += `<li>${item.name}</li>`
+                })
+                ul.innerHTML = str
+            }
+            
+        </script> -->
+
+        
+        <!-- 补全代码
+    	<div id="rect"></div>
+        <input id="range" type="range" value="1" defaultValue="1" min="0" max="10" step="1" />
+        
+        <script type="text/javascript">
+            // 补全代码
+            let range = document.getElementById("range");
+            range.onchange = function() {
+                document.getElementById("rect").style.animationDuration = range.value + 's'
+            }
+        </script> -->
+
+        <!-- <p>1</p>
+        <li>全选<input type='checkbox' id='all'></li>
+        <li>Java<input type='checkbox' class='item'></li>
+        <li>javaScript<input type='checkbox' class='item'></li>
+        <li>C++<input type='checkbox' class='item'></li>
+        <li>python<input type='checkbox' class='item'></li>
+        <li>.net<input type='checkbox' class='item'></li>
+        <script type="text/javascript">
+            let all = document.querySelector("#all");
+            let other = document.querySelectorAll('input');
+            all.onchange = function() {
+                other.forEach(item => {
+                    item.checked = all.checked 
+                })
+            }
+            other.forEach(item => {
+                item.onchange = function() {
+                    all.checked = other.every(val => val.checked)
+                }
+            })
+        </script> -->
+        <ul></ul>
+
+        <script>
+            var ul = document.querySelector('ul');
+            var person = { sex: '男', age: '25', name: '王大锤', height: 28, weight: 32 };
+            const _render = element => {
+                var str = `<li>姓名：<span>${person.name}</span></li>
+                           <li>性别：<span>${person.sex}</span></li>
+                           <li>年龄：<span>${person.age}</span></li>
+                           <li>身高：<span>${person.height}</span></li>
+                           <li>体重：<span>${person.weight}</span></li>`
+                element.innerHTML = str;
+            }
+            _render(ul);
+            // 补全代码
+            function Observe(target) {
+                if (typeof target !== 'object' || target == null) {
+                    return target
+                }
+                for (var key in target) {
+                    defineReactive(target, key, target[key])
+                }
+            }
+            function defineReactive(target, key, value) {
+                console.log(target,'----------')
+                Object.defineProperty(target, key, {
+                    get: function () {
+                        console.log(target,key,'111')
+                        return value
+                    },
+                    set: function (newVal) {
+                        if (newVal !== value) {
+                            value = newVal
+                            console.log(target,key,'222')
+                            _render(ul)
+                        }
+
+                    }
+
+                })
+            }
+            Observe(person)
+            setTimeout(() => {
+                person.age = '55'
+            },1500)
+        </script>
+    </body>
+</html>

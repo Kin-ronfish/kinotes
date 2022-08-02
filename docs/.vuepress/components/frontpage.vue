@@ -354,18 +354,23 @@ export default {
         },
         {
           title: "videvo",
-          remark:"",
+          remark:"剪辑素材",
           url: "https://www.videvo.net/",
         },
         {
           title: "自然音效",
-          remark:"",
+          remark:"配音素材",
           url: "https://www.soundgator.com/",
         },
         {
           title: "newcger",
-          remark:"",
+          remark:"剪辑素材",
           url: "https://www.newcger.com/",
+        },
+        {
+          title: "爱给网",
+          remark:"配音素材",
+          url: "https://www.aigei.com/music/",
         }
       ],
       tmpList_2: [],
