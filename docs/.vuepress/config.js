@@ -33,7 +33,8 @@ module.exports = {
         smoothScroll: true,
         nav: [
             { text: '主页', link: '/' },
-            { text: '前端', link: '/front/' }
+            { text: '前端', link: '/front/' },
+            { text: '旧版', link: '/abandon/' }
         ],
         sidebar: {
             '/front/':[
@@ -68,6 +69,30 @@ module.exports = {
                         '/front/other/method.md',
                         '/front/note/note.md',
                         '/front/note/question.md'
+                    ]
+                }
+            ],
+            '/abandon/':[
+                {
+                    title: '旧版笔记',
+                    collapsable: false,
+                    children: [
+                        '/abandon/JS.md',
+                        '/abandon/CSS.md',
+                        '/abandon/vue.md',
+                        '/abandon/uniapp.md',
+                        '/abandon/TS.md',
+                        '/abandon/nuxt.md',
+                        '/abandon/lodash.md',
+                        '/abandon/react.md',
+                        '/abandon/angular.md',
+                        '/abandon/babylon.md',
+                        '/abandon/eslint.md',
+                        '/abandon/rule.md',
+                        '/abandon/linr.md',
+                        '/abandon/java.md',
+                        '/abandon/arduino.md',
+                        '/abandon/other.md'
                     ]
                 }
             ]
