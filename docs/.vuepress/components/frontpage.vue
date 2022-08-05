@@ -127,7 +127,7 @@ export default {
         {
           title: "three",
           remark:"3D渲染引擎",
-          url: "http://www.webgl3d.cn/threejs/docs/",
+          url: "https://threejs.org/docs/index.html#manual/zh/introduction/Creating-a-scene",
         },
         {
           title: "agora",
