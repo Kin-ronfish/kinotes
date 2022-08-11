@@ -1,4 +1,6 @@
-# JavaScript
+# 学习笔记
+
+## JavaScript
 
 > 绝大多数数据处理都是字符串，数字，数组，对象等
 
@@ -13,7 +15,7 @@ function arr(...args) {
 arr(1,2,3)
 ```
 
-## this
+### this
 
 箭头函数中的this指向的是最外层的this
 
@@ -21,7 +23,7 @@ arr(1,2,3)
 
 闭包中的this指向window
 
-## 对象
+### 对象
 
 `Map`：Map是一组键值对的字典结构，具有极快的查找速度
 
@@ -72,7 +74,7 @@ new Proxy({a:1}, {
 >
 > base64转字符串：`decodeURIComponent(atob(str))
 
-## 正则表达式
+### 正则表达式
 
 正则表达式在处理字符串方面可以提高效率
 
@@ -86,13 +88,13 @@ new Proxy({a:1}, {
 
 `'isd'.match(/^is/g)`：匹配以is开头的字符
 
-## DOM操作
+### DOM操作
 
 创建标签节点：`document.createElement('div')`
 
 绑定DOM0级标准事件：`document.querySelector('div').onclick= function(){}`
 
-## 继承
+### 继承
 
 原型链继承
 
@@ -151,13 +153,13 @@ class child extends parent {
 }
 ```
 
-## 事件循环
+### 事件循环
 
 浏览器的事件循环分为同步任务和异步任务，异步任务有宏任务和微任务
 
 setTimeout、setInterval会将指定代码移出当前循环，在下一轮循环时检查是否到指定时间
 
-## 闭包
+### 闭包
 
 闭包就是通过函数内部的函数访问内部变量
 
@@ -171,25 +173,25 @@ setTimeout、setInterval会将指定代码移出当前循环，在下一轮循�
 (function(){ /* code */ })();
 ```
 
-# Vue
+## Vue
 
 vue[响应式原理](https://wenku.baidu.com/view/6ca3cedb07a1b0717fd5360cba1aa81144318f24.html)：通过 `Object.defineProperty()`  定义setter方法和getter方法实现数据劫持，设置一个监听器用于监听所有属性的变化，当数据发生改变时，监听器就会触发更新函数做相应的操作。
 
 [Diff](https://blog.csdn.net/qq_34179086/article/details/88086427)：通过比较同层节点找出不同，使用优先判断和就地复用策略，提高diff算法效率
 
-## vite工具
+### vite工具
 
 vite是一个可以快速创建主流框架模板的工具，服务启动极快
 
 > nodejs版本大于14.18.0
 
-## 生命周期
+### 生命周期
 
 vue生命周期：创建前后，渲染前后，更新前后，销毁前后
 
 > vue中的周期函数不能使用箭头函数，箭头函数没有this，this作为变量向上级词法作用域查找，会报空值错误
 
-## 数据渲染及事件处理
+### 数据渲染及事件处理
 
 计算属性(computed)是基于它们的响应式来进行缓存的，只有值发生变化才会重新调用
 
@@ -227,7 +229,7 @@ vue响应式系统无法检测某些对象和数组的变化：property的添加
 
 异步更新队列[$nextTick](https://blog.csdn.net/zhouzuoluo/article/details/84752280)(callback)，会在数据变化且DOM更新完成后被调用
 
-## 组件
+### 组件
 
 - data()必须是一个函数，并且返回一个对象，vue在创建组件实例的过程中会调用此函数，如果data不是一个函数，不同组件在修改data的值时会受到影响
 
@@ -263,7 +265,7 @@ vue响应式系统无法检测某些对象和数组的变化：property的添加
 - vue中可以定义过滤器用于处理文本格式化，可在双花括号插值和v-bind中使用
 - 过渡动画：`<transition>，<transition-group>`(vue3)列表过渡
 
-## Vue2Vue3
+### Vue2Vue3
 
 [vue2和vue3的区别](https://blog.csdn.net/weixin_43638968/article/details/108800361)
 
@@ -277,7 +279,7 @@ Vue2 响应式原理基础是Object.defineProperty；Vue3 响应式原理基础�
 
 v-if和v-for不要放在同一个元素上，vue2和vue3两者的优先级正好相反
 
-# React
+## React
 
 元素渲染必须只有一个根节点
 
@@ -305,7 +307,3 @@ action：触发数据改变的方法
 dispatch：触发action的方法
 
 reducer：通过获取动作，改变数据
-
-
-
-自开发项目：简单答题系统
