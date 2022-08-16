@@ -1,7 +1,5 @@
 # uniapp
 
-框架熟练程度：⭐⭐⭐
-
 > [uni-app官网](https://uniapp.dcloud.io/) 跨平台解决方案
 
 - 方法实现

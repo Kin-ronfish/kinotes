@@ -1,14 +1,12 @@
 # Vue
 
-框架熟练度：⭐⭐⭐
-
 [Vue框架官网文档](https://cn.vuejs.org/v2/guide/)
 
 > 优点：数据双向绑定、模块化、组件化、插件化
 >
 > 缺点：Vue 不支持 IE8 及以下版本
 
-页面语法⭐⭐⭐
+页面语法
 
 - 数据绑定`v-model`
 - 类绑定`:class`
@@ -21,7 +19,7 @@
 
 > 组件v-for绑定key值，可以通过修改key值再重新渲染组件
 
-逻辑方法⭐⭐⭐
+逻辑方法
 
 - 数据对象`data`
 - 计算方法`computed`
@@ -31,7 +29,7 @@
 
 > vue中的data必须是函数是为了保证组件的独立性和可复用性
 
-组件通讯⭐⭐⭐
+组件通讯
 
 - 父传值给子`props`
 - 子传事件给父`$emit()`
@@ -42,7 +40,7 @@
 >
 > keep-alive抽象组件，用于提高性能的缓存组件
 
-生命周期⭐⭐⭐
+生命周期
 
 - 数据创建前 `beforecreate`
 - 数据完成创建 `created`
@@ -52,8 +50,6 @@
 - 组件销毁 `beforeDestroy`，`destroyed`
 
 ## Vuex
-
-插件熟练度：⭐⭐⭐
 
 [vuex插件文档](https://vuex.vuejs.org/zh/)
 
@@ -67,8 +63,6 @@
 - `$store.commit()` , `$store.dispatch()` 分别是 `mutations` , `actions` 的触发函数
 
 ## Router
-
-组件熟练度：⭐⭐
 
 [router组件文档](https://router.vuejs.org/zh/guide/)
 
@@ -97,8 +91,6 @@ const router = new VueRouter({
 ```
 
 ## Nuxt
-
-框架熟练度：⭐
 
 [Nuxt框架官网文档](https://www.nuxtjs.cn/)
 

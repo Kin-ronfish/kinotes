@@ -1,12 +1,10 @@
 # babylon
 
-框架熟练程度：⭐⭐
-
 > [babylon官方文档](https://www.babylonjs.com/) 前端3D渲染框架
 >
 > [babylon模型演示网站](https://sandbox.babylonjs.com/)
 >
-> 在vue项目中要导入三维模型，需要确认模型的**具体路径**
+> 在vue项目中要导入三维模型，需要确认模型的**具体路径**，默认都是在public目录下
 
 以下笔记为独一的功能模块，在初始开发时可以直接使用
 

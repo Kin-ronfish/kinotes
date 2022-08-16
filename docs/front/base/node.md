@@ -4,6 +4,107 @@ forever：让node.js在后台持久运行
 
 pm2: Node.js的进程管理器
 
+# express
+
+> web应用程序框架，写法基本与http相似
+
+```shell
+npm install express -save
+npm install express-generator -g #安装express应用生成器
+```
+
+## 基础框架
+
+```javascript
+const express = require('express')
+const url = require('url')
+const app = express()
+// 获取get请求
+app.get('/getData', (req, res) => {
+    let obj = url.parse(req.url, true).query
+    console.log(JSON.stringify(obj))
+  res.send('{msg: success}') // 数据响应
+})
+// 获取post请求
+app.post('/postData', (req, res) => {
+    let body = ''
+    req.on('data', (thunk) => {
+        body += thunk
+    })
+    req.on('end', () => {
+        console.log(body)
+        res.send('{msg: success}') // 数据响应
+    })
+})
+// 监听3000端口
+app.listen(3000, () => {
+    console.log('http://localhost:3000')
+})
+```
+
+## 链接sqlite3
+
+```javascript
+class DB {
+    constructor() {
+        let sqlite = require('sqlite3').verbose()
+        this.db = new sqlite.Database('src/data.db', () => {
+            console.log('数据库打开成功')
+        })
+    }
+    /**
+     * 新增数据
+     */
+    insert(id, title) {
+        let add = this.db.prepare("INSERT OR REPLACE INTO table (id, title) VALUES (?,?)");
+        add.run(id, title)
+        add.finalize()
+        console.log('数据插入成功')
+    }
+    /**
+     * 删除数据
+     */
+    delete(id) {
+        let del = this.db.prepare("DELETE from table where id =?")
+        del.run(id)
+        del.finalize()
+        console.log('数据删除成功')
+    }
+    /**
+     * 更新数据
+     */
+    update(id, title) {
+        let update = this.db.prepare("UPDATE table set title=? where id =?")
+        update.run(title, id)
+        update.finalize()
+        console.log('数据更新成功')
+    }
+
+    /**
+     * 查询所有数据
+     */
+    selectAll() {
+        return new Promise((resolve) => {
+            this.db.all("SELECT * FROM table",(err,row) =>{
+                resolve(JSON.stringify(row))
+            })
+        })
+    }
+    
+    /**
+     * 根据id查询单条数据
+     */
+    select(id) {
+        return new Promise((resolve) => {
+            this.db.each("SELECT id,title FROM table where id=?", id, function(err, row) {
+                console.log(JSON.stringify(row));
+                resolve(row)
+            });
+        })
+    }
+}
+```
+
 # ES6异步写法
 
 - async是个函数，await只能在这个函数里面

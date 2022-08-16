@@ -1,7 +1,5 @@
 # React
 
-框架熟练度：⭐
-
 [React框架官方文档](https://react.docschina.org/)
 
 > 优点：更新dom的次数少，速度快、兼容性好，数据单项绑定
