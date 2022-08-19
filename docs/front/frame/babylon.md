@@ -59,7 +59,7 @@
 </style>
 ```
 
-- 相机模块
+## 相机模块
 
 ```javascript
 export function createCamera(scene) {
@@ -84,7 +84,7 @@ export function createCamera(scene) {
 }
 ```
 
-- 场景材质
+## 场景材质
 
 ```javascript
 // 设置场景HDR材质
@@ -123,7 +123,7 @@ function video(scene) {
 }
 ```
 
-- 灯光模块
+## 灯光模块
 
 ```javascript
 export function createDirectionalLight(scene) {
@@ -162,7 +162,7 @@ export function createSpotLight(scene) {
 // groundColor 背光面颜色
 ```
 
-- 加载模块
+## 加载模块
 
 ```javascript
 // 加载模型
@@ -197,7 +197,7 @@ Ks 0.50 0.50 0.50
 map_Kd ./img/img2.png //贴图路径
 ```
 
-- GUI模块
+## GUI模块
 
 ```javascript
 // 创建UI弹窗
@@ -214,7 +214,7 @@ export function createGUI() {
 }
 ```
 
-- 物体编辑器
+## 物体编辑器
 
 ```javascript
 // 物体编辑工具
@@ -241,7 +241,7 @@ export function createEditTool(scene,mesh,type) {
 }
 ```
 
-- 相机第一人称移动UI
+## 相机第一人称移动UI
 
 ```javascript
 export function operation(camera,scene) {
@@ -390,7 +390,7 @@ export function makeThumbArea(name, thickness, color, background){
 }
 ```
 
-- 物理引擎
+## 物理引擎
 
 > 添加物理引擎需要引入cannon.js
 
@@ -411,6 +411,17 @@ export function createBox(scene) { // 创建方块
     let box = new BABYLON.MeshBuilder.CreateBox("box", {height: 2, width:2, depth: 2});
     box.physicsImpostor = new BABYLON.PhysicsImpostor(box, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 10, restitution: 0.9 }, scene);
     return box;
+}
+```
+
+## 射线获取
+
+```javascript
+scene.onPointerDown = () => {
+  let pickResult = scene.pick(scene.pointerX, scene.pointerY)
+  if(pickResult.hit && pickResult.pickedMesh.name === 'root_primitive2') {
+    this.camera.useAutoRotationBehavior = false
+  }
 }
 ```
 

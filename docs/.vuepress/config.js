@@ -57,6 +57,7 @@ module.exports = {
                         '/front/frame/vue.md',
                         '/front/frame/react.md',
                         '/front/frame/babylon.md',
+                        '/front/frame/three.md',
                         '/front/frame/uniapp.md',
                         '/front/frame/hint.md'
                     ]
@@ -68,7 +69,7 @@ module.exports = {
                         '/front/other/rule.md',
                         '/front/other/method.md',
                         '/front/note/note.md',
-                        '/front/note/question.md'
+                        // '/front/note/question.md'
                     ]
                 }
             ],
