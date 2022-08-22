@@ -57,7 +57,6 @@ module.exports = {
                         '/front/frame/vue.md',
                         '/front/frame/react.md',
                         '/front/frame/babylon.md',
-                        '/front/frame/three.md',
                         '/front/frame/uniapp.md',
                         '/front/frame/hint.md'
                     ]

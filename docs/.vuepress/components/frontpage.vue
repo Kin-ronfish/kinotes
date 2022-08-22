@@ -440,7 +440,7 @@ export default {
     this.tmpList_1 = this.urlList_1;
     this.tmpList_2 = this.urlList_2;
     this.tmpList_3 = this.urlList_3;
-  }
+  },
 };
 </script>
 <style scoped>
