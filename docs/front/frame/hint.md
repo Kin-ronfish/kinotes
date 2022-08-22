@@ -113,6 +113,54 @@ Vue.prototype.$md5 = md5
 this.$md5('str')
 ```
 
+- vue-markdown
+
+```shell
+npm install github-markdown-css@5.1.0
+npm install highlight.js@11.6.0
+npm install html-loader@1.3.0
+npm install markdown-loader@5.1.0
+```
+
+```javascript
+// main.js
+// 配置markdown样式
+import hljs from 'highlight.js'
+import 'github-markdown-css'
+Vue.use(hljs)
+Vue.directive('highlight', function(el) {
+  let blocks = el.querySelectorAll('pre code')
+  blocks.forEach((block) => {
+    hljs.highlightBlock(block)
+  })
+})
+```
+
+```vue
+<template>
+  <div class="home">
+    <div class="markdown-body" v-highlight v-html="msg"></div>
+  </div>
+</template>
+
+<script>
+import 'highlight.js/styles/github.css'
+export default {
+  name: 'Home',
+  data() {
+    return {
+      msg: ''
+    }
+  },
+  mounted() {
+    this.msg = require('../markdown/JS.md')
+  }
+}
+</script>
+```
+
+
+
 ## UI框架
 
 - element

@@ -4,7 +4,7 @@ forever：让node.js在后台持久运行
 
 pm2: Node.js的进程管理器
 
-# express
+## express
 
 > web应用程序框架，写法基本与http相似
 
@@ -13,7 +13,7 @@ npm install express -save
 npm install express-generator -g #安装express应用生成器
 ```
 
-## 基础框架
+### 基础框架
 
 ```javascript
 const express = require('express')
@@ -42,7 +42,7 @@ app.listen(3000, () => {
 })
 ```
 
-## 链接sqlite3
+### 链接sqlite3
 
 ```javascript
 class DB {
@@ -105,7 +105,7 @@ class DB {
 }
 ```
 
-# ES6异步写法
+## ES6异步写法
 
 - async是个函数，await只能在这个函数里面
 - await等待一个promise对象
@@ -124,7 +124,7 @@ let start = async () => {
 start();
 ```
 
-# path路径模块
+## path路径模块
 
 - dirname(path)：获取所在路径
 - basename(path)：获取文件名
@@ -134,7 +134,7 @@ start();
 - parse(path)：路径拆解成对象结构
 - format(pathObject)：对象结构组合成完整路径
 
-# fs文件操作系统模块
+## fs文件操作系统模块
 
 - readFileSync(path,encoding)/readFile(path,encoding,function)：文件同步/异步读取
 - writeFileSync(path,str,encoding)/writeFile(path,str,encoding,function)：文件同步/异步写入
@@ -149,7 +149,7 @@ start();
 - chmod(path, mode, fuction)/chmodSync()：修改权限
 - stat(path,function)/statSync(path,function)：获取文件信息
 
-# http模块(https)
+## http模块(https)
 
 - 服务端实例
 
@@ -202,7 +202,7 @@ setResult(res) {
 }
 ```
 
-- # 客户端实例
+- 客户端实例
 
 ```javascript
 let fs = require('fs')
@@ -255,7 +255,7 @@ server.request({
 })
 ```
 
-# net模块
+## net模块
 
 http继承了其功能
 
@@ -303,7 +303,7 @@ client.on('close', function() {
 client.end()
 ```
 
-# dgram模块
+## dgram模块
 
 对socket的一层封装，比net简单
 
@@ -337,12 +337,12 @@ client.bind(function() {
 })
 ```
 
-# url模块
+## url模块
 
 - parse(urlObject)：url拆解成对象结构
 - format(url)：对象结构组合成完整url
 
-# dns模块
+## dns模块
 
 域名解析
 

@@ -6,6 +6,8 @@
 >
 > 缺点：不是一个完整的框架，很多功能需要自行编写
 
+>  元素渲染必须只有一个根节点
+>
 >  插槽的功能需要自己实现
 
 ## 语法
@@ -228,13 +230,13 @@ function Home() {
 }
 ```
 
-# react-router-dom
+## react-router-dom
 
 ```shell
-npm install react-router-dom
+npm install react-router-dom --save
 ```
 
-## 路由配置
+### 路由配置
 
 ```react
 import Home from './views/Home/Home';
@@ -249,7 +251,7 @@ import Search from './views/Search/Search';
 </BrowserRouter>
 ```
 
-## 路由跳转
+### 路由跳转
 
 ```react
 import {useNavigate} from 'react-router-dom'
@@ -265,3 +267,22 @@ function Create() {
 ```
 
 > 返回操作：window.history.back()
+
+## redux
+
+```shell
+npm install redux --save
+npm install react-redux --save
+```
+
+> 项目共享数据较多时使用
+
+store：数据仓库
+
+state：数据存储对象
+
+action：触发数据改变的方法
+
+dispatch：触发action的方法
+
+reducer：通过获取动作，改变数据

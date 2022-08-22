@@ -6,41 +6,17 @@
 >
 > 缺点：Vue 不支持 IE8 及以下版本
 
-页面语法
+vue[响应式原理](https://wenku.baidu.com/view/6ca3cedb07a1b0717fd5360cba1aa81144318f24.html)：通过 `Object.defineProperty()`  定义setter方法和getter方法实现数据劫持，设置一个监听器用于监听所有属性的变化，当数据发生改变时，监听器就会触发更新函数做相应的操作。
 
-- 数据绑定`v-model`
-- 类绑定`:class`
-- 样式绑定`:style`
-- 事件绑定`@click`
-- 条件渲染`v-if`
-- 循环渲染`v-for`
-- 插槽(组件中嵌入可编辑的标签) `slot`
-- ...
+[Diff](https://blog.csdn.net/qq_34179086/article/details/88086427)：通过比较同层节点找出不同，使用优先判断和就地复用策略，提高diff算法效率
 
-> 组件v-for绑定key值，可以通过修改key值再重新渲染组件
+## vite工具
 
-逻辑方法
+vite是一个可以快速创建主流框架模板的工具，服务启动极快
 
-- 数据对象`data`
-- 计算方法`computed`
-- 组件`components`
-- 监听函数 `watch`
-- 方法`methods`
+> nodejs版本大于14.18.0
 
-> vue中的data必须是函数是为了保证组件的独立性和可复用性
-
-组件通讯
-
-- 父传值给子`props`
-- 子传事件给父`$emit()`
-- 父调用子的值及方法`refs`
-- 组件间传值`eventBus`
-
-> 父组件在使用子组件的时候带参数需添加$event，用于获取子组件传来的值
->
-> keep-alive抽象组件，用于提高性能的缓存组件
-
-生命周期
+## 生命周期
 
 - 数据创建前 `beforecreate`
 - 数据完成创建 `created`
@@ -48,6 +24,94 @@
 - 页面完成渲染 `mounted`
 - 组件更新 `beforeUpdate`，`updated`
 - 组件销毁 `beforeDestroy`，`destroyed`
+
+> vue中的周期函数不能使用箭头函数，箭头函数没有this，this作为变量向上级词法作用域查找，会报空值错误
+
+## 数据渲染及事件处理
+
+计算属性(computed)是基于它们的响应式来进行缓存的，只有值发生变化才会重新调用
+
+> 相比方法(methods)的调用，可以避免多次的执行
+>
+> 相比监听属性(watch)，在多个数据发生改变时可减少多次的调用
+
+> 计算属性默认只有getter方法get()，可以在里面添加setter方法set()来传值进去
+
+类与样式的绑定：可传数组和对象
+
+v-if在渲染时，如果存在相同的元素，不会再次渲染，可通过添加key值来再次渲染
+
+> v-if是对DOM元素进行增删，v-show则是设置元素的CSS属性进行显隐
+
+v-for可以遍历数组和对象，渲染加上key值，使用默认的”就地更新“策略来提高性能
+
+@click="event(), handle()"多事件绑定(vue3)
+
+> 若绑定的事件有返回值且需要传值进去，可以通过`$event`将值带出来event($event, 1)
+>
+> 事件修饰符once设置事件只触发一次，适用于防止多次提交
+
+v-model是通过绑定值和监听事件来实现数据的双向绑定
+
+> 值的绑定：标签外{{`value`}}，标签内:`value="value"`或:`[value]="value"`
+>
+> 事件绑定：`@click="event"`或@`[click]="event"`，修饰符@click<u>.enter</u>="event"
+
+vue响应式系统无法检测某些对象和数组的变化：property的添加或移除，数组项的修改，长度修改
+
+> vue3使用了Proxy修复了此问题
+
+异步更新队列[$nextTick](https://blog.csdn.net/zhouzuoluo/article/details/84752280)(callback)，会在数据变化且DOM更新完成后被调用
+
+## 组件
+
+- data()必须是一个函数，并且返回一个对象，vue在创建组件实例的过程中会调用此函数，如果data不是一个函数，不同组件在修改data的值时会受到影响
+
+
+- Vue组件通讯方式：`props，$emit，ref，eventbus，vuex，$parent(不推荐)，$root(不推荐)，$attrs`
+
+> props是个单项数据流，父组件发生变更时，子组件的props都会刷新
+>
+> 子组件修改props中的对象或数组会影响到父组件的状态
+
+- 组件拓展：mixin方法，extends，composition api(vue3)，slot插槽(内容拓展)
+
+> 在原生html元素插入组件受限，可用is引入 `is="vue:template"`
+
+- 插槽有默认插槽，具名插槽和动态名插槽，也可缩写，相当于嵌入一个自定义组件的效果
+- provide/inject用于父组件传值给子组件的方式，与props一样，但区别在于无论组件层次结构多深，都能拿到数据，因为传递是数据是静态的，所以需要搭配computed做数据响应(vue3)
+
+> 组合式api `setup(props,context)`，props是响应式的，context非响应式，provide、inject等对象可以在里面使用
+
+- keep-alive是个缓存组件，不会被渲染成DOM，它保留了组件的状态，避免重新渲染。
+- 异步组件以一个工厂函数的方式定义组件，返回的是一个promise：`Vue.component('name', function(resolve,reject))`
+
+> vue3有一个defineAsyncComponent方法，可用于异步加载组件
+
+> ref模板引用只会在渲染完成后生效
+
+- vue组件渲染方法：createElement()，返回的是一个虚拟节点
+
+> JSX语法：在JavaScript里写html的拓展语言，借助Babel插件，JSX语法可以更接近模板语法
+>
+> 在react中比较常见
+
+- vue中可以定义过滤器用于处理文本格式化，可在双花括号插值和v-bind中使用
+- 过渡动画：`<transition>，<transition-group>`(vue3)列表过渡
+
+## Vue2&Vue3
+
+[vue2和vue3的区别](https://blog.csdn.net/weixin_43638968/article/details/108800361)
+
+> vue3在vue2上做了各种优化
+
+生命周期：setup替换成beforeCreate、created，onBeforeUnmount、onUnmounted替换成beforeDestroy、destroyed，其他的在头部加上on
+
+vue3组件支持多个根节点，修复vue2的警告问题
+
+Vue2 响应式原理基础是Object.defineProperty；Vue3 响应式原理基础是 Proxy
+
+v-if和v-for不要放在同一个元素上，vue2和vue3两者的优先级正好相反
 
 ## Vuex
 
@@ -129,3 +193,45 @@ Vue.prototype.$axios = axios
 axios.defaults.baseURL = '/api'
 axios.defaults.headers.common['Authorization'] = 'xxx' //根据情况添加请求头
 ```
+
+## 简单题记
+
+1. Vue响应式原理
+
+通过 Object.defineProperty() 定义setter方法和getter方法实现数据劫持，设置一个监听器用于监听所有属性的变化，当数据发生改变时，监听器就会触发更新函数做相应的操作。
+
+2. Diff算法
+
+通过比较同层节点找出不同，使用优先判断和就地复用策略，提高diff算法效率。
+
+3. vue生命周期
+
+数据创建前后beforecreate，created，页面渲染前后beforemount，mounted，DOM更新前后beforeupdate，updated，页面销毁前后beforedestroy，destroyed。
+
+4. v-if与v-show的区别
+
+v-if是对DOM元素进行增删，v-show则是设置元素的CSS属性进行显隐
+
+5. computed与watch的区别
+
+computed是基于它们的响应式来进行缓存，只有值发生变化才会重新调用；watch在数据发生改变时就会被调用，侦听的数据较多时会出现重复调用，消耗性能。
+
+6. data为什么是个函数
+
+data()必须是一个函数，并且返回一个对象，vue在创建组件实例的过程中会调用此函数，如果data不是一个函数，不同组件在修改data的值时会受到影响。
+
+7. v-for中的key有什么作用
+
+渲染加上key值，使用vue默认的”就地更新“策略来提高性能
+
+8. 组件通讯有哪几种方式
+
+props，$emit，eventbus，vuex，ref
+
+9. vue2与vue3的区别
+
+生命周期中的页面销毁函数不同，beforedestroy，destroyed换成beforeunmount，unmounted；v-if和v-for的优先级完全相反；vue3允许组件有多个根元素。
+
+10. keep-alive是什么
+
+keep-alive是个缓存组件，不会被渲染成DOM，它保留了组件的状态，避免重新渲染。

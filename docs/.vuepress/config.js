@@ -27,7 +27,7 @@ module.exports = {
         sidebar: 'auto',
         search: true,
         searchMaxSuggestions: 10,
-        // lastUpdated: 'Last Updated',
+        lastUpdated: 'Last Updated',
         // repo: 'Kin-ronfish/kinotes',
         // repoLabel: 'GitHub',
         smoothScroll: true,
@@ -61,16 +61,6 @@ module.exports = {
                         '/front/frame/uniapp.md',
                         '/front/frame/hint.md'
                     ]
-                },
-                {
-                    title: '其他',
-                    collapsable: false,
-                    children: [
-                        '/front/other/rule.md',
-                        '/front/other/method.md',
-                        '/front/note/note.md',
-                        // '/front/note/question.md'
-                    ]
                 }
             ],
             '/abandon/':[
@@ -100,7 +90,7 @@ module.exports = {
         }
     },
     plugins: [
-        // '@vuepress/last-updated',
+        '@vuepress/last-updated',
         '@vuepress/back-to-top',
         '@vuepress/active-header-links',
         '@vuepress/medium-zoom',
