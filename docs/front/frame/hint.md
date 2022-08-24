@@ -1,8 +1,6 @@
 # 使用提示
 
-## 插件
-
-- axios
+## axios
 
 ```javascript
 // 封装附件上传
@@ -18,7 +16,7 @@ export function upload(file) {
 }
 ```
 
-- dayjs
+## dayjs
 
 ```javascript
 dayjs.format('YYYY-MM-DD HH:mm:ss') // 格式转换
@@ -26,7 +24,7 @@ dayjs.add(1, 'day') // 添加时间，week，day，month，year，hour，minute�
 dayjs.subtract(1, 'year') // 减去时间
 ```
 
-- amimate
+## amimate
 
 ```html
 <div class="animate__animated animate__fadeIn"></div>
@@ -39,7 +37,7 @@ dayjs.subtract(1, 'year') // 减去时间
 }
 ```
 
-- git
+## git
 
 ```shell
 git init # 初始化
@@ -59,7 +57,7 @@ git rebase master # 合并master分支代码
 
 > 出现冲突时，rebase需要解决多个冲突，但是 merge 出现冲突只需要解决一次。
 
-- jQuery
+## jQuery
 
 ```javascript
 $("p").append("追加文本");
@@ -68,7 +66,7 @@ $("img").before("在前面添加文本");
 $("#div").remove();
 ```
 
-- html2canvas
+## html2canvas
 
 ```javascript
 // 截取网页指定区域，保存为图片
@@ -89,7 +87,7 @@ html2canvas(docArea, {
 })
 ```
 
-- printjs
+## printjs
 
 ```javascript
 // 截取网页特定区域作为打印区域
@@ -101,7 +99,7 @@ print({
 })
 ```
 
-- md5
+## md5
 
 ```javascript
 // 在文件内使用是直接引入
@@ -113,7 +111,7 @@ Vue.prototype.$md5 = md5
 this.$md5('str')
 ```
 
-- vue-markdown
+## vue-markdown
 
 ```shell
 npm install github-markdown-css@5.1.0
@@ -159,11 +157,7 @@ export default {
 </script>
 ```
 
-
-
-## UI框架
-
-- element
+## element
 
 ```js
 // main.js
@@ -183,7 +177,7 @@ Vue.use(ElementUI);
 </el-checkbox-group>
 ```
 
-- vant
+## vant
 
 ```js
 // main.js
@@ -192,7 +186,7 @@ import 'vant/lib/index.css';
 Vue.use(Vant);
 ```
 
-- uView
+## uView
 
 ```js
 // main.js
@@ -221,117 +215,9 @@ Vue.use(uView);
 	}
 }
 ```
-## 第三方
-
-- mqtt
+## mqtt
 
 [在vue中使用mqtt](https://www.emqx.com/zh/blog/how-to-use-mqtt-in-vue)
-
-```javascript
-import mqtt from 'mqtt'
-
-/**
- * topic：主题
- * qos：消息等级
- * payload：消息内容
- */
-
-export default class MqttX {
-    constructor() {
-        this.receiveNews = ''
-        this.client = ''
-        this.options = {
-            host: 'broker.emqx.io',
-            port: 8083,
-            endpoint: '/mqtt',
-            clean: true, // 保留会话
-            // connectTimeout: 4000, // 超时时间
-            // reconnectPeriod: 4000, // 重连时间间隔
-            // 认证信息
-            clientId: 'mqttx_fadf3121', // 每一个客户端ID都不同
-            username: '',
-            password: ''
-        }
-        this.subscription = {
-            topic: 'topic/mqttx',
-            qos: 0
-        }
-        this.publication = {
-            topic: 'topic/mqttx',
-            qos: 0,
-            payload: '{ "msg": "Hello, I am browser." }'
-        }
-    }
-    // 监理连接
-    connection(options) {
-        // ws 未加密 WebSocket 连接 端口号8083
-        // wss 加密 WebSocket 连接 端口号8083
-        // mqtt 未加密 TCP 连接 端口号1883
-        // mqtts 加密 TCP 连接 端口号1883
-        const { host, port, endpoint, ...option } = options?options:this.options
-        const connectUrl = `ws://${host}:${port}${endpoint}`
-        try {
-            this.client = mqtt.connect(connectUrl, option)
-        } catch (error) { 
-            console.log('mqtt.connect error', error)
-        }
-        this.client.on('connect', () => {
-            console.log('Connection succeeded!')
-        })
-        this.client.on('error', error => {
-            console.log('Connection failed', error)
-        })
-        // 监听收到的消息
-        this.client.on('message', (topic, message) => {
-            this.receiveNews = this.receiveNews.concat(message)
-            console.log(`Received message ${message} from topic ${topic}`)
-        })
-    }
-    // 订阅主题
-    subscribe(subscription) {
-        const { topic, qos } = subscription?subscription:this.subscription
-        this.client.subscribe(topic, { qos }, (error, res) => {
-            if (error) {
-                console.log('Subscribe to topics error', error)
-                return
-            }
-            console.log('Subscribe to topics res', res)
-        })
-    }
-    // 取消订阅
-    unSubscribe(subscription) {
-        const { topic } = subscription?subscription:this.subscription
-        this.client.unsubscribe(topic, error => {
-            if (error) {
-                console.log('Unsubscribe error', error)
-            }
-        })
-    }
-    // 发布消息
-    publish(publication) {
-        const { topic, qos, payload } = publication?publication:this.publication
-        this.client.publish(topic, payload, qos, error => {
-            if (error) {
-                console.log('Publish error', error)
-            }
-        })
-    }
-    // 断开连接
-    unConnection() {
-        if (this.client.connected) {
-            try {
-                this.client.end()
-                this.client = {
-                    connected: false,
-                }
-                console.log('Successfully disconnected!')
-            } catch (error) {
-                console.log('Disconnect failed', error.toString())
-            }
-        }
-    }
-}
-```
 
 > webpack>5的vue项目需要安装node-polyfill-webpack-plugin插件
 
@@ -353,8 +239,9 @@ configureWebpack: {
  }
 ```
 
-- [声网](https://docs.agora.io/cn)
+## 声网
 
+[声网官网](https://docs.agora.io/cn)
 
 创建客户端：`client=AgoraRTC.createClient()`
 
@@ -374,3 +261,14 @@ configureWebpack: {
 
 取消推视频流：`stream.unpublish()`
 
+## three
+
+> [three 3D](https://threejs.org/docs/index.html#manual/zh/introduction/Creating-a-scene)渲染框架
+
+## babylon
+
+> [babylon官方文档](https://www.babylonjs.com/) 前端3D渲染框架
+>
+> [babylon模型演示网站](https://sandbox.babylonjs.com/)
+>
+> 在vue项目中要导入三维模型，需要确认模型的**具体路径**，默认都是在public目录下

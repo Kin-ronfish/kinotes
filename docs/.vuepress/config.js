@@ -56,8 +56,8 @@ module.exports = {
                     children: [
                         '/front/frame/vue.md',
                         '/front/frame/react.md',
-                        '/front/frame/babylon.md',
                         '/front/frame/uniapp.md',
+                        '/front/frame/wxapp.md',
                         '/front/frame/hint.md'
                     ]
                 }
@@ -77,7 +77,9 @@ module.exports = {
                         '/abandon/react.md',
                         '/abandon/angular.md',
                         '/abandon/babylon.md',
+                        '/abandon/three.md',
                         '/abandon/eslint.md',
+                        '/abandon/mqtt.md',
                         '/abandon/rule.md',
                         '/abandon/linr.md',
                         '/abandon/java.md',
