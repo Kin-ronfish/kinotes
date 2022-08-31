@@ -39,23 +39,35 @@ module.exports = {
         sidebar: {
             '/front/':[
                 {
-                    title: '语法基础',
+                    title: '前端基础',
                     collapsable: false,
                     children: [
                         '/front/base/JS.md',
-                        '/front/base/node.md',
                         '/front/base/CSS.md',
-                        '/front/base/typescript.md',
+                        '/front/base/typescript.md'
+                    ]
+                },
+                {
+                    title: '后端基础',
+                    collapsable: false,
+                    children: [
+                        '/front/base/node.md',
                         '/front/base/php.md',
                         '/front/base/python.md'
                     ]
                 },
                 {
-                    title: '框架用法',
+                    title: '前端框架',
                     collapsable: false,
                     children: [
                         '/front/frame/vue.md',
                         '/front/frame/react.md',
+                    ]
+                },
+                {
+                    title: '应用框架',
+                    collapsable: false,
+                    children: [
                         '/front/frame/uniapp.md',
                         '/front/frame/wxapp.md',
                         '/front/frame/hint.md'

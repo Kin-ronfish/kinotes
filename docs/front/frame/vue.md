@@ -68,20 +68,22 @@ vue响应式系统无法检测某些对象和数组的变化：property的添加
 - data()必须是一个函数，并且返回一个对象，vue在创建组件实例的过程中会调用此函数，如果data不是一个函数，不同组件在修改data的值时会受到影响
 
 
-- Vue组件通讯方式：`props，$emit，ref，eventbus，vuex，$parent(不推荐)，$root(不推荐)，$attrs`
+- Vue组件通讯方式：`props，$emit，refs，eventbus，vuex，provide/inject，v-model`
 
 > props是个单项数据流，父组件发生变更时，子组件的props都会刷新
 >
 > 子组件修改props中的对象或数组会影响到父组件的状态
+
+- provide/inject用于父组件传值给子组件的方式，与props一样，但区别在于无论组件层次结构多深，都能拿到数据，因为传递是数据是静态的，所以需要搭配computed做数据响应(vue3)
+
+> 组合式api `setup(props,context)`，props是响应式的，context非响应式，provide、inject等对象可以在里面使用
 
 - 组件拓展：mixin方法，extends，composition api(vue3)，slot插槽(内容拓展)
 
 > 在原生html元素插入组件受限，可用is引入 `is="vue:template"`
 
 - 插槽有默认插槽，具名插槽和动态名插槽，也可缩写，相当于嵌入一个自定义组件的效果
-- provide/inject用于父组件传值给子组件的方式，与props一样，但区别在于无论组件层次结构多深，都能拿到数据，因为传递是数据是静态的，所以需要搭配computed做数据响应(vue3)
 
-> 组合式api `setup(props,context)`，props是响应式的，context非响应式，provide、inject等对象可以在里面使用
 
 - keep-alive是个缓存组件，不会被渲染成DOM，它保留了组件的状态，避免重新渲染。
 - 异步组件以一个工厂函数的方式定义组件，返回的是一个promise：`Vue.component('name', function(resolve,reject))`
