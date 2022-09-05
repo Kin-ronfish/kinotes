@@ -1,7 +1,5 @@
 # uniapp
 
-> [uni-app官网](https://uniapp.dcloud.io/) 跨平台解决方案
-
 - 方法实现
 
 [canvas事件手写签名](https://blog.csdn.net/qq_32289849/article/details/106571184)
