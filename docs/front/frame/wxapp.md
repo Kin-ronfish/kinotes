@@ -1,7 +1,5 @@
 # 微信小程序
 
-[官方文档](https://developers.weixin.qq.com/miniprogram/dev/framework/)
-
 - page.json
 
 页面路由写在pages数组里
