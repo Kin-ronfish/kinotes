@@ -1,7 +1,5 @@
 # Vue
 
-[Vue框架官网文档](https://cn.vuejs.org/v2/guide/)
-
 > 优点：数据双向绑定、模块化、组件化、插件化
 >
 > 缺点：Vue 不支持 IE8 及以下版本
@@ -117,8 +115,6 @@ v-if和v-for不要放在同一个元素上，vue2和vue3两者的优先级正好
 
 ## Vuex
 
-[vuex插件文档](https://vuex.vuejs.org/zh/)
-
 - `Store`  数据仓库对象
 - `state` 用于存储数据
 - `getters` 调用方法
@@ -129,8 +125,6 @@ v-if和v-for不要放在同一个元素上，vue2和vue3两者的优先级正好
 - `$store.commit()` , `$store.dispatch()` 分别是 `mutations` , `actions` 的触发函数
 
 ## Router
-
-[router组件文档](https://router.vuejs.org/zh/guide/)
 
 - 标签声明式跳转
 - 函数编程式跳转
